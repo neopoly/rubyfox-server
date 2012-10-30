@@ -7,16 +7,18 @@ module Rubyfox
     class CLI < Thor
       include Thor::Actions
 
+      def self.source_root
+        Rubyfox::SFS.data_dir
+      end
+
       desc "install DIR", "install SmartFox Server into DIR"
       def install(dir)
         if File.exist?(dir)
           abort "Directory #{dir} already exists!"
         end
 
-        directory Rubyfox::SFS.data_dir, dir
+        directory self.class.source_root, dir
       end
     end
-
-    CLI.source_root Rubyfox::SFS.data_dir
   end
 end
