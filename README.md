@@ -8,7 +8,7 @@ SmartFox Server bundled as a gem.
 
 ## Usage
 
-TODO
+    $ smartfox install /path/to/dir
 
 ## Contributing
 
