@@ -1,0 +1,63 @@
+=====================================
+SmartFoxServer 2X Administration Tool
+=====================================
+
+v1.2.1
+======
+
+New features
+------------
+- New "HTML5 WebSockets" tab added to the Server Configurator module to activate and setup the HTML5 support.
+- More traffic details added to Dashboard module (max # of CCU, max # of sessions and total Rooms), now displayed in a table.
+
+Fixed bugs
+----------
+- Logical error when checking duplicate Zone/Room name in Zone Configurator module.
+
+
+v1.2.0
+======
+
+New features
+------------
+- Server version is now checked against the SFS website and an alert is displayed if a new version is available for download.
+
+Other
+-----
+- Runtime Statistics module renamed to Dashboard.
+- Updated total CCU count method in Dashboard (Runtime Statistics) module: now logged-in users (including NPC) are taken into account only, while before this was the total number of sessions.
+
+
+v1.1.1
+======
+
+New features
+------------
+- A blinking icon is displayed on the Administrators Chat panel button in case a message is received when the panel is collapsed.
+
+
+v1.1.0
+======
+
+New features
+------------
+- Text input added to the Zone Monitor, below the "Monitor selection" button, to send an Admin message to the selected Zone/Room/User.
+- Log Viewer module added.
+- Zone/Room Extension log messages panel added to the Zone Monitor module, to debug the Extension at runtime.
+- When creating a new Room using the Zone Monitor module, it is now possible to choose if a notification ("roomAdd" event) should be sent to clients or not.
+- New button added to Zone Monitor the remove an existing Room (if empty only).
+- Table column added to show the Room Variable owner in the Runtime Room Variables tab of the Zone Monitor.
+
+Fixed bugs
+----------
+- A null pointer exception was thrown on the server-side when accessing the BlueBox Monitor module and the web server was disabled.
+
+Other
+-----
+- Browser's cache skipped when loading a newly released version of the Admin Tool for the first time.
+
+
+v1.0.0
+======
+
+First release.

@@ -1,0 +1,295 @@
+30 Oct 2012 | 10:51:55,076 | INFO  | main | smartfoxserver.v2.SmartFoxServer |     | Boot sequence starts...
+30 Oct 2012 | 10:51:55,084 | INFO  | main | smartfoxserver.v2.SmartFoxServer |     | 
+ _____ _____ _____    ___ __ __    _____ _____ _____ _____ 
+|   __|   __|   __|  |_  |  |  |  | __  |     |     |_   _|
+|__   |   __|__   |  |  _|-   -|  | __ -|  |  |  |  | | |  
+|_____|__|  |_____|  |___|__|__|  |_____|_____|_____| |_|
+
+30 Oct 2012 | 10:51:55,587 | INFO  | main | smartfoxserver.v2.SmartFoxServer |     | License code not found, starting Community Edition license
+30 Oct 2012 | 10:51:55,587 | INFO  | main | v2.core.SFSEventManager |     | AnonymousService-1 initalized
+30 Oct 2012 | 10:51:55,602 | INFO  | main | vfs.impl.DefaultFileReplicator |     | Using "/tmp/vfs_cache" as temporary files store.
+30 Oct 2012 | 10:51:55,717 | INFO  | main | smartfoxserver.v2.SmartFoxServer |     | License loaded:
+
+===================================
+LICENSE DETAILS
+-----------------------------------
+Type            : Community Edition
+Max users       : 100
+===================================
+
+30 Oct 2012 | 10:51:55,719 | INFO  | main | entities.managers.SFSBannedUserStorage |     | BanUserStorage initialized
+30 Oct 2012 | 10:51:55,723 | INFO  | main | entities.managers.SFSBannedUserManager |     | No BannedUser data available, starting with a clean DB.
+30 Oct 2012 | 10:51:55,731 | INFO  | main | smartfoxserver.v2.SmartFoxServer |     | Protocol Type is: BINARY
+30 Oct 2012 | 10:51:55,734 | INFO  | main | v2.config.SFSConfigurator |     | Loading: zones/BasicExamples.zone.xml
+30 Oct 2012 | 10:51:55,768 | INFO  | main | entities.managers.SFSZoneManager |     | 
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+ >> Zone: BasicExamples 
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+30 Oct 2012 | 10:51:55,793 | INFO  | main | entities.managers.SFSRoomManager |     | Room created: { Zone: BasicExamples }, [ Room: The Lobby, Id: 0, Group: default, isGame: false ]
+30 Oct 2012 | 10:51:55,801 | INFO  | main | entities.managers.SFSRoomManager |     | Room created: { Zone: --=={{{ AdminZone }}}==-- }, [ Room: AdminRoom, Id: 1, Group: default, isGame: false ]
+30 Oct 2012 | 10:51:55,808 | INFO  | main | v2.core.AdminToolService |     | AdminTool Service started
+30 Oct 2012 | 10:52:00,117 | WARN  | main | org.mortbay.log |     | failed SelectChannelConnector@0.0.0.0:8080: java.net.BindException: Address already in use
+30 Oct 2012 | 10:52:00,117 | WARN  | main | org.mortbay.log |     | failed Server@1c7a0536: java.net.BindException: Address already in use
+30 Oct 2012 | 10:52:00,118 | ERROR | main | smartfoxserver.v2.SmartFoxServer |     | 
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+Exception: java.net.BindException
+Message: Address already in use
+Description: The specified TCP port cannot be bound to the configured IP address.
+Possible Causes: Probably you are running another instance of SFS2X. Please double check using the AdminTool.
+Start a new browser page at http://<your-sfs-domain>/admin/
+If the problem persists, email us the content of this error message to support[at]smartfoxserver.com
++--- --- ---+
+Stack Trace:
++--- --- ---+
+sun.nio.ch.Net.bind0(Native Method)
+sun.nio.ch.Net.bind(Net.java:344)
+sun.nio.ch.Net.bind(Net.java:336)
+sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:199)
+sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:74)
+org.mortbay.jetty.nio.SelectChannelConnector.open(SelectChannelConnector.java:216)
+org.mortbay.jetty.nio.SelectChannelConnector.doStart(SelectChannelConnector.java:315)
+org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:50)
+org.mortbay.jetty.Server.doStart(Server.java:235)
+org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:50)
+com.smartfoxserver.v2.http.SFSHttpServer.start(SFSHttpServer.java:111)
+com.smartfoxserver.v2.SmartFoxServer.start(SmartFoxServer.java:246)
+com.smartfoxserver.v2.Main.main(Main.java:31)
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+30 Oct 2012 | 10:52:04,788 | INFO  | Thread-0 | entities.managers.SFSZoneManager |     | BuddyList saveAll...
+30 Oct 2012 | 10:52:04,788 | WARN  | SFS2X ShutdownHook | v2.core.SFSShutdownHook |     | SFS2X is shutting down. The process may take a few seconds...
+30 Oct 2012 | 10:52:04,808 | INFO  | Thread-1 | entities.managers.SFSBannedUserManager |     | BanUser data saved.
+30 Oct 2012 | 10:52:11,441 | INFO  | main | smartfoxserver.v2.SmartFoxServer |     | Boot sequence starts...
+30 Oct 2012 | 10:52:11,449 | INFO  | main | smartfoxserver.v2.SmartFoxServer |     | 
+ _____ _____ _____    ___ __ __    _____ _____ _____ _____ 
+|   __|   __|   __|  |_  |  |  |  | __  |     |     |_   _|
+|__   |   __|__   |  |  _|-   -|  | __ -|  |  |  |  | | |  
+|_____|__|  |_____|  |___|__|__|  |_____|_____|_____| |_|
+
+30 Oct 2012 | 10:52:11,712 | INFO  | Thread-0 | entities.managers.SFSZoneManager |     | BuddyList saveAll...
+30 Oct 2012 | 10:52:23,635 | INFO  | main | smartfoxserver.v2.SmartFoxServer |     | Boot sequence starts...
+30 Oct 2012 | 10:52:23,643 | INFO  | main | smartfoxserver.v2.SmartFoxServer |     | 
+ _____ _____ _____    ___ __ __    _____ _____ _____ _____ 
+|   __|   __|   __|  |_  |  |  |  | __  |     |     |_   _|
+|__   |   __|__   |  |  _|-   -|  | __ -|  |  |  |  | | |  
+|_____|__|  |_____|  |___|__|__|  |_____|_____|_____| |_|
+
+30 Oct 2012 | 10:52:24,117 | INFO  | main | smartfoxserver.v2.SmartFoxServer |     | License code not found, starting Community Edition license
+30 Oct 2012 | 10:52:24,117 | INFO  | main | v2.core.SFSEventManager |     | AnonymousService-1 initalized
+30 Oct 2012 | 10:52:24,132 | INFO  | main | vfs.impl.DefaultFileReplicator |     | Using "/tmp/vfs_cache" as temporary files store.
+30 Oct 2012 | 10:52:24,207 | INFO  | main | smartfoxserver.v2.SmartFoxServer |     | License loaded:
+
+===================================
+LICENSE DETAILS
+-----------------------------------
+Type            : Community Edition
+Max users       : 100
+===================================
+
+30 Oct 2012 | 10:52:24,208 | INFO  | main | entities.managers.SFSBannedUserStorage |     | BanUserStorage initialized
+30 Oct 2012 | 10:52:24,220 | INFO  | main | entities.managers.SFSBannedUserManager |     | BanUser data loaded: 0 records.
+30 Oct 2012 | 10:52:24,226 | INFO  | main | smartfoxserver.v2.SmartFoxServer |     | Protocol Type is: BINARY
+30 Oct 2012 | 10:52:24,228 | INFO  | main | v2.config.SFSConfigurator |     | Loading: zones/BasicExamples.zone.xml
+30 Oct 2012 | 10:52:24,261 | INFO  | main | entities.managers.SFSZoneManager |     | 
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+ >> Zone: BasicExamples 
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+30 Oct 2012 | 10:52:24,286 | INFO  | main | entities.managers.SFSRoomManager |     | Room created: { Zone: BasicExamples }, [ Room: The Lobby, Id: 0, Group: default, isGame: false ]
+30 Oct 2012 | 10:52:24,293 | INFO  | main | entities.managers.SFSRoomManager |     | Room created: { Zone: --=={{{ AdminZone }}}==-- }, [ Room: AdminRoom, Id: 1, Group: default, isGame: false ]
+30 Oct 2012 | 10:52:24,300 | INFO  | main | v2.core.AdminToolService |     | AdminTool Service started
+30 Oct 2012 | 10:52:25,287 | WARN  | main | org.mortbay.log |     | failed SelectChannelConnector@0.0.0.0:8080: java.net.BindException: Address already in use
+30 Oct 2012 | 10:52:25,287 | WARN  | main | org.mortbay.log |     | failed Server@4be699b0: java.net.BindException: Address already in use
+30 Oct 2012 | 10:52:25,288 | ERROR | main | smartfoxserver.v2.SmartFoxServer |     | 
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+Exception: java.net.BindException
+Message: Address already in use
+Description: The specified TCP port cannot be bound to the configured IP address.
+Possible Causes: Probably you are running another instance of SFS2X. Please double check using the AdminTool.
+Start a new browser page at http://<your-sfs-domain>/admin/
+If the problem persists, email us the content of this error message to support[at]smartfoxserver.com
++--- --- ---+
+Stack Trace:
++--- --- ---+
+sun.nio.ch.Net.bind0(Native Method)
+sun.nio.ch.Net.bind(Net.java:344)
+sun.nio.ch.Net.bind(Net.java:336)
+sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:199)
+sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:74)
+org.mortbay.jetty.nio.SelectChannelConnector.open(SelectChannelConnector.java:216)
+org.mortbay.jetty.nio.SelectChannelConnector.doStart(SelectChannelConnector.java:315)
+org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:50)
+org.mortbay.jetty.Server.doStart(Server.java:235)
+org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:50)
+com.smartfoxserver.v2.http.SFSHttpServer.start(SFSHttpServer.java:111)
+com.smartfoxserver.v2.SmartFoxServer.start(SmartFoxServer.java:246)
+com.smartfoxserver.v2.Main.main(Main.java:31)
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+30 Oct 2012 | 10:52:30,106 | INFO  | Thread-0 | entities.managers.SFSZoneManager |     | BuddyList saveAll...
+30 Oct 2012 | 10:52:30,107 | WARN  | SFS2X ShutdownHook | v2.core.SFSShutdownHook |     | SFS2X is shutting down. The process may take a few seconds...
+30 Oct 2012 | 10:52:30,115 | INFO  | Thread-1 | entities.managers.SFSBannedUserManager |     | BanUser data saved.
+30 Oct 2012 | 10:52:33,542 | INFO  | main | smartfoxserver.v2.SmartFoxServer |     | Boot sequence starts...
+30 Oct 2012 | 10:52:33,550 | INFO  | main | smartfoxserver.v2.SmartFoxServer |     | 
+ _____ _____ _____    ___ __ __    _____ _____ _____ _____ 
+|   __|   __|   __|  |_  |  |  |  | __  |     |     |_   _|
+|__   |   __|__   |  |  _|-   -|  | __ -|  |  |  |  | | |  
+|_____|__|  |_____|  |___|__|__|  |_____|_____|_____| |_|
+
+30 Oct 2012 | 10:52:34,037 | INFO  | main | smartfoxserver.v2.SmartFoxServer |     | License code not found, starting Community Edition license
+30 Oct 2012 | 10:52:34,037 | INFO  | main | v2.core.SFSEventManager |     | AnonymousService-1 initalized
+30 Oct 2012 | 10:52:34,052 | INFO  | main | vfs.impl.DefaultFileReplicator |     | Using "/tmp/vfs_cache" as temporary files store.
+30 Oct 2012 | 10:52:34,127 | INFO  | main | smartfoxserver.v2.SmartFoxServer |     | License loaded:
+
+===================================
+LICENSE DETAILS
+-----------------------------------
+Type            : Community Edition
+Max users       : 100
+===================================
+
+30 Oct 2012 | 10:52:34,128 | INFO  | main | entities.managers.SFSBannedUserStorage |     | BanUserStorage initialized
+30 Oct 2012 | 10:52:34,140 | INFO  | main | entities.managers.SFSBannedUserManager |     | BanUser data loaded: 0 records.
+30 Oct 2012 | 10:52:34,146 | INFO  | main | smartfoxserver.v2.SmartFoxServer |     | Protocol Type is: BINARY
+30 Oct 2012 | 10:52:34,149 | INFO  | main | v2.config.SFSConfigurator |     | Loading: zones/BasicExamples.zone.xml
+30 Oct 2012 | 10:52:34,181 | INFO  | main | entities.managers.SFSZoneManager |     | 
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+ >> Zone: BasicExamples 
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+30 Oct 2012 | 10:52:34,206 | INFO  | main | entities.managers.SFSRoomManager |     | Room created: { Zone: BasicExamples }, [ Room: The Lobby, Id: 0, Group: default, isGame: false ]
+30 Oct 2012 | 10:52:34,214 | INFO  | main | entities.managers.SFSRoomManager |     | Room created: { Zone: --=={{{ AdminZone }}}==-- }, [ Room: AdminRoom, Id: 1, Group: default, isGame: false ]
+30 Oct 2012 | 10:52:34,221 | INFO  | main | v2.core.AdminToolService |     | AdminTool Service started
+30 Oct 2012 | 10:52:35,242 | WARN  | main | org.mortbay.log |     | failed SelectChannelConnector@0.0.0.0:8080: java.net.BindException: Address already in use
+30 Oct 2012 | 10:52:35,242 | WARN  | main | org.mortbay.log |     | failed Server@54b07eeb: java.net.BindException: Address already in use
+30 Oct 2012 | 10:52:35,243 | ERROR | main | smartfoxserver.v2.SmartFoxServer |     | 
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+Exception: java.net.BindException
+Message: Address already in use
+Description: The specified TCP port cannot be bound to the configured IP address.
+Possible Causes: Probably you are running another instance of SFS2X. Please double check using the AdminTool.
+Start a new browser page at http://<your-sfs-domain>/admin/
+If the problem persists, email us the content of this error message to support[at]smartfoxserver.com
++--- --- ---+
+Stack Trace:
++--- --- ---+
+sun.nio.ch.Net.bind0(Native Method)
+sun.nio.ch.Net.bind(Net.java:344)
+sun.nio.ch.Net.bind(Net.java:336)
+sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:199)
+sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:74)
+org.mortbay.jetty.nio.SelectChannelConnector.open(SelectChannelConnector.java:216)
+org.mortbay.jetty.nio.SelectChannelConnector.doStart(SelectChannelConnector.java:315)
+org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:50)
+org.mortbay.jetty.Server.doStart(Server.java:235)
+org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:50)
+com.smartfoxserver.v2.http.SFSHttpServer.start(SFSHttpServer.java:111)
+com.smartfoxserver.v2.SmartFoxServer.start(SmartFoxServer.java:246)
+com.smartfoxserver.v2.Main.main(Main.java:31)
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+30 Oct 2012 | 10:52:39,667 | INFO  | Thread-0 | entities.managers.SFSZoneManager |     | BuddyList saveAll...
+30 Oct 2012 | 10:52:39,667 | WARN  | SFS2X ShutdownHook | v2.core.SFSShutdownHook |     | SFS2X is shutting down. The process may take a few seconds...
+30 Oct 2012 | 10:52:39,676 | INFO  | Thread-1 | entities.managers.SFSBannedUserManager |     | BanUser data saved.
+30 Oct 2012 | 10:52:42,419 | INFO  | main | smartfoxserver.v2.SmartFoxServer |     | Boot sequence starts...
+30 Oct 2012 | 10:52:42,427 | INFO  | main | smartfoxserver.v2.SmartFoxServer |     | 
+ _____ _____ _____    ___ __ __    _____ _____ _____ _____ 
+|   __|   __|   __|  |_  |  |  |  | __  |     |     |_   _|
+|__   |   __|__   |  |  _|-   -|  | __ -|  |  |  |  | | |  
+|_____|__|  |_____|  |___|__|__|  |_____|_____|_____| |_|
+
+30 Oct 2012 | 10:52:42,898 | INFO  | main | smartfoxserver.v2.SmartFoxServer |     | License code not found, starting Community Edition license
+30 Oct 2012 | 10:52:42,899 | INFO  | main | v2.core.SFSEventManager |     | AnonymousService-1 initalized
+30 Oct 2012 | 10:52:42,914 | INFO  | main | vfs.impl.DefaultFileReplicator |     | Using "/tmp/vfs_cache" as temporary files store.
+30 Oct 2012 | 10:52:42,984 | INFO  | main | smartfoxserver.v2.SmartFoxServer |     | License loaded:
+
+===================================
+LICENSE DETAILS
+-----------------------------------
+Type            : Community Edition
+Max users       : 100
+===================================
+
+30 Oct 2012 | 10:52:42,985 | INFO  | main | entities.managers.SFSBannedUserStorage |     | BanUserStorage initialized
+30 Oct 2012 | 10:52:42,997 | INFO  | main | entities.managers.SFSBannedUserManager |     | BanUser data loaded: 0 records.
+30 Oct 2012 | 10:52:43,003 | INFO  | main | smartfoxserver.v2.SmartFoxServer |     | Protocol Type is: BINARY
+30 Oct 2012 | 10:52:43,005 | INFO  | main | v2.config.SFSConfigurator |     | Loading: zones/BasicExamples.zone.xml
+30 Oct 2012 | 10:52:43,038 | INFO  | main | entities.managers.SFSZoneManager |     | 
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+ >> Zone: BasicExamples 
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+30 Oct 2012 | 10:52:43,064 | INFO  | main | entities.managers.SFSRoomManager |     | Room created: { Zone: BasicExamples }, [ Room: The Lobby, Id: 0, Group: default, isGame: false ]
+30 Oct 2012 | 10:52:43,071 | INFO  | main | entities.managers.SFSRoomManager |     | Room created: { Zone: --=={{{ AdminZone }}}==-- }, [ Room: AdminRoom, Id: 1, Group: default, isGame: false ]
+30 Oct 2012 | 10:52:43,078 | INFO  | main | v2.core.AdminToolService |     | AdminTool Service started
+30 Oct 2012 | 10:52:44,112 | INFO  | main | v2.http.SFSHttpServer |     | Http Server started.
+30 Oct 2012 | 10:52:44,148 | INFO  | main | smartfoxserver.v2.SmartFoxServer |     | Listening Sockets: { 127.0.0.1:9933, (Tcp) } { 127.0.0.1:9933, (Udp) } 
+30 Oct 2012 | 10:52:44,148 | INFO  | main | smartfoxserver.v2.SmartFoxServer |     |  
+ _____ _____ _____    ___ __ __ 
+|   __|   __|   __|  |_  |  |  |
+|__   |   __|__   |  |  _|-   -|
+|_____|__|  |_____|  |___|__|__|                                         
+ _____ _____ _____ ____  __ __ 
+| __  |   __|  _  |    \|  |  |
+|    -|   __|     |  |  |_   _|
+|__|__|_____|__|__|____/  |_|  
+[ 2.3.0 ] 
+
+30 Oct 2012 | 10:52:44,150 | INFO  | main | smartfoxserver.v2.SmartFoxServer |     | SmartFoxServer 2X (2.3.0) READY!
+30 Oct 2012 | 10:53:00,586 | INFO  | Thread-0 | entities.managers.SFSZoneManager |     | BuddyList saveAll...
+30 Oct 2012 | 10:53:00,586 | WARN  | SFS2X ShutdownHook | v2.core.SFSShutdownHook |     | SFS2X is shutting down. The process may take a few seconds...
+30 Oct 2012 | 10:53:00,594 | INFO  | Thread-1 | entities.managers.SFSBannedUserManager |     | BanUser data saved.
+30 Oct 2012 | 10:54:24,553 | INFO  | main | smartfoxserver.v2.SmartFoxServer |     | Boot sequence starts...
+30 Oct 2012 | 10:54:24,560 | INFO  | main | smartfoxserver.v2.SmartFoxServer |     | 
+ _____ _____ _____    ___ __ __    _____ _____ _____ _____ 
+|   __|   __|   __|  |_  |  |  |  | __  |     |     |_   _|
+|__   |   __|__   |  |  _|-   -|  | __ -|  |  |  |  | | |  
+|_____|__|  |_____|  |___|__|__|  |_____|_____|_____| |_|
+
+30 Oct 2012 | 10:54:24,987 | INFO  | main | smartfoxserver.v2.SmartFoxServer |     | License code not found, starting Community Edition license
+30 Oct 2012 | 10:54:24,988 | INFO  | main | v2.core.SFSEventManager |     | AnonymousService-1 initalized
+30 Oct 2012 | 10:54:25,002 | INFO  | main | vfs.impl.DefaultFileReplicator |     | Using "/tmp/vfs_cache" as temporary files store.
+30 Oct 2012 | 10:54:25,069 | INFO  | main | smartfoxserver.v2.SmartFoxServer |     | License loaded:
+
+===================================
+LICENSE DETAILS
+-----------------------------------
+Type            : Community Edition
+Max users       : 100
+===================================
+
+30 Oct 2012 | 10:54:25,070 | INFO  | main | entities.managers.SFSBannedUserStorage |     | BanUserStorage initialized
+30 Oct 2012 | 10:54:25,082 | INFO  | main | entities.managers.SFSBannedUserManager |     | BanUser data loaded: 0 records.
+30 Oct 2012 | 10:54:25,088 | INFO  | main | smartfoxserver.v2.SmartFoxServer |     | Protocol Type is: BINARY
+30 Oct 2012 | 10:54:25,090 | INFO  | main | v2.config.SFSConfigurator |     | Loading: zones/BasicExamples.zone.xml
+30 Oct 2012 | 10:54:25,123 | INFO  | main | entities.managers.SFSZoneManager |     | 
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+ >> Zone: BasicExamples 
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+30 Oct 2012 | 10:54:25,150 | INFO  | main | entities.managers.SFSRoomManager |     | Room created: { Zone: BasicExamples }, [ Room: The Lobby, Id: 0, Group: default, isGame: false ]
+30 Oct 2012 | 10:54:25,157 | INFO  | main | entities.managers.SFSRoomManager |     | Room created: { Zone: --=={{{ AdminZone }}}==-- }, [ Room: AdminRoom, Id: 1, Group: default, isGame: false ]
+30 Oct 2012 | 10:54:25,164 | INFO  | main | v2.core.AdminToolService |     | AdminTool Service started
+30 Oct 2012 | 10:54:25,820 | INFO  | main | v2.http.SFSHttpServer |     | Http Server started.
+30 Oct 2012 | 10:54:25,858 | INFO  | main | smartfoxserver.v2.SmartFoxServer |     | Listening Sockets: { 127.0.0.1:9933, (Tcp) } { 127.0.0.1:9933, (Udp) } 
+30 Oct 2012 | 10:54:25,858 | INFO  | main | smartfoxserver.v2.SmartFoxServer |     |  
+ _____ _____ _____    ___ __ __ 
+|   __|   __|   __|  |_  |  |  |
+|__   |   __|__   |  |  _|-   -|
+|_____|__|  |_____|  |___|__|__|                                         
+ _____ _____ _____ ____  __ __ 
+| __  |   __|  _  |    \|  |  |
+|    -|   __|     |  |  |_   _|
+|__|__|_____|__|__|____/  |_|  
+[ 2.3.0 ] 
+
+30 Oct 2012 | 10:54:25,861 | INFO  | main | smartfoxserver.v2.SmartFoxServer |     | SmartFoxServer 2X (2.3.0) READY!
+30 Oct 2012 | 10:54:40,764 | INFO  | Thread-0 | entities.managers.SFSZoneManager |     | BuddyList saveAll...
+30 Oct 2012 | 10:54:40,764 | WARN  | SFS2X ShutdownHook | v2.core.SFSShutdownHook |     | SFS2X is shutting down. The process may take a few seconds...
+30 Oct 2012 | 10:54:40,770 | INFO  | Thread-1 | entities.managers.SFSBannedUserManager |     | BanUser data saved.

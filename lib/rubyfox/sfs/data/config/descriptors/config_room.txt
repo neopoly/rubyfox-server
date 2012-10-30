@@ -1,0 +1,323 @@
+// SMARTFOXSERVER 2X ADMIN TOOL'S ZONE CONFIGURATOR MODULE
+// Room configuration settings descriptor file
+// 
+// The "category" attribute indicates in which tab on the interface (if a TabNavigator is used) the parameter will be displayed. If missing a default category is used.
+
+//-------------------------------------------
+// GENERAL SETTINGS
+//-------------------------------------------
+
+// ROOM NAME
+{
+	"name":"name",
+	"label":"Room name",
+	"tooltip":"The Room name",
+	"type":"TextInput",
+	"value":"{$BasicValue=roomSettings.name}",
+	"validator":"notNull"
+},
+
+// GROUP ID
+{
+	"name":"groupId",
+	"label":"Group ID",
+	"tooltip":"The Group to which the Room belongs; if left empty, the Room is assigned to the 'default' Group",
+	"type":"TextInput",
+	"value":"{$BasicValue=roomSettings.groupId}"
+},
+
+// PASSWORD
+{
+	"name":"password",
+	"label":"Password",
+	"tooltip":"The Room password (optional). If null or empty string the Room will be public",
+	"type":"TextInput",
+	"value":"{$BasicValue=roomSettings.password}"
+},
+
+// MAX USERS
+{
+	"name":"maxUsers",
+	"label":"Maximum # of users",
+	"tooltip":"The maximum number of users/players allowed in the Room",
+	"type":"NumericStepper",
+	"value":{$BasicValue=roomSettings.maxUsers},
+	"componentParams":
+	{
+		"minimum":1,
+		"maximum":2147483647
+	}
+},
+
+// MAX SPECTATORS
+{
+	"name":"maxSpectators",
+	"label":"Maximum # of spectators",
+	"tooltip":"The maximum number of spectators allowed in the Room",
+	"type":"NumericStepper",
+	"value":{$BasicValue=roomSettings.maxSpectators},
+	"componentParams":
+	{
+		"minimum":0,
+		"maximum":2147483647
+	}
+},
+
+// IS DYNAMIC
+{
+	"name":"isDynamic",
+	"label":"Is dynamic",
+	"tooltip":"Dynamic Rooms are removed automatically according the 'Auto-remove mode' setting",
+	"type":"CheckBox",
+	"value":{$BasicValue=roomSettings.isDynamic}
+},
+
+// IS GAME
+{
+	"name":"isGame",
+	"label":"Is game",
+	"tooltip":"Marks the Room as a Game Room",
+	"type":"CheckBox",
+	"value":{$BasicValue=roomSettings.isGame}
+},
+
+// IS HIDDEN
+{
+	"name":"isHidden",
+	"label":"Is hidden",
+	"tooltip":"This Room can be hidden from the view of the users",
+	"type":"CheckBox",
+	"value":{$BasicValue=roomSettings.isHidden}
+},
+
+// AUTO-REMOVE MODE
+
+{
+	"name":"autoRemoveMode",
+	"label":"Auto-remove mode",
+	"tooltip":"Declares the modality of dynamic Rooms removal; if the 'DEFAULT' setting is used, regular Rooms will be removed when empty and their creator is disconnected, while Game Rooms will be removed when empty",
+	"type":"ComboBox",
+	"value":"{$BasicValue=roomSettings.autoRemoveMode}",
+	"componentParams":
+	{
+		"dataProvider":"DEFAULT,WHEN_EMPTY,WHEN_EMPTY_AND_CREATOR_IS_GONE,NEVER_REMOVE"
+	}
+},
+
+// ACTIVATE BAD WORDS FILTER
+{
+	"name":"badWordsFilter.isActive",
+	"label":"Use bad words filter",
+	"tooltip":"Toggles on/off the words filter for public messages",
+	"type":"CheckBox",
+	"value":{$BasicValue=badWordsFilter.isActive}
+},
+
+//-------------------------------------------
+// PERMISSIONS AND EVENTS
+//-------------------------------------------
+
+// PERMISSIONS
+{
+	"name":"permissions.flags",
+	"label":"Permission flags",
+	"tooltip":"These flags indicate which operations are permitted in the Room",
+	"category":"Permissions and events",
+	"type":"DualList",
+	"value":"{$BasicValue=permissions.flags}",
+	"componentParams":
+	{
+		"selectableValues":"{$BasicValue=permissions.availableFlags}"
+	}
+},
+
+// MAX ROOM VARIABLES ALLOWED
+{
+	"name":"permissions.maxRoomVariablesAllowed",
+	"label":"Max # of Room Variables",
+	"tooltip":"The maximum number of Room Variables allowed in the Room",
+	"category":"Permissions and events",
+	"type":"NumericStepper",
+	"value":{$BasicValue=permissions.maxRoomVariablesAllowed},
+	"componentParams":
+	{
+		"minimum":0,
+		"maximum":2147483647
+	}
+},
+
+// EVENTS
+{
+	"name":"events",
+	"label":"Events",
+	"tooltip":"Specify which events can be fired by the Room",
+	"category":"Permissions and events",
+	"type":"DualList",
+	"value":"{$BasicValue=roomSettings.events}",
+	"componentParams":
+	{
+		"selectableValues":"{$BasicValue=roomSettings.availableEvents}"
+	}
+},
+
+//-------------------------------------------
+// ROOM VARIABLES
+//-------------------------------------------
+
+// ROOM VARIABLES
+{
+	"name":"roomVariables",
+	"label":"Room Variables",
+	"tooltip":"Customize the Room Variables",
+	"category":"Room Variables",
+	"type":"DataGrid",
+	"componentParams":
+	{
+		"height":200
+	},
+	"defaultListItem":
+	[
+		{
+			"name":"name",
+			"label":"Name",
+			"tooltip":"Name",
+			"type":"TextInput",
+			"value":"",
+			"validator":"notNull"
+		},
+		{
+			"name":"type",
+			"label":"Type",
+			"tooltip":"The variable data type",
+			"type":"ComboBox",
+			"value":"STRING",
+			"componentParams":
+			{
+				"dataProvider":"BOOL,INT,DOUBLE,STRING,OBJECT,ARRAY"
+			}
+		},
+		{
+			"name":"isPrivate",
+			"label":"Private",
+			"tooltip":"A private variable can be modified only by its owner",
+			"type":"CheckBox",
+			"value":false
+		},
+		{
+			"name":"isPersistent",
+			"label":"Persistent",
+			"tooltip":"A persistent variable will remain active in the Room even if the owner is not in that Room any more. It will be removed when the user disconnects",
+			"type":"CheckBox",
+			"value":false
+		},
+		{
+			"name":"isGlobal",
+			"label":"Global",
+			"tooltip":"A global variable will be broadcast not only to the users in the Room but also outside of it",
+			"type":"CheckBox",
+			"value":false
+		},
+		{
+			"name":"isHidden",
+			"label":"Hidden",
+			"tooltip":"An hidden variable will be server-side only and it is never transmitted to the client(s)",
+			"type":"CheckBox",
+			"value":false
+		},
+		{
+			"name":"value",
+			"label":"Value",
+			"tooltip":"Primitive value or JSON block",
+			"type":"TextInput",
+			"value":"",
+			"validator":"notNull"
+		}
+	],
+	"listValues":{$List=roomVariables, instance=roomSettings, fields=name;type;isPrivate;isPersistent;isGlobal;isHidden;value},
+	"clazz":"ZoneSettings$RoomVariableDefinition"
+},
+
+//-------------------------------------------
+// EXTENSION
+//-------------------------------------------
+
+// NAME
+{
+	"name":"extension.name",
+	"label":"Name",
+	"tooltip":"The name of the Extension to be plugged at Room level; if a new Extension is deployed on the server while editing the Zone settings, cancel and re-edit the zone to update this list",
+	"category":"Room Extension",
+	"type":"ComboBox",
+	"value":"{$BasicValue=extension.name}",
+	"trigger":true,
+	"triggerData":{$List=extClasses, instance=extensionsHelper, fields=name;type;classesString},
+	"componentParams":
+	{
+		"dataProvider":"{$ListToString=extNames, instance=extensionsHelper}"
+	}
+},
+
+// TYPE
+{
+	"name":"extension.type",
+	"label":"Type",
+	"tooltip":"If 'JAVA' is selected, all jar files contained in the Extension's folder are processed, provided their name ends with 'Extension.jar' (for example 'MyExtension.jar'); this is required to avoid receiving useless data on the Admin Tool (like the list of classes contained in library jar files)\n\n<b>NOTE</b>: 'PYTHON' Extension type can be useful for fast testing and prototyping, but it is NOT RECOMMENDED for production environments (due to performance limitations)",
+	"category":"Room Extension",
+	"type":"ComboBox",
+	"value":"{$BasicValue=extension.type}",
+	"trigger":true,
+	"componentParams":
+	{
+		"dataProvider":"JAVA,PYTHON"
+	}
+},
+
+// MAIN CLASS
+{
+	"name":"extension.file",
+	"label":"Main class",
+	"tooltip":"The fully qualified name of the main Extension class; this class must extend either SFSExtension or BaseSFSExtension classes",
+	"category":"Room Extension",
+	"type":"ComboBox",
+	"value":"{$BasicValue=extension.file}",
+	"componentParams":
+	{
+		"dataProvider":""
+	}
+},
+
+// USE NAMING CONVENTION
+{
+	"name":"extension.filterClass",
+	"label":"Use naming convention",
+	"tooltip":"Filter the 'Main class' box showing the classes with names ending with the word 'Extension' only (for example 'com.example.MyJavaExtension' or 'MyPythonExtension.py')\n\n<b>NOTE</b>: this setting is used to improve the Admin Tool usage only, so it doesn't affect the server configuration in any way",
+	"category":"Room Extension",
+	"type":"CheckBox",
+	"value":false,
+	"trigger":true,
+	"clientOnly":true
+},
+
+// PROPERTIES FILE
+{
+	"name":"extension.propertiesFile",
+	"label":"Properties file",
+	"tooltip":"The name of a properties file that will be loaded during the initialization of the Extension. By default a 'config.properties' file is load, if existing",
+	"category":"Room Extension",
+	"type":"TextInput",
+	"value":"{$BasicValue=extension.propertiesFile}"
+},
+
+// RELOAD MODE
+{
+	"name":"extension.reloadMode",
+	"label":"Reload mode",
+	"tooltip":"Determine which mode will be used for Extensions reloading. 'AUTO' is recommended for development/testing environments, 'MANUAL' or 'NONE' for production environments",
+	"category":"Room Extension",
+	"type":"ComboBox",
+	"value":"{$BasicValue=extension.reloadMode}",
+	"componentParams":
+	{
+		"dataProvider":"AUTO,MANUAL,NONE"
+	}
+}

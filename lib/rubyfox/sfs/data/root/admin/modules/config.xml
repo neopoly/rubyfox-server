@@ -1,0 +1,12 @@
+<adminTool>
+	<modules default="RuntimeStatistics">
+		<module id="RuntimeStatistics" label="Runtime Statistics" description="Access the global statistics of the SmartFoxServer instance"/>
+		<module id="ZoneMonitor" label="Zone Monitor" description="Monitor SmartFoxServer Zones, Rooms and Users behavior at runtime, and modify some of their settings live"/>
+		<module id="BlueBoxMonitor" label="BlueBox Monitor" description="Monitor clients connected through the BlueBox http tunnelling system"/>
+		<module id="LogViewer" label="Log Viewer" description="Check and download SmartFoxServer boot and runtime logs"/>
+		<module id="BanManager" label="Ban Manager" description="Check banned users lists, cancel bannings and ban other users/IPs"/>
+		<module id="ZoneConfigurator" label="Zone Configurator" description="Create and delete SmartFoxServer Zones and static Rooms, or modify the settings of the existing ones"/>
+		<module id="ServerConfigurator" label="Server Configurator" description="Modify the global settings of the SmartFoxServer instance"/>
+		<module id="LicenseManager" label="License Manager" description="Configure the license of the SmartFoxServer instance"/>
+	</modules>
+</adminTool>

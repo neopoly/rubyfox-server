@@ -1,0 +1,621 @@
+// SMARTFOXSERVER 2X ADMIN TOOL'S SERVER CONFIGURATOR MODULE
+// Server configuration settings descriptor file
+// 
+// The "category" attribute indicates in which tab on the interface (if a TabNavigator is used) the parameter will be displayed. If missing a default category is used.
+
+//-------------------------------------------
+// GENERAL SETTINGS
+//-------------------------------------------
+
+// SOCKET ADDRESSES
+{
+	"name":"socketAddresses",
+	"label":"Socket addresses",
+	"tooltip":"SmartFoxServer's communication address, port and protocol; removing the address/port to which you are currently connected will prevent the AdminTool reconnection after the server restart. Addresses and ports must be physically available on the hardware; using ports in the 0-1024 range requires starting SmartFoxServer as a Root user",
+	"type":"DataGrid",
+	"defaultListItem":
+	[
+		{
+			"name":"address",
+			"label":"IP address",
+			"tooltip":"IP address used by SmartFoxServer",
+			"type":"ComboBox",
+			"value":"127.0.0.1",
+			"componentParams":
+			{
+				"dataProvider":"{$BasicValue=adminHelper.availableSocketAddresses}"
+			}
+		},
+		{
+			"name":"port",
+			"label":"Port",
+			"tooltip":"Port used by SmartFoxServer",
+			"type":"NumericStepper",
+			"value":9933,
+			"componentParams":
+			{
+				"minimum":0,
+				"maximum":65535
+			}
+		},
+		{
+			"name":"type",
+			"label":"Type",
+			"tooltip":"Communication protocol",
+			"type":"ComboBox",
+			"value":"TCP",
+			"componentParams":
+			{
+				"dataProvider":"TCP,UDP"
+			}
+		}
+	],
+	"listValues":{$List=socketAddresses, instance=serverSettings, fields=address;port;type},
+	"clazz":"ServerSettings$SocketAddress"
+},
+
+// SESSION MAX IDLE TIME
+{
+	"name":"sessionMaxIdleTime",
+	"label":"Session maximum idle time",
+	"tooltip":"Maximum idle time for a session (in seconds), after which the client is disconnected; setting a value between 10 and 30 seconds is recommended",
+	"type":"NumericStepper",
+	"value":{$BasicValue=serverSettings.sessionMaxIdleTime},
+	"componentParams":
+	{
+		"minimum":5,
+		"maximum":2147483647
+	}
+},
+
+// USER MAX IDLE TIME
+{
+	"name":"userMaxIdleTime",
+	"label":"User maximum idle time",
+	"tooltip":"Maximum idle time for a logged user (in seconds), after which the user is disconnected; this value must be greater than the session maximum idle time",
+	"type":"NumericStepper",
+	"value":{$BasicValue=serverSettings.userMaxIdleTime},
+	"componentParams":
+	{
+		"minimum":5,
+		"maximum":2147483647
+	}
+},
+
+// PROTOCOL COMPRESSION THRESHOLD
+{
+	"name":"protocolCompressionThreshold",
+	"label":"Protocol compression threshold",
+	"tooltip":"Specifies the minimum message size (in bytes) that triggers the protocol compression; recommended values are those equal to or greater than 1024 bytes",
+	"type":"NumericStepper",
+	"value":{$BasicValue=serverSettings.protocolCompressionThreshold},
+	"componentParams":
+	{
+		"minimum":50,
+		"maximum":2147483647
+	}
+},
+
+// USE FRIENDLY EXCEPTIONS
+{
+	"name":"useFriendlyExceptions",
+	"label":"User-friendly exceptions",
+	"tooltip":"Extends system exception messages with extra details, where applicable",
+	"type":"CheckBox",
+	"value":{$BasicValue=serverSettings.useFriendlyExceptions}
+},
+
+// USE DEBUG MODE
+{
+	"name":"useDebugMode",
+	"label":"Use debug-mode",
+	"tooltip":"Adds the full stack trace to each Server exception. Recommended",
+	"type":"CheckBox",
+	"value":{$BasicValue=serverSettings.useDebugMode}
+},
+
+// GHOST HUNTER TASK
+{
+	"name":"ghostHunterEnabled",
+	"label":"Enable Ghost Hunter",
+	"tooltip":"Runs a background task at regular intervals to detect ghost users and remove them",
+	"type":"CheckBox",
+	"value":{$BasicValue=serverSettings.ghostHunterEnabled}
+},
+
+// SYSTEM CONTROLLER THREAD POOL SIZE
+{
+	"name":"systemControllerThreadPoolSize",
+	"label":"System Controller thread pool size",
+	"tooltip":"[ADVANCED] Adjust the thread pool size for the System Controller",
+	"type":"NumericStepper",
+	"value":{$BasicValue=serverSettings.systemControllerThreadPoolSize},
+	"componentParams":
+	{
+		"minimum":1,
+		"maximum":10000
+	}
+},
+
+// EXTENSIONS CONTROLLER THREAD POOL SIZE
+{
+	"name":"extensionControllerThreadPoolSize",
+	"label":"Extensions Controller thread pool size",
+	"tooltip":"[ADVANCED] Adjust the thread pool size for the Extensions Controller",
+	"type":"NumericStepper",
+	"value":{$BasicValue=serverSettings.extensionControllerThreadPoolSize},
+	"componentParams":
+	{
+		"minimum":1,
+		"maximum":10000
+	}
+},
+
+// SERVER TASK SCHEDULER THREAD POOL SIZE
+{
+	"name":"schedulerThreadPoolSize",
+	"label":"Server task scheduler thread pool size",
+	"tooltip":"[ADVANCED] Adjust the thread pool size for the System Scheduler",
+	"type":"NumericStepper",
+	"value":{$BasicValue=serverSettings.schedulerThreadPoolSize},
+	"componentParams":
+	{
+		"minimum":1,
+		"maximum":10000
+	}
+},
+
+// SYSTEM CONTROLLER REQUEST QUEUE SIZE
+{
+	"name":"systemControllerRequestQueueSize",
+	"label":"System Controller request queue size",
+	"tooltip":"[ADVANCED] Modifies the maximum size of the System Controller messages queue",
+	"type":"NumericStepper",
+	"value":{$BasicValue=serverSettings.systemControllerRequestQueueSize},
+	"componentParams":
+	{
+		"minimum":10,
+		"maximum":2147483647
+	}
+},
+
+// EXTENSIONS CONTROLLER REQUEST QUEUE SIZE
+{
+	"name":"extensionControllerRequestQueueSize",
+	"label":"Extensions Controller request queue size",
+	"tooltip":"[ADVANCED] Modifies the maximum size of the Extensions Controller messages queue",
+	"type":"NumericStepper",
+	"value":{$BasicValue=serverSettings.extensionControllerRequestQueueSize},
+	"componentParams":
+	{
+		"minimum":10,
+		"maximum":2147483647
+	}
+},
+
+// START EXTENSION FILE MONITOR
+{
+	"name":"startExtensionFileMonitor",
+	"label":"Start Extension file monitor",
+	"tooltip":"Enable realtime monitoring and reloading of Extensions",
+	"type":"CheckBox",
+	"value":{$BasicValue=serverSettings.startExtensionFileMonitor}
+},
+
+// EXTENSION REMOTE DEBUG
+{
+	"name":"extensionRemoteDebug",
+	"label":"Extensions remote debug",
+	"tooltip":"Enable remote debugging of Extensions",
+	"type":"CheckBox",
+	"value":{$BasicValue=serverSettings.extensionRemoteDebug}
+},
+
+//-------------------------------------------
+// IP FILTER SETTINGS
+//-------------------------------------------
+
+// MAX CONNECTIONS PER IP ADDRESS
+{
+	"name":"ipFilter.maxConnectionsPerAddress",
+	"label":"Maximum connections per IP address",
+	"tooltip":"Maximum number of connections coming from the same client IP address",
+	"category":"IP filter",
+	"type":"NumericStepper",
+	"value":{$BasicValue=ipFilter.maxConnectionsPerAddress},
+	"componentParams":
+	{
+		"minimum":1,
+		"maximum":2147483647
+	}
+},
+
+// IP ADDRESS BLACK LIST
+{
+	"name":"ipFilter.addressBlackList",
+	"label":"IP addresses black-list",
+	"tooltip":"The black-list prevents the connection attempts coming from the listed client IP addresses",
+	"category":"IP filter",
+	"type":"DataGrid",
+	"defaultListItem":
+	[
+		{
+			"name":"ipAddress",
+			"label":"IP address",
+			"tooltip":"Client IP address",
+			"type":"TextInput",
+			"value":"",
+			"validator":"ip",
+			"componentParams":
+			{
+				"restrict":"0-9."
+			}
+		}
+	],
+	"listValues":{$List=addressBlackList, instance=ipFilter, createField=ipAddress}
+},
+
+// IP ADDRESS WHITE LIST
+{
+	"name":"ipFilter.addressWhiteList",
+	"label":"IP addresses white-list",
+	"tooltip":"The white-list overrides the maximum connections per IP address limit, allowing any number of connections coming from the listed client IP addresses",
+	"category":"IP filter",
+	"type":"DataGrid",
+	"defaultListItem":
+	[
+		{
+			"name":"ipAddress",
+			"label":"IP address",
+			"tooltip":"Client IP address",
+			"type":"TextInput",
+			"value":"",
+			"validator":"ip",
+			"componentParams":
+			{
+				"restrict":"0-9."
+			}
+		}
+	],
+	"listValues":{$List=addressWhiteList, instance=ipFilter, createField=ipAddress}
+},
+
+//-------------------------------------------
+// BAN USER MANAGER
+//-------------------------------------------
+
+// AUTO-REMOVE
+{
+	"name":"bannedUserManager.isAutoRemove",
+	"label":"Auto-remove",
+	"tooltip":"Automatically remove banned users from the ban list when their ban-timeframe expires",
+	"category":"Ban manager",
+	"type":"CheckBox",
+	"value":{$BasicValue=bannedUserManager.isAutoRemove}
+},
+
+// PERSISTENT
+{
+	"name":"bannedUserManager.isPersistent",
+	"label":"Persistent",
+	"tooltip":"Persistently store the banned user list so that it's not lost across SmartFoxServer restarts (recommended)",
+	"category":"Ban manager",
+	"type":"CheckBox",
+	"value":{$BasicValue=bannedUserManager.isPersistent}
+},
+
+// CUSTOM PERSISTENCE CLASS NAME
+{
+	"name":"bannedUserManager.customPersistenceClass",
+	"label":"Custom persistence class name",
+	"tooltip":"Allows to provide a custom class to implement banned user list persistence",
+	"category":"Ban manager",
+	"type":"TextInput",
+	"value":"{$BasicValue=bannedUserManager.customPersistenceClass}",
+	"componentParams":
+	{
+		"restrict":"a-zA-Z0-9._"
+	}
+},
+
+//-------------------------------------------
+// HTML WEBSOCKETS
+//-------------------------------------------
+
+// ACTIVE
+{
+	"name":"webSocket.isActive",
+	"label":"Activate WebSocket protocol",
+	"tooltip":"Enable/disable the HTML5 WebSockets protocol support",
+	"category":"HTML5 WebSockets",
+	"type":"CheckBox",
+	"value":{$BasicValue=webSocket.isActive}
+},
+
+// LISTENER ADDRESS
+{
+	"name":"webSocket.bindAddress",
+	"label":"WebSocket listener address",
+	"tooltip":"IP address used for WebSocket comminication",
+	"category":"HTML5 WebSockets",
+	"type":"ComboBox",
+	"value":{$BasicValue=webSocket.bindAddress},
+	"componentParams":
+	{
+		"dataProvider":"{$BasicValue=adminHelper.availableSocketAddresses}"
+	}
+},
+
+// LISTENER PORT
+{
+	"name":"webSocket.tcpPort",
+	"label":"WebSocket listener port",
+	"tooltip":"TCP port used for WebSocket comminication",
+	"category":"HTML5 WebSockets",
+	"type":"NumericStepper",
+	"value":{$BasicValue=webSocket.tcpPort},
+	"componentParams":
+	{
+		"minimum":0,
+		"maximum":65535
+	}
+},
+
+//-------------------------------------------
+// WEB SERVER
+//-------------------------------------------
+
+// ACTIVE
+{
+	"name":"webServer.isActive",
+	"label":"Activate",
+	"tooltip":"Enable/disable the embedded http server",
+	"category":"Web server",
+	"type":"CheckBox",
+	"value":{$BasicValue=webServer.isActive}
+},
+
+// CONFIGURATION FILE
+{
+	"name":"webServer.cfgFile",
+	"label":"Configuration file",
+	"tooltip":"[ADVANCED] The location of the embedded http server configuration file",
+	"category":"Web server",
+	"type":"TextInput",
+	"value":"{$BasicValue=webServer.cfgFile}"
+},
+
+// BLUEBOX POLLING TIMEOUT
+{
+	"name":"webServer.blueBoxPollingTimeout",
+	"label":"BlueBox polling timeout",
+	"tooltip":"The amount of seconds after which a client connected through the BlueBox is considered disconnected if he doesn't send a polling request",
+	"category":"Web server",
+	"type":"NumericStepper",
+	"value":{$BasicValue=webServer.blueBoxPollingTimeout},
+	"componentParams":
+	{
+		"minimum":25,
+		"maximum":40
+	}
+},
+
+// BLUEBOX MESSAGES QUEUE SIZE
+{
+	"name":"webServer.blueBoxMsgQueueSize",
+	"label":"BlueBox messages queue size",
+	"tooltip":"The maximum amount of messages that can be queued for each client connected through the BlueBox",
+	"category":"Web server",
+	"type":"NumericStepper",
+	"value":{$BasicValue=webServer.blueBoxMsgQueueSize},
+	"componentParams":
+	{
+		"minimum":20,
+		"maximum":100
+	}
+},
+
+//-------------------------------------------
+// FLASH CROSSDOMAIN POLICY SETTINGS
+//-------------------------------------------
+
+// USE MASTER SOCKET POLICY
+{
+	"name":"flashCrossdomainPolicy.useMasterSocketPolicy",
+	"label":"Use Flash Master Socket Policy",
+	"tooltip":"If enabled, SmartFoxServer serves the Flash Master Socket Policy over TCP port 843 as required by Adobe's security restrictions",
+	"category":"Adobe Flash Player",
+	"type":"CheckBox",
+	"value":{$BasicValue=flashCrossdomainPolicy.useMasterSocketPolicy}
+},
+
+// FLASH POLICY XML FILE
+{
+	"name":"flashCrossdomainPolicy.policyXmlFile",
+	"label":"Flash policy XML file",
+	"tooltip":"Location of the Flash policy file with respect to the SmartFoxServer's 'config/' folder; if not set, it will be impossible to connect to SmartFoxServer using Flash clients",
+	"category":"Adobe Flash Player",
+	"type":"TextInput",
+	"value":"{$BasicValue=flashCrossdomainPolicy.policyXmlFile}"
+},
+
+//-------------------------------------------
+// MAILER
+//-------------------------------------------
+
+// ACTIVE
+{
+	"name":"mailer.isActive",
+	"label":"Activate",
+	"tooltip":"Enable/disable the email service",
+	"category":"Mailer",
+	"type":"CheckBox",
+	"value":{$BasicValue=mailer.isActive}
+},
+
+// MAIL HOST
+{
+	"name":"mailer.mailHost",
+	"label":"Mail host",
+	"tooltip":"The SMTP server host name or IP address",
+	"category":"Mailer",
+	"type":"TextInput",
+	"value":"{$BasicValue=mailer.mailHost}",
+	"validator":"notNull"
+},
+
+// SMTP PORT
+{
+	"name":"mailer.smtpPort",
+	"label":"SMTP port",
+	"tooltip":"The SMTP server port",
+	"category":"Mailer",
+	"type":"NumericStepper",
+	"value":{$BasicValue=mailer.smtpPort},
+	"componentParams":
+	{
+		"minimum":0,
+		"maximum":65535
+	}
+},
+
+// MAIL USER
+{
+	"name":"mailer.mailUser",
+	"label":"Mail username",
+	"tooltip":"A valid account to connect to the SMTP server",
+	"category":"Mailer",
+	"type":"TextInput",
+	"value":"{$BasicValue=mailer.mailUser}",
+	"validator":"notNull"
+},
+
+// MAIL PASSWORD
+{
+	"name":"mailer.mailPass",
+	"label":"Mail password",
+	"tooltip":"The SMTP server account password",
+	"category":"Mailer",
+	"type":"TextInput",
+	"value":"{$BasicValue=mailer.mailPass}"
+},
+
+//-------------------------------------------
+// REMOTE ADMIN
+//-------------------------------------------
+
+// ADMINISTRATORS
+{
+	"name":"remoteAdmin.administrators",
+	"label":"Administrators",
+	"tooltip":"The access credentials of SmartFoxServer administrators; removing all the administrators will prevent the Admin Tool to reconnect to the server instance after a disconnection",
+	"category":"Remote admin",
+	"type":"DataGrid",
+	"defaultListItem":
+	[
+		{
+			"name":"login",
+			"label":"Login",
+			"tooltip":"Administrator's username",
+			"type":"TextInput",
+			"value":"",
+			"validator":"notNull"
+		},
+		{
+			"name":"password",
+			"label":"Password",
+			"tooltip":"Administrator's password",
+			"type":"TextInput",
+			"value":"",
+			"validator":"pwd"
+		}
+	],
+	"listValues":{$List=administrators, instance=remoteAdmin, fields=login;password},
+	"clazz":"ServerSettings$AdminUser"
+},
+
+// ALLOWED REMOTE ADDRESSES
+{
+	"name":"remoteAdmin.allowedRemoteAddresses",
+	"label":"Allowed client IP addresses",
+	"tooltip":"List of client IP address which are allowed to access the SmartFoxServer's administration; leave the list empty to skip this check on administrator login",
+	"category":"Remote admin",
+	"type":"DataGrid",
+	"defaultListItem":
+	[
+		{
+			"name":"ipAddress",
+			"label":"IP address",
+			"tooltip":"Client IP address",
+			"type":"TextInput",
+			"value":"",
+			"validator":"ip",
+			"componentParams":
+			{
+				"restrict":"0-9."
+			}
+		}
+	],
+	"listValues":{$List=allowedRemoteAddresses, instance=remoteAdmin, createField=ipAddress}
+},
+
+// ADMIN TCP PORT
+{
+	"name":"remoteAdmin.adminTcpPort",
+	"label":"Administration TCP port",
+	"tooltip":"TCP port number used for administration; set it to -1 to skip this check on administrator login",
+	"category":"Remote admin",
+	"type":"NumericStepper",
+	"value":{$BasicValue=remoteAdmin.adminTcpPort},
+	"componentParams":
+	{
+		"minimum":-1,
+		"maximum":65535
+	}
+},
+
+//-------------------------------------------
+// JVM SETTINGS
+//-------------------------------------------
+
+// JVM OPTIONS
+{
+	"name":"adminHelper.vmOptions",
+	"label":"JVM options",
+	"tooltip":"A list of additional settings to fine tune the Java Virtual Machine when running the SmartFoxServer process \n\n<b>IMPORTANT</b>\nThe following options are mandatory; if missing, SmartFoxServer execution could be negatively affected:\n<i>-Dfile.encoding=UTF-8</i>",
+	"category":"JVM settings",
+	"type":"DataGrid",
+	"defaultListItem":
+	[
+		{
+			"name":"option",
+			"label":"Option",
+			"tooltip":"JVM option",
+			"type":"TextInput",
+			"value":"",
+			"validator":"notNull"
+		}
+	],
+	"listValues":{$List=vmOptions, instance=adminHelper, createField=option}
+},
+
+// JVM CLASSPATH
+{
+	"name":"adminHelper.vmClasspath",
+	"label":"JVM classpath",
+	"tooltip":"A list of search paths for classes and resources used by SmartFoxServer and its custom Extensions \n\n<b>IMPORTANT</b>\nThe following paths are mandatory; if missing, you won't be able to run SmartFoxServer:\n<i>./\nlib/*\nlib/Jetty/*\nextensions/__lib__/*</i>",
+	"category":"JVM settings",
+	"type":"DataGrid",
+	"defaultListItem":
+	[
+		{
+			"name":"path",
+			"label":"Path",
+			"tooltip":"JVM classpath",
+			"type":"TextInput",
+			"value":"",
+			"validator":"notNull"
+		}
+	],
+	"listValues":{$List=vmClasspath, instance=adminHelper, createField=path}
+}
