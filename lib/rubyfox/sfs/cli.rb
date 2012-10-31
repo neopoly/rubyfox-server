@@ -29,6 +29,7 @@ module Rubyfox
           end
         end
       end
+      map "config" => :configure
 
       no_tasks do
         def env
