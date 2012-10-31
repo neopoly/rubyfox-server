@@ -31,6 +31,13 @@ module Rubyfox
       end
       map "config" => :configure
 
+      desc "start TARGET_DIR", "start SmartFox Server in TARGET_DIR"
+      def start(target_dir)
+        inside(target_dir) do
+          system "sh ./sfs2x.sh"
+        end
+      end
+
       no_tasks do
         def env
           @env ||= Env.new(ENV)
