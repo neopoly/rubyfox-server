@@ -24,6 +24,9 @@ module Rubyfox
 
       desc "configure TARGET_DIR TEMPLATE_DIR", "configures SmartFox Server in TARGET_DIR via TEMPLATE_DIR"
       def configure(target_dir, template_dir)
+        template_dir = File.expand_path(template_dir, Dir.pwd)
+        target_dir = File.expand_path(target_dir, Dir.pwd)
+
         Dir["#{template_dir}/**/*"].each do |file|
           if File.file?(file)
             part = file.partition(template_dir).last
