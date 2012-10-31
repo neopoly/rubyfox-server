@@ -1,4 +1,5 @@
 require 'thor'
+require 'mime/types'
 
 require 'rubyfox/sfs'
 
@@ -22,10 +23,16 @@ module Rubyfox
 
       desc "configure TARGET_DIR TEMPLATE_DIR", "configures SmartFox Server in TARGET_DIR via TEMPLATE_DIR"
       def configure(target_dir, template_dir)
-        Dir[template_dir + "**/*"].each do |template_file|
-          if File.file?(template_file)
-            part = template_file.partition(template_dir).last
-            template template_file, target_dir + "/" + part
+        Dir["#{template_dir}/**/*"].each do |file|
+          if File.file?(file)
+            part = file.partition(template_dir).last
+            target_file = "#{target_dir}/#{part}"
+            binary = MIME::Types.type_for(file).any?(&:binary?)
+            if binary
+              copy_file file, target_file
+            else
+              template file, target_file
+            end
           end
         end
       end
