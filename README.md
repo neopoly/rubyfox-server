@@ -8,7 +8,11 @@ SmartFox Server bundled as a gem.
 
 ## Usage
 
-    $ smartfox install /path/to/dir
+    $ smartfox install /path/to/smartfox
+
+    $ smartfox config /path/to/smartfox /path/to/template/dir
+
+    $ smartfox start /path/to/smartfox
 
 ## Contributing
 
