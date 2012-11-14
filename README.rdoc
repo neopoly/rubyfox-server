@@ -6,7 +6,7 @@ Gem[https://rubygems.org/gems/rubyfox-server] |
 Source[https://github.com/neopoly/rubyfox-server] |
 Documentation[http://rubydoc.info/github/neopoly/rubyfox-server/master/file/README.rdoc]
 
-See http://www.smartfoxserver.com/
+See http://www.smartfoxserver.com
 
 == Installation
 
@@ -22,9 +22,9 @@ See http://www.smartfoxserver.com/
 
 == Version
 
-The version of this gem is tied to the real version of SmartFox server.
+The version of this gem is tied to the real version of SmartFox Server.
 
-Example: Gem version 2.3.0.x contains SmartFox server version 2.3.0.
+Example: Gem version 2.3.0.x contains SmartFox Server version 2.3.0.
 
 == Contributing
 
