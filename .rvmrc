@@ -1,1 +1,1 @@
-rvm @rubyfox-sfs --create
+rvm @rubyfox-server --create

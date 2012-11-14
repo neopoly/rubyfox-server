@@ -2,6 +2,6 @@
 
 require 'bundler/setup'
 
-require 'rubyfox/sfs/cli'
+require 'rubyfox/server/cli'
 
-Rubyfox::SFS::CLI.start
+Rubyfox::Server::CLI.start

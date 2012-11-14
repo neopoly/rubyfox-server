@@ -1,5 +1,5 @@
 module Rubyfox
-  module SFS
+  module Server
     class Environment
       include Thor::Shell
 

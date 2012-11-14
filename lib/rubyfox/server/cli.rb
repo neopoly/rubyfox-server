@@ -1,16 +1,16 @@
 require 'thor'
 require 'mime/types'
 
-require 'rubyfox/sfs'
-require 'rubyfox/sfs/environment'
+require 'rubyfox/server'
+require 'rubyfox/server/environment'
 
 module Rubyfox
-  module SFS
+  module Server
     class CLI < Thor
       include Thor::Actions
 
       def self.source_root
-        Rubyfox::SFS.data_dir
+        Rubyfox::Server.data_dir
       end
 
       desc "install TARGET_DIR", "install SmartFox Server into TARGET_DIR"

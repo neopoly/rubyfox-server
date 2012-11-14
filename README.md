@@ -1,10 +1,10 @@
-# Rubyfox::SFS
+# Rubyfox server
 
 SmartFox Server bundled as a gem.
 
 ## Installation
 
-    $ gem install rubyfox-sfs
+    $ gem install rubyfox-server
 
 ## Usage
 
