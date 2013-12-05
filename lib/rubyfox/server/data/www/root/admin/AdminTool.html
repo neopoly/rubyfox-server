@@ -11,7 +11,7 @@
     Learn more about Flex at http://flex.org 
     // -->
     <head>
-        <title></title>
+        <title>SmartFoxServer 2X Administration Tool</title>
         <meta name="google" value="notranslate">         
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<!-- Include CSS to eliminate any default margins/padding and set the height of the html element and 
@@ -51,7 +51,7 @@
             attributes.name = "AdminTool";
             attributes.align = "middle";
             swfobject.embedSWF(
-                "AdminTool.swf?v=1.1.1", "flashContent", 
+                "AdminTool.swf?v=1.4.0", "flashContent", 
                 "100%", "100%", 
                 swfVersionStr, xiSwfUrlStr, 
                 flashvars, params, attributes);
@@ -78,17 +78,19 @@
 	   	
        	<noscript>
             <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="100%" height="100%" id="AdminTool">
-                <param name="movie" value="AdminTool.swf" />
+                <param name="movie" value="AdminTool.swf?v=1.4.0" />
                 <param name="quality" value="high" />
                 <param name="bgcolor" value="#ffffff" />
                 <param name="allowScriptAccess" value="sameDomain" />
                 <param name="allowFullScreen" value="true" />
+                <param name="wmode" value="opaque" />
                 <!--[if !IE]>-->
-                <object type="application/x-shockwave-flash" data="AdminTool.swf" width="100%" height="100%">
+                <object type="application/x-shockwave-flash" data="AdminTool.swf?v=1.4.0" width="100%" height="100%">
                     <param name="quality" value="high" />
                     <param name="bgcolor" value="#ffffff" />
                     <param name="allowScriptAccess" value="sameDomain" />
                     <param name="allowFullScreen" value="true" />
+                    <param name="wmode" value="opaque" />
                 <!--<![endif]-->
                 <!--[if gte IE 6]>-->
                 	<p> 
@@ -103,6 +105,16 @@
                 </object>
                 <!--<![endif]-->
             </object>
-	    </noscript>		
+	    </noscript>
    </body>
+   
+	<script type="text/javascript">
+	function onFlexInitialized()
+	{
+		// Force the browser to set flex app with focus
+		document.getElementById("AdminTool").tabIndex = 0
+		document.getElementById("AdminTool").focus();
+	}
+	</script>
+   
 </html>

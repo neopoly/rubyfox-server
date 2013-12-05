@@ -2,6 +2,60 @@
 SmartFoxServer 2X Administration Tool
 =====================================
 
+v1.4.0
+======
+
+New features
+------------
+- Demo version of Analytics module included. License can be purchased separately.
+- New Analytics tab added to Server Configurator module, to schedule daily or weekly log analysis to collect data for Analytics module. 
+- License Manager module now shows the details of the currently running license.
+- Room uptime added to Zone Monitor module under Runtime Room settings tab.
+
+Fixed bugs
+----------
+- BlueBox Monitor module throwing a NullPointerException when a client is connected through BB but not yet logged in.
+
+
+v1.3.2
+======
+
+New features
+------------
+- Button to reload bad words list added to Zone Monitor modules (see Zone monitoring panel, Runtime Zone settings tab).
+
+
+v1.3.1
+======
+
+Other
+-----
+- Admin Tool's minimum height reduced to 670px to prevent vertical resolution of some monitors being exceeded.
+
+
+v1.3.0
+======
+
+New features
+------------
+- License Manager module now shows active license options in the license test results.
+- Updated memory usage and system queues diagrams in Dashboard module.
+- "Remember me" option added to the server connection panel, to save access credentials when the connect button is clicked.
+
+Fixed bugs
+----------
+- UDP traffic not taken into account when drawing the network traffic diagram in Dashboard module.
+
+
+v1.2.2
+======
+
+New features
+------------
+- Split Room count added to Dashboard and Zone Monitor modules.
+- The "/extensions/__lib__" folder is now listed when selecting the name of the Extension to be assigned to a Zone/Room, in case the Extension's jar file was deployed there for specific class-loading purposes.
+
+
 v1.2.1
 ======
 

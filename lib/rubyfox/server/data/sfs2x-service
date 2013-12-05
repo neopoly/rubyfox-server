@@ -159,7 +159,6 @@ compiz_workaround() {
     fi
   fi
 
-  app_java_home=$test_dir
 }
 
 
@@ -213,7 +212,7 @@ run_unpack200() {
     old_pwd200=`pwd`
     cd "$1"
     echo "Preparing JRE ..."
-    jar_files="lib/rt.jar lib/charsets.jar lib/plugin.jar lib/deploy.jar lib/ext/localedata.jar lib/jsse.jar"
+    jar_files="lib/rt.jar lib/jfxrt.jar lib/charsets.jar lib/plugin.jar lib/deploy.jar lib/ext/localedata.jar lib/jsse.jar"
     for jar_file in $jar_files
     do
       if [ -f "${jar_file}.pack" ]; then
@@ -299,7 +298,7 @@ fi
 
 
 if [ -z "$app_java_home" ]; then
-  common_jvm_locations="/opt/i4j_jres/* /usr/local/i4j_jres/* $HOME/.i4j_jres/* /usr/bin/java* /usr/bin/jdk* /usr/bin/jre* /usr/bin/j2*re* /usr/bin/j2sdk* /usr/java* /usr/jdk* /usr/jre* /usr/j2*re* /usr/j2sdk* /usr/java/j2*re* /usr/java/j2sdk* /opt/java* /usr/java/jdk* /usr/java/jre* /usr/lib/java/jre /usr/local/java* /usr/local/jdk* /usr/local/jre* /usr/local/j2*re* /usr/local/j2sdk* /usr/jdk/java* /usr/jdk/jdk* /usr/jdk/jre* /usr/jdk/j2*re* /usr/jdk/j2sdk* /usr/lib/jvm/* /usr/lib/java* /usr/lib/jdk* /usr/lib/jre* /usr/lib/j2*re* /usr/lib/j2sdk* /System/Library/Frameworks/JavaVM.framework/Versions/1.?/Home"
+  common_jvm_locations="/opt/i4j_jres/* /usr/local/i4j_jres/* $HOME/.i4j_jres/* /usr/bin/java* /usr/bin/jdk* /usr/bin/jre* /usr/bin/j2*re* /usr/bin/j2sdk* /usr/java* /usr/java*/jre /usr/jdk* /usr/jre* /usr/j2*re* /usr/j2sdk* /usr/java/j2*re* /usr/java/j2sdk* /opt/java* /usr/java/jdk* /usr/java/jre* /usr/lib/java/jre /usr/local/java* /usr/local/jdk* /usr/local/jre* /usr/local/j2*re* /usr/local/j2sdk* /usr/jdk/java* /usr/jdk/jdk* /usr/jdk/jre* /usr/jdk/j2*re* /usr/jdk/j2sdk* /usr/lib/jvm/* /usr/lib/java* /usr/lib/jdk* /usr/lib/jre* /usr/lib/j2*re* /usr/lib/j2sdk* /System/Library/Frameworks/JavaVM.framework/Versions/1.?/Home"
   for current_location in $common_jvm_locations
   do
 if [ -z "$app_java_home" ]; then
@@ -390,14 +389,14 @@ case "$1" in
     start)
         echo "Starting sfs2x-service"
 
-$INSTALL4J_JAVA_PREFIX nohup "$app_java_home/bin/java" -server -Dinstall4j.jvmDir="$app_java_home" -Dexe4j.moduleName="$prg_dir/$progname" "-Dfile.encoding=UTF-8" "-Dinstall4j.launcherId=23" "-Dinstall4j.swt=false" "$vmov_1" "$vmov_2" "$vmov_3" "$vmov_4" "$vmov_5" $INSTALL4J_ADD_VM_PARAMS -classpath "$local_classpath" com.install4j.runtime.launcher.Launcher start com.smartfoxserver.v2.Main false false "" "" true true false "sfs-splash.png" true true 0 0 "" 20 20 "Arial" "0,0,0" 8 500 "version 2.0.1" 20 40 "Arial" "0,0,0" 8 500 -1  > /dev/null 2>&1 &
+$INSTALL4J_JAVA_PREFIX nohup "$app_java_home/bin/java" -server -Dinstall4j.jvmDir="$app_java_home" -Dexe4j.moduleName="$prg_dir/$progname" "-Dfile.encoding=UTF-8" "-Dinstall4j.launcherId=23" "-Dinstall4j.swt=false" "$vmov_1" "$vmov_2" "$vmov_3" "$vmov_4" "$vmov_5" $INSTALL4J_ADD_VM_PARAMS -classpath "$local_classpath" com.install4j.runtime.launcher.Launcher start com.smartfoxserver.v2.Main false false "" "" true true false "sfs-splash.png" true true 0 0 "" 20 20 "Arial" "0,0,0" 8 500 "version 2.7.0" 20 40 "Arial" "0,0,0" 8 500 -1  > /dev/null 2>&1 &
 
 
     ;;
     start-launchd)
         echo "Starting sfs2x-service"
 
-$INSTALL4J_JAVA_PREFIX "$app_java_home/bin/java" -server -Dinstall4j.jvmDir="$app_java_home" -Dexe4j.moduleName="$prg_dir/$progname" "-Dfile.encoding=UTF-8" "-Dinstall4j.launcherId=23" "-Dinstall4j.swt=false" "$vmov_1" "$vmov_2" "$vmov_3" "$vmov_4" "$vmov_5" $INSTALL4J_ADD_VM_PARAMS -classpath "$local_classpath" com.install4j.runtime.launcher.Launcher start com.smartfoxserver.v2.Main false false "" "" true true false "sfs-splash.png" true true 0 0 "" 20 20 "Arial" "0,0,0" 8 500 "version 2.0.1" 20 40 "Arial" "0,0,0" 8 500 -1 
+$INSTALL4J_JAVA_PREFIX "$app_java_home/bin/java" -server -Dinstall4j.jvmDir="$app_java_home" -Dexe4j.moduleName="$prg_dir/$progname" "-Dfile.encoding=UTF-8" "-Dinstall4j.launcherId=23" "-Dinstall4j.swt=false" "$vmov_1" "$vmov_2" "$vmov_3" "$vmov_4" "$vmov_5" $INSTALL4J_ADD_VM_PARAMS -classpath "$local_classpath" com.install4j.runtime.launcher.Launcher start com.smartfoxserver.v2.Main false false "" "" true true false "sfs-splash.png" true true 0 0 "" 20 20 "Arial" "0,0,0" 8 500 "version 2.7.0" 20 40 "Arial" "0,0,0" 8 500 -1 
 
 
     ;;
@@ -416,7 +415,7 @@ $INSTALL4J_JAVA_PREFIX "$app_java_home/bin/java" -server -Dinstall4j.jvmDir="$ap
 
         echo "Restarting sfs2x-service"
 
-$INSTALL4J_JAVA_PREFIX nohup "$app_java_home/bin/java" -server -Dinstall4j.jvmDir="$app_java_home" -Dexe4j.moduleName="$prg_dir/$progname" "-Dfile.encoding=UTF-8" "-Dinstall4j.launcherId=23" "-Dinstall4j.swt=false" "$vmov_1" "$vmov_2" "$vmov_3" "$vmov_4" "$vmov_5" $INSTALL4J_ADD_VM_PARAMS -classpath "$local_classpath" com.install4j.runtime.launcher.Launcher start com.smartfoxserver.v2.Main false false "" "" true true false "sfs-splash.png" true true 0 0 "" 20 20 "Arial" "0,0,0" 8 500 "version 2.0.1" 20 40 "Arial" "0,0,0" 8 500 -1  > /dev/null 2>&1 &
+$INSTALL4J_JAVA_PREFIX nohup "$app_java_home/bin/java" -server -Dinstall4j.jvmDir="$app_java_home" -Dexe4j.moduleName="$prg_dir/$progname" "-Dfile.encoding=UTF-8" "-Dinstall4j.launcherId=23" "-Dinstall4j.swt=false" "$vmov_1" "$vmov_2" "$vmov_3" "$vmov_4" "$vmov_5" $INSTALL4J_ADD_VM_PARAMS -classpath "$local_classpath" com.install4j.runtime.launcher.Launcher start com.smartfoxserver.v2.Main false false "" "" true true false "sfs-splash.png" true true 0 0 "" 20 20 "Arial" "0,0,0" 8 500 "version 2.7.0" 20 40 "Arial" "0,0,0" 8 500 -1  > /dev/null 2>&1 &
 
 
     ;;
