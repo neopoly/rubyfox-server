@@ -14,7 +14,7 @@ module Rubyfox
         Rubyfox::Server.data_dir
       end
 
-      desc "install TARGET_DIR", "install SmartFox Server into TARGET_DIR"
+      desc "install TARGET_DIR", "Install SmartFox Server into TARGET_DIR"
       def install(target_dir)
         if File.exist?(target_dir)
           abort "Directory #{target_dir} already exists!"
@@ -23,7 +23,7 @@ module Rubyfox
         directory self.class.source_root, target_dir
       end
 
-      desc "configure TARGET_DIR TEMPLATE_DIR", "configures SmartFox Server in TARGET_DIR via TEMPLATE_DIR"
+      desc "configure TARGET_DIR TEMPLATE_DIR", "Configure SmartFox Server in TARGET_DIR via TEMPLATE_DIR"
       def configure(target_dir, template_dir)
         template_dir = File.expand_path(template_dir, Dir.pwd)
         target_dir = File.expand_path(target_dir, Dir.pwd)
@@ -43,14 +43,14 @@ module Rubyfox
       end
       map "config" => :configure
 
-      desc "start TARGET_DIR", "start SmartFox Server in TARGET_DIR"
+      desc "start TARGET_DIR", "Start SmartFox Server in TARGET_DIR"
       def start(target_dir)
         inside(target_dir) do
           system "sh ./sfs2x.sh"
         end
       end
 
-      desc "version", "display version of this command"
+      desc "version", "Display version of this command"
       def version
         puts Rubyfox::Server::VERSION
       end
