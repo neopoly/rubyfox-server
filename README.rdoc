@@ -20,6 +20,15 @@ See http://www.smartfoxserver.com
 
   smartfox start /path/to/smartfox
 
+=== Help
+
+  Commands:
+    smartfox configure TARGET_DIR TEMPLATE_DIR  # Configure SmartFox Server in TARGET_DIR via TEMPLATE_DIR
+    smartfox help [COMMAND]                     # Describe available commands or one specific command
+    smartfox install TARGET_DIR                 # Install SmartFox Server into TARGET_DIR
+    smartfox start TARGET_DIR                   # Start SmartFox Server in TARGET_DIR
+    smartfox version                            # Display version of this command
+
 == Version
 
 The version of this gem is tied to the real version of SmartFox Server.
