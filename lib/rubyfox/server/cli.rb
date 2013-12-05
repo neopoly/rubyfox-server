@@ -2,6 +2,7 @@ require 'thor'
 require 'mime/types'
 
 require 'rubyfox/server'
+require 'rubyfox/server/version'
 require 'rubyfox/server/environment'
 
 module Rubyfox
@@ -47,6 +48,11 @@ module Rubyfox
         inside(target_dir) do
           system "sh ./sfs2x.sh"
         end
+      end
+
+      desc "version", "display version of this command"
+      def version
+        puts Rubyfox::Server::VERSION
       end
 
       no_tasks do
