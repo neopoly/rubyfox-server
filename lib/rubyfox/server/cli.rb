@@ -32,11 +32,10 @@ module Rubyfox
           if File.file?(file)
             part = file.partition(template_dir).last
             target_file = "#{target_dir}/#{part}"
-            binary = MIME::Types.type_for(file).any?(&:binary?)
-            if binary
-              copy_file file, target_file
-            else
+            if file_plain?(file)
               template file, target_file
+            else
+              copy_file file, target_file
             end
           end
         end
@@ -59,6 +58,13 @@ module Rubyfox
         def env
           @env ||= Environment.new(ENV)
         end
+      end
+
+      private
+
+      def file_plain?(file)
+        types = MIME::Types.type_for(file)
+        types.empty? || types.any? { |type| type.media_type == "text" }
       end
     end
   end
