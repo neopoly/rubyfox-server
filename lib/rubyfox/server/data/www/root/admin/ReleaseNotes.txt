@@ -2,6 +2,22 @@
 SmartFoxServer 2X Administration Tool
 =====================================
 
+v1.4.1
+======
+
+New features
+------------
+- MMORoom creation and monitoring tabs added to Zone Configurator and Zone Monitor modules.
+
+Fixed bugs
+----------
+- Weekly chart in Analytics module not showing values due to internal database not set to ISO standard (first day of week should be Monday). The module now assumes that the first day of week is Sunday.
+
+Other
+-----
+- Improved browser's cache skipping system when loading a new version of a module for the first time.
+
+
 v1.4.0
 ======
 
