@@ -1,3 +1,5 @@
+require 'thor'
+
 module Rubyfox
   module Server
     class Environment
