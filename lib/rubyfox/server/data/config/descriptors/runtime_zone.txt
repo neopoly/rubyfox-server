@@ -4,7 +4,7 @@
 // The "category" attribute indicates in which tab on the interface (if a TabNavigator is used) the parameter will be displayed. If missing a default category is used.
 
 //-------------------------------------------
-// USERS TRAFFIC
+// TRAFFIC
 //-------------------------------------------
 
 // USER COUNT
@@ -12,7 +12,7 @@
 	"name":"userCount",
 	"label":"Current # of users",
 	"tooltip":"The number of users in the Zone",
-	"category":"Users traffic",
+	"category":"Zone traffic",
 	"type":"NumericStepper",
 	"value":{$BasicValue=zone.userCount},
 	"edit":false
@@ -23,7 +23,7 @@
 	"name":"maxTraffic",
 	"label":"Maximum # of users",
 	"tooltip":"The maximum number of concurrent users since the server was started",
-	"category":"Users traffic",
+	"category":"Zone traffic",
 	"type":"NumericStepper",
 	"value":{$BasicValue=traffic.maxTraffic},
 	"edit":false
@@ -34,9 +34,31 @@
 	"name":"trafficAverage",
 	"label":"Average # of users",
 	"tooltip":"The average number of concurrent users; the value is referred to the last 24 hours (or less, if data is not available due to server not running)",
-	"category":"Users traffic",
+	"category":"Zone traffic",
 	"type":"NumericStepper",
 	"value":{$BasicValue=traffic.trafficAverage},
+	"edit":false
+},
+
+// TOTAL ROOMS
+{
+	"name":"totalRooms",
+	"label":"Current Room count",
+	"tooltip":"The total number of Rooms (both regular and game Rooms) currently existing in the Zone",
+	"category":"Zone traffic",
+	"type":"NumericStepper",
+	"value":{$BasicValue=zone.totalRoomCount},
+	"edit":false
+},
+
+// GAME ROOMS
+{
+	"name":"gameRooms",
+	"label":"Current # of game Rooms",
+	"tooltip":"The number of game Rooms currently existing in the Zone",
+	"category":"Zone traffic",
+	"type":"NumericStepper",
+	"value":{$BasicValue=zone.gameRoomCount},
 	"edit":false
 },
 
@@ -272,6 +294,16 @@
 	"edit":false
 },
 
+// ALLOW FILE UPLOADING
+{
+	"name":"uploadEnabled",
+	"label":"Allow file uploading",
+	"tooltip":"If enabled, files can be uploaded by clients to the server via regular HTTP post requests. Internal web server must be active and the HTTP protocol enabled (see Web server tab in Server Configurator module)",
+	"category":"Runtime Zone settings",
+	"type":"CheckBox",
+	"value":{$BasicValue=zone.uploadEnabled}
+},
+
 // DATABASE ACTIVE CONNECTIONS
 {
 	"name":"dbActiveConnections",
@@ -302,7 +334,7 @@
 {
 	"name":"extName",
 	"label":"Name",
-	"tooltip":"The name of the Extension plugged at Zone level",
+	"tooltip":"The name of the Extension plugged at Zone level; can be '__lib__' in case the Extension jar file was deployed in the homonymous folder for specific class-loading purposes",
 	"category":"Zone Extension",
 	"type":"TextInput",
 	"value":"{$BasicValue=extension.name}",

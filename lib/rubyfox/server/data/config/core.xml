@@ -1,24 +1,24 @@
 <!--
-	SmartFoxServer 2X 
+	SmartFoxServer 2X v.2.9.x
 	<<< Core Configuration >>>
 	
-	(c) gotoAndPlay 2009-2012
+	(c) gotoAndPlay 2009-2014
 	www.smartfoxserver.com
 -->
 
 <coreSettings>
-	<systemControllerClass>com.smartfoxserver.v2.controllers.SystemController</systemControllerClass>
-	<extensionControllerClass>com.smartfoxserver.v2.controllers.ExtensionController</extensionControllerClass>
+	<systemControllerClass>com.smartfoxserver.v2.controllers.v290.SystemReqController</systemControllerClass>
+	<extensionControllerClass>com.smartfoxserver.v2.controllers.v290.ExtensionReqController</extensionControllerClass>
 	<ioHandlerClass>com.smartfoxserver.v2.protocol.DefaultIoHandler</ioHandlerClass>
-	<sessionManagerClass>it.gotoandplay.alt.AltSessionManager</sessionManagerClass>
-	<packetQueuePolicyClass>it.test.PacketQueueClass</packetQueuePolicyClass>
+	<sessionManagerClass>custom.class</sessionManagerClass>
+	<packetQueuePolicyClass>custom.class</packetQueuePolicyClass>
 	<readBufferType>Heap</readBufferType>
 	<writeBufferType>Heap</writeBufferType>
 	
 	<!-- Editable settings -->
 	
 	<!-- Max size of incoming packet -->
-	<maxIncomingRequestSize>8000000</maxIncomingRequestSize>
+	<maxIncomingRequestSize>1000000</maxIncomingRequestSize>
 	
 	<!-- Max Size for read buffer -->
 	<maxReadBufferSize>1024</maxReadBufferSize>
@@ -32,11 +32,11 @@
 	<!-- Thread Pool Size of the 3 main stages of the Bitswarm Engine -->
 	<socketAcceptorThreadPoolSize>1</socketAcceptorThreadPoolSize>
 	<socketReaderThreadPoolSize>1</socketReaderThreadPoolSize>
-	<socketWriterThreadPoolSize>1</socketWriterThreadPoolSize>	
+	<socketWriterThreadPoolSize>3</socketWriterThreadPoolSize>	
 	
 	<!-- Enable disable Nagle algorithm on sockets, true == disable -->
 	<tcpNoDelay>true</tcpNoDelay>
-	
+
 	<!-- BlueBox Settings -->
 	<bbMaxLogFiles>10</bbMaxLogFiles>
 	<bbMaxLogFileSize>5000000</bbMaxLogFileSize>

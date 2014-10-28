@@ -5,6 +5,7 @@
 		<module id="BlueBoxMonitor" label="BlueBox Monitor" description="Monitor clients connected through the BlueBox http tunnelling system"/>
 		<module id="LogViewer" label="Log Viewer" description="Check and download SmartFoxServer boot and runtime logs"/>
 		<module id="BanManager" label="Ban Manager" description="Check banned users lists, cancel bannings and ban other users/IPs"/>
+		<module id="ExtensionManager" label="Extension Manager" description="Upload Extension files to the SmartFoxServer instance"/>
 		<module id="ZoneConfigurator" label="Zone Configurator" description="Create and delete SmartFoxServer Zones and static Rooms, or modify the settings of the existing ones"/>
 		<module id="ServerConfigurator" label="Server Configurator" description="Modify the global settings of the SmartFoxServer instance"/>
 		<module id="Analytics" label="Analytics" description="Check the SmartFoxServer usage statistics from a business point of view"/>

@@ -110,7 +110,7 @@ test_jvm() {
   if [ "$ver_major" -lt "1" ]; then
     return;
   elif [ "$ver_major" -eq "1" ]; then
-    if [ "$ver_minor" -lt "6" ]; then
+    if [ "$ver_minor" -lt "7" ]; then
       return;
     fi
   fi
@@ -333,7 +333,7 @@ fi
 
 if [ -z "$app_java_home" ]; then
   echo No suitable Java Virtual Machine could be found on your system.
-  echo The version of the JVM must be at least 1.6.
+  echo The version of the JVM must be at least 1.7.
   echo Please define INSTALL4J_JAVA_HOME to point to a suitable JVM.
   echo You can also try to delete the JVM cache file $db_file
 exit 83
@@ -348,13 +348,13 @@ for i in `ls "$app_home/SFS2X/lib" 2> /dev/null | egrep "\.(jar$|zip$)"`
 do
   add_class_path "$app_home/SFS2X/lib/$i"
 done
-for i in `ls "$app_home/SFS2X/lib/Jetty" 2> /dev/null | egrep "\.(jar$|zip$)"`
-do
-  add_class_path "$app_home/SFS2X/lib/Jetty/$i"
-done
 for i in `ls "$app_home/SFS2X/extensions/__lib__" 2> /dev/null | egrep "\.(jar$|zip$)"`
 do
   add_class_path "$app_home/SFS2X/extensions/__lib__/$i"
+done
+for i in `ls "$app_home/SFS2X/lib/jetty/lib" 2> /dev/null | egrep "\.(jar$|zip$)"`
+do
+  add_class_path "$app_home/SFS2X/lib/jetty/lib/$i"
 done
 add_class_path "$app_home/SFS2X"
 
@@ -389,14 +389,14 @@ case "$1" in
     start)
         echo "Starting sfs2x-service"
 
-$INSTALL4J_JAVA_PREFIX nohup "$app_java_home/bin/java" -server -Dinstall4j.jvmDir="$app_java_home" -Dexe4j.moduleName="$prg_dir/$progname" "-Dfile.encoding=UTF-8" "-Dinstall4j.launcherId=23" "-Dinstall4j.swt=false" "$vmov_1" "$vmov_2" "$vmov_3" "$vmov_4" "$vmov_5" $INSTALL4J_ADD_VM_PARAMS -classpath "$local_classpath" com.install4j.runtime.launcher.Launcher start com.smartfoxserver.v2.Main false false "" "" true true false "sfs-splash.png" true true 0 0 "" 20 20 "Arial" "0,0,0" 8 500 "version 2.7.0" 20 40 "Arial" "0,0,0" 8 500 -1  > /dev/null 2>&1 &
+$INSTALL4J_JAVA_PREFIX nohup "$app_java_home/bin/java" -server -Dinstall4j.jvmDir="$app_java_home" -Dexe4j.moduleName="$prg_dir/$progname" "-Dfile.encoding=UTF-8" "-Dinstall4j.launcherId=23" "-Dinstall4j.swt=false" "$vmov_1" "$vmov_2" "$vmov_3" "$vmov_4" "$vmov_5" $INSTALL4J_ADD_VM_PARAMS -classpath "$local_classpath" com.install4j.runtime.launcher.Launcher start com.smartfoxserver.v2.Main false false "" "" true true false "sfs-splash.png" true true 0 0 "" 20 20 "Arial" "0,0,0" 8 500 "version 2.9.0" 20 40 "Arial" "0,0,0" 8 500 -1  > /dev/null 2>&1 &
 
 
     ;;
     start-launchd)
         echo "Starting sfs2x-service"
 
-$INSTALL4J_JAVA_PREFIX "$app_java_home/bin/java" -server -Dinstall4j.jvmDir="$app_java_home" -Dexe4j.moduleName="$prg_dir/$progname" "-Dfile.encoding=UTF-8" "-Dinstall4j.launcherId=23" "-Dinstall4j.swt=false" "$vmov_1" "$vmov_2" "$vmov_3" "$vmov_4" "$vmov_5" $INSTALL4J_ADD_VM_PARAMS -classpath "$local_classpath" com.install4j.runtime.launcher.Launcher start com.smartfoxserver.v2.Main false false "" "" true true false "sfs-splash.png" true true 0 0 "" 20 20 "Arial" "0,0,0" 8 500 "version 2.7.0" 20 40 "Arial" "0,0,0" 8 500 -1 
+$INSTALL4J_JAVA_PREFIX "$app_java_home/bin/java" -server -Dinstall4j.jvmDir="$app_java_home" -Dexe4j.moduleName="$prg_dir/$progname" "-Dfile.encoding=UTF-8" "-Dinstall4j.launcherId=23" "-Dinstall4j.swt=false" "$vmov_1" "$vmov_2" "$vmov_3" "$vmov_4" "$vmov_5" $INSTALL4J_ADD_VM_PARAMS -classpath "$local_classpath" com.install4j.runtime.launcher.Launcher start com.smartfoxserver.v2.Main false false "" "" true true false "sfs-splash.png" true true 0 0 "" 20 20 "Arial" "0,0,0" 8 500 "version 2.9.0" 20 40 "Arial" "0,0,0" 8 500 -1 
 
 
     ;;
@@ -415,7 +415,7 @@ $INSTALL4J_JAVA_PREFIX "$app_java_home/bin/java" -server -Dinstall4j.jvmDir="$ap
 
         echo "Restarting sfs2x-service"
 
-$INSTALL4J_JAVA_PREFIX nohup "$app_java_home/bin/java" -server -Dinstall4j.jvmDir="$app_java_home" -Dexe4j.moduleName="$prg_dir/$progname" "-Dfile.encoding=UTF-8" "-Dinstall4j.launcherId=23" "-Dinstall4j.swt=false" "$vmov_1" "$vmov_2" "$vmov_3" "$vmov_4" "$vmov_5" $INSTALL4J_ADD_VM_PARAMS -classpath "$local_classpath" com.install4j.runtime.launcher.Launcher start com.smartfoxserver.v2.Main false false "" "" true true false "sfs-splash.png" true true 0 0 "" 20 20 "Arial" "0,0,0" 8 500 "version 2.7.0" 20 40 "Arial" "0,0,0" 8 500 -1  > /dev/null 2>&1 &
+$INSTALL4J_JAVA_PREFIX nohup "$app_java_home/bin/java" -server -Dinstall4j.jvmDir="$app_java_home" -Dexe4j.moduleName="$prg_dir/$progname" "-Dfile.encoding=UTF-8" "-Dinstall4j.launcherId=23" "-Dinstall4j.swt=false" "$vmov_1" "$vmov_2" "$vmov_3" "$vmov_4" "$vmov_5" $INSTALL4J_ADD_VM_PARAMS -classpath "$local_classpath" com.install4j.runtime.launcher.Launcher start com.smartfoxserver.v2.Main false false "" "" true true false "sfs-splash.png" true true 0 0 "" 20 20 "Arial" "0,0,0" 8 500 "version 2.9.0" 20 40 "Arial" "0,0,0" 8 500 -1  > /dev/null 2>&1 &
 
 
     ;;

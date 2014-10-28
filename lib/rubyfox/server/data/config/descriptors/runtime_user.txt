@@ -242,7 +242,7 @@
 {
 	"name":"lastRequestTime",
 	"label":"Elapsed time since last request",
-	"tooltip":"The time of the last request sent by the client",
+	"tooltip":"The time passed since the client sent the last request",
 	"category":"Runtime user settings",
 	"type":"TextInput",
 	"value":"{$BasicValue=helper.lastRequestTime}",

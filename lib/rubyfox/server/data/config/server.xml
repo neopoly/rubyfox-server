@@ -1,6 +1,6 @@
 <serverSettings>
   <socketAddresses>
-    <socket address="127.0.0.1" port="9933" type="TCP"/>
+    <socket address="0.0.0.0" port="9933" type="TCP"/>
     <socket address="127.0.0.1" port="9933" type="UDP"/>
   </socketAddresses>
   <ipFilter>
@@ -16,11 +16,9 @@
     <useMasterSocketPolicy>true</useMasterSocketPolicy>
     <policyXmlFile>crossdomain.xml</policyXmlFile>
   </flashCrossdomainPolicy>
-  <systemControllerThreadPoolSize>1</systemControllerThreadPoolSize>
-  <extensionControllerThreadPoolSize>3</extensionControllerThreadPoolSize>
   <systemControllerRequestQueueSize>20000</systemControllerRequestQueueSize>
   <extensionControllerRequestQueueSize>20000</extensionControllerRequestQueueSize>
-  <schedulerThreadPoolSize>3</schedulerThreadPoolSize>
+  <schedulerThreadPoolSize>4</schedulerThreadPoolSize>
   <protocolCompressionThreshold>1024</protocolCompressionThreshold>
   <protocolMode>BINARY</protocolMode>
   <useBinaryProtocol>true</useBinaryProtocol>
@@ -44,22 +42,66 @@
   <useFriendlyExceptions>true</useFriendlyExceptions>
   <mailer>
     <isActive>false</isActive>
-    <mailHost>test.mail.com</mailHost>
-    <mailUser>foo</mailUser>
-    <mailPass>pippo</mailPass>
+    <mailHost>your.smtp.here</mailHost>
+    <mailUser>username</mailUser>
+    <mailPass>password</mailPass>
     <smtpPort>25</smtpPort>
     <workerThreads>1</workerThreads>
   </mailer>
   <webServer>
     <isActive>true</isActive>
-    <cfgFile>config/jetty/jetty.xml</cfgFile>
     <blueBoxPollingTimeout>26</blueBoxPollingTimeout>
     <blueBoxMsgQueueSize>40</blueBoxMsgQueueSize>
   </webServer>
+  <webSocket>
+    <isActive>false</isActive>
+    <bindAddress>127.0.0.1</bindAddress>
+    <tcpPort>8888</tcpPort>
+	<sslPort>8843</sslPort>
+	<isSSL>false</isSSL>
+    <keyStoreFile>config/keystore.jks</keyStoreFile>
+    <keyStorePassword>password</keyStorePassword>
+  </webSocket>
+  <analytics>
+    <isActive>false</isActive>
+    <runOnDay>[everyday]</runOnDay>
+    <runAtHour>2</runAtHour>
+    <runOnStartup>false</runOnStartup>
+    <rebuildDB>false</rebuildDB>
+    <skipGeolocation>false</skipGeolocation>
+    <sourceFolder></sourceFolder>
+    <locale></locale>
+  </analytics>
+ <systemThreadPoolSettings>
+   <name>Sys</name>
+   <coreThreads>4</coreThreads>
+   <backupThreads>8</backupThreads>
+   <maxBackups>16</maxBackups>
+   <queueSizeTriggeringBackup>100</queueSizeTriggeringBackup>
+   <secondsTriggeringBackup>50</secondsTriggeringBackup>
+   <backupThreadsExpiry>3600</backupThreadsExpiry>
+   <queueSizeTriggeringBackupExpiry>60</queueSizeTriggeringBackupExpiry>
+   <logActivity>true</logActivity>
+   <queueFullWarningInterval>300</queueFullWarningInterval>
+ </systemThreadPoolSettings>
+ <extensionThreadPoolSettings>
+   <name>Ext</name>
+   <coreThreads>4</coreThreads>
+   <backupThreads>8</backupThreads>
+   <maxBackups>16</maxBackups>
+   <queueSizeTriggeringBackup>100</queueSizeTriggeringBackup>
+   <secondsTriggeringBackup>50</secondsTriggeringBackup>
+   <backupThreadsExpiry>3600</backupThreadsExpiry>
+   <queueSizeTriggeringBackupExpiry>60</queueSizeTriggeringBackupExpiry>
+   <logActivity>true</logActivity>
+   <queueFullWarningInterval>300</queueFullWarningInterval>
+ </extensionThreadPoolSettings>
   <startExtensionFileMonitor>true</startExtensionFileMonitor>
   <useDebugMode>true</useDebugMode>
-  <sessionMaxIdleTime>50</sessionMaxIdleTime>
+  <sessionMaxIdleTime>30</sessionMaxIdleTime>
   <userMaxIdleTime>300</userMaxIdleTime>
   <licenseCode></licenseCode>
   <licenseEmails></licenseEmails>
+  <ghostHunterEnabled>true</ghostHunterEnabled>
+  <statsExtraLoggingEnabled>true</statsExtraLoggingEnabled>
 </serverSettings>
