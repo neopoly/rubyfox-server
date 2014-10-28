@@ -11,6 +11,7 @@ Gem::Specification.new do |gem|
   gem.description   = %q{SmartFox Server bundled as a gem}
   gem.summary       = %q{}
   gem.homepage      = "https://github.com/neopoly/rubyfox-server"
+  gem.licenses      = ['MIT']
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
