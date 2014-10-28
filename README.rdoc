@@ -42,3 +42,10 @@ Example: Gem version 2.3.0.x contains SmartFox Server version 2.3.0.
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+== Release
+
+1. Edit version.rb
+2. git commit -m "Release X.Y.Z.P"
+2. rake release
+3. git push
