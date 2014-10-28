@@ -40,7 +40,7 @@
 	"validator":"notNull"
 },
 
-// PASSWORD
+// PASSWORD (not hidden, in case the Admin needs to access the Room)
 {
 	"name":"adminHelper.password",
 	"label":"Password",
@@ -58,6 +58,17 @@
 	"category":"Runtime Room settings",
 	"type":"CheckBox",
 	"value":{$BasicValue=room.active}
+},
+
+// UPTIME
+{
+	"name":"uptime",
+	"label":"Uptime",
+	"tooltip":"Elapsed time since Room creation",
+	"category":"Runtime Room settings",
+	"type":"TextInput",
+	"value":"{$BasicValue=helper.uptime}",
+	"edit":false
 },
 
 // PUBLIC ROOM
@@ -205,6 +216,17 @@
 	"edit":false
 },
 
+// IS WORDS FILTER ACTIVE
+{
+	"name":"useWordsFilter",
+	"label":"Is bad words filter active",
+	"tooltip":"The state of the bad words filter",
+	"category":"Runtime Room settings",
+	"type":"CheckBox",
+	"value":{$BasicValue=helper.useWordsFilter},
+	"edit":false
+},
+
 //-------------------------------------------
 // PERMISSIONS AND EVENTS
 //-------------------------------------------
@@ -248,7 +270,7 @@
 {
 	"name":"roomVariables",
 	"label":"Room Variables",
-	"tooltip":"The list of Room Variables",
+	"tooltip":"The list of Room Variables. If the owner is set to 'null', the Variable is owned by the server itself; otherwise a string containing the main user details is displayed",
 	"category":"Runtime Room Variables",
 	"type":"DataGrid",
 	"componentParams":
@@ -264,6 +286,13 @@
 			"type":"TextInput",
 			"value":"",
 			"validator":"notNull"
+		},
+		{
+			"name":"owner",
+			"label":"Owner",
+			"tooltip":"Owner",
+			"type":"TextInput",
+			"value":""
 		},
 		{
 			"name":"type",
@@ -313,7 +342,7 @@
 			"validator":"notNull"
 		}
 	],
-	"listValues":{$List=variables, instance=room, fields=name;type;private;persistent;global;hidden;value},
+	"listValues":{$List=variables, instance=room, fields=name;owner;type;private;persistent;global;hidden;value},
 	"edit":false
 },
 
@@ -325,7 +354,7 @@
 {
 	"name":"extName",
 	"label":"Name",
-	"tooltip":"The name of the Extension",
+	"tooltip":"The name of the Extension; can be '__lib__' in case the Extension jar file was deployed in the homonymous folder for specific class-loading purposes",
 	"category":"Room Extension",
 	"type":"TextInput",
 	"value":"{$BasicValue=extension.name}",

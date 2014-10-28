@@ -201,7 +201,7 @@
 {
 	"name":"allowGuestUsers",
 	"label":"Allow guest users access",
-	"tooltip":"When active any empty user names will be turned into an auto-generated guest user name. Otherwise the login will be refused",
+	"tooltip":"When active any empty user names will be turned into an auto-generated guest username, otherwise the login will be refused",
 	"type":"CheckBox",
 	"value":{$BasicValue=zoneSettings.allowGuestUsers}
 },
@@ -239,6 +239,15 @@
 	{
 		"restrict":"a-zA-Z0-9,_"
 	}
+},
+
+// ALLOW FILE UPLOADING
+{
+	"name":"allowUploads",
+	"label":"Allow file uploading",
+	"tooltip":"If enabled, files can be uploaded by clients to the server via regular HTTP post requests. Internal web server must be active and the HTTP protocol enabled (see Web server tab in Server Configurator module)",
+	"type":"CheckBox",
+	"value":{$BasicValue=zoneSettings.allowUploads}
 },
 
 //-------------------------------------------
@@ -625,7 +634,7 @@
 {
 	"name":"extension.name",
 	"label":"Name",
-	"tooltip":"The name of the Extension to be plugged at Zone level; if a new Extension is deployed on the server while editing the Zone settings, cancel and re-edit the Zone to update this list",
+	"tooltip":"The name of the Extension to be plugged at Zone level; the '__lib__' folder is also listed, in case one or more Extension jar files are deployed there for specific class-loading purposes\n\nIf a new Extension is deployed on the server while editing the Zone settings, cancel and re-edit the Zone to update this list",
 	"category":"Zone Extension",
 	"type":"ComboBox",
 	"value":"{$BasicValue=extension.name}",

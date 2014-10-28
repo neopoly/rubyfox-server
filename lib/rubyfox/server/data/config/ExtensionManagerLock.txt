@@ -1,0 +1,2 @@
+This file inhibits the usage of the Administration Tool's Extension Manager module, as an additional security measure. Delete it to enable the module.
+For more informations, please visit this URL: http://docs2x.smartfoxserver.com/GettingStarted/admintool-ExtensionManager

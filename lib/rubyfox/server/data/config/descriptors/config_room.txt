@@ -32,7 +32,11 @@
 	"label":"Password",
 	"tooltip":"The Room password (optional). If null or empty string the Room will be public",
 	"type":"TextInput",
-	"value":"{$BasicValue=roomSettings.password}"
+	"value":"{$BasicValue=roomSettings.password}",
+	"componentParams":
+	{
+		"displayAsPassword":true
+	}
 },
 
 // MAX USERS
@@ -245,7 +249,7 @@
 {
 	"name":"extension.name",
 	"label":"Name",
-	"tooltip":"The name of the Extension to be plugged at Room level; if a new Extension is deployed on the server while editing the Zone settings, cancel and re-edit the zone to update this list",
+	"tooltip":"The name of the Extension to be plugged at Room level; the '__lib__' folder is also listed, in case one or more Extension jar files are deployed there for specific class-loading purposes\n\nIf a new Extension is deployed on the server while editing the Zone settings, cancel and re-edit the zone to update this list",
 	"category":"Room Extension",
 	"type":"ComboBox",
 	"value":"{$BasicValue=extension.name}",
@@ -320,4 +324,109 @@
 	{
 		"dataProvider":"AUTO,MANUAL,NONE"
 	}
+},
+
+//-------------------------------------------
+// MMO SETTINGS
+//-------------------------------------------
+
+// IS ACTIVE
+{
+	"name":"mmoSettings.isActive",
+	"label":"Is MMO Room",
+	"tooltip":"Create a Room of type MMORoom, in which joined users are mutually 'visible' based on each other's proximity. Read the documentation for more informations\n\n<b>IMPORTANT</b>\nThe following Room characteristics do not apply to MMORooms:\n<i>Spectators</i> - even if the Room is a Game Room, users can't join it as spectators\n<i>USER_ENTER event</i> - this event is never dispatched; other users entering the current user's Area of Interest (AoI) are notified through the PROXIMITY_LIST_UPDATE event\n<i>USER_EXIT event</i> - this event is dispatched to the user leaving the Room only; other users leaving the current user's Area of Interest are notified through the PROXIMITY_LIST_UPDATE event",
+	"category":"MMO settings",
+	"type":"CheckBox",
+	"value":{$BasicValue=mmoSettings.isActive}
+},
+
+// DEFAULT AOI
+{
+	"name":"mmoSettings.defaultAOI",
+	"label":"Default AoI",
+	"tooltip":"The distance along the x,y,z axes describing the 'Area of Interest' within which the other users presence in the Room is notified to each client through the PROXIMITY_LIST_UPDATE event. Similarly, users actions (public messages, User Variables updates, etc) are notified when they are within this area only\n\n<b>NOTE</b>\nA value of 100 for an axis means an AoI ranging from -100 to +100 along that axis",
+	"category":"MMO settings",
+	"type":"Vector3D",
+	"value":"{$BasicValue=mmoSettings.defaultAOI}",
+	"validator":"aoi"
+},
+
+// LOWER MAP LIMITS
+{
+	"name":"mmoSettings.lowerMapLimit",
+	"label":"Lower map limits",
+	"tooltip":"The lower limits for each of the user position coordinates (x,y,z) in the MMORoom. Limits are used to validate the request to set the user position coming from the client. Leave empty for no limits\n\n<b>NOTE</b>\nLower and higher map limits must be both set or not set; if only one of the two properties is set, it will be ignored",
+	"category":"MMO settings",
+	"type":"Vector3D",
+	"value":"{$BasicValue=mmoSettings.lowerMapLimit}",
+	"componentParams":
+	{
+		"enableClear":true,
+		"allowNegative":true
+	}
+},
+
+// HIGHER MAP LIMITS
+{
+	"name":"mmoSettings.higherMapLimit",
+	"label":"Higher map limits",
+	"tooltip":"The upper limits for each of the user position coordinates (x,y,z) in the MMORoom. Limits are used to validate the request to set the user position coming from the client. Leave empty for no limits\n\n<b>NOTE</b>\nLower and higher map limits must be both set or not set; if only one of the two properties is set, it will be ignored",
+	"category":"MMO settings",
+	"type":"Vector3D",
+	"value":"{$BasicValue=mmoSettings.higherMapLimit}",
+	"componentParams":
+	{
+		"enableClear":true,
+		"allowNegative":true
+	}
+},
+
+// FORCE FLOATS
+{
+	"name":"mmoSettings.forceFloats",
+	"label":"Force floating point",
+	"tooltip":"Force the values entered in the AoI and map limits settings above to be parsed as floating point values, even if integers have been entered. Please note that even if this setting is off, if a decimal value is entered above, it will be treated as a floating point value",
+	"category":"MMO settings",
+	"type":"CheckBox",
+	"value":{$BasicValue=mmoSettings.forceFloats}
+},
+
+// MAX LIMBO SECONDS
+{
+	"name":"mmoSettings.userMaxLimboSeconds",
+	"label":"User max limbo time",
+	"tooltip":"The maximum amount of seconds allowed between the MMORoom join and the first time the user position is set in the Room (known as 'limbo', because the user is inside the Room but he knows nothing about the other users in it, because the proximity system based on the AoI requires his position to be set at least one time); if this time is exeeded, the user is kicked from the Room automatically",
+	"category":"MMO settings",
+	"type":"NumericStepper",
+	"value":{$BasicValue=mmoSettings.userMaxLimboSeconds},
+	"componentParams":
+	{
+		"minimum":10,
+		"maximum":120
+	}
+},
+
+// PROXIMITY LIST UPDATES MILLISECONDS
+{
+	"name":"mmoSettings.proximityListUpdateMillis",
+	"label":"Millis between proximity list updates",
+	"tooltip":"Minimum time between two subsequent PROXIMITY_LIST_UPDATE events sent to the clients; this should be balanced taking into account the user speed when moving inside the MMORoom (frequency of position updates) and the ratio between the actual client viewport size (or area of visibility in case of 3D environments) and the AoI size",
+	"category":"MMO settings",
+	"type":"NumericStepper",
+	"value":{$BasicValue=mmoSettings.proximityListUpdateMillis},
+	"componentParams":
+	{
+		"minimum":10,
+		"maximum":2147483647
+	}
+},
+
+// SEND AOI ENTRY POINT
+{
+	"name":"mmoSettings.sendAOIEntryPoint",
+	"label":"Send AoI entry point",
+	"tooltip":"Send the other users entry coordinates in the client's AoI as reserved properties on the User object in the PROXIMITY_LIST_UPDATE event",
+	"category":"MMO settings",
+	"type":"CheckBox",
+	"value":{$BasicValue=mmoSettings.sendAOIEntryPoint}
 }

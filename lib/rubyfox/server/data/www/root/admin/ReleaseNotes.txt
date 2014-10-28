@@ -2,6 +2,29 @@
 SmartFoxServer 2X Administration Tool
 =====================================
 
+v1.5.0
+======
+
+New features
+------------
+- New Extension Manager module added, to easily upload new versions of the server Extensions using the Admin Tool.
+- "Thread pools" tab added to the Server Configurator module to configure the new threading system introduced in SmartFoxServer 2X v2.9.
+- Administration permissions can now be assigned in the "Remote admin" tab of the Server Configurator module. Administrators can now be given access to some modules only and server halting/restarting capability can be inhibited.
+- New settings added to the "Web server" tab in Server Configurator module to activate HTTP and HTTPS support separately in the internal web server. Also, HTTP and HTTPS ports can now be configured from within the Admin Tool itself (no need to edit the Jetty configuration manually anymore).
+- New settings added to the "HTML5 WebSockets" tab in Server Configurator module, now supporting SSL encryption activation.
+- The "new version" alert in the Admin Tool's header now indicates the minimum required version in case the update is provided as a patch.
+- New button to reset realtime charts added to Dashboard module.
+- In the Zone Configurator module a new flag allows to explicitly declare that values entered in the Area of Interest and map limits settings of an MMORoom should be treated as floating point numbers.
+- All passwords in Server Configurator module are now displayed as asterisks.
+- Zone Monitor module now shows if the bad words filter is active on the monitored Room.
+- All tables showing configuration parameters in Server Configurator, Zone Configurator and Zone Monitor modules now retain the column width if resized.
+
+Fixed bugs
+----------
+- Negative numbers couldn't be entered as map limits in the "MMO settings" tab of the Zone Configurator module.
+- Error "No instance called 'traffic' is defined" thrown under specific circumstances when using the Zone Monitor module.
+
+
 v1.4.1
 ======
 

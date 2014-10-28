@@ -123,34 +123,6 @@
 	"value":{$BasicValue=serverSettings.ghostHunterEnabled}
 },
 
-// SYSTEM CONTROLLER THREAD POOL SIZE
-{
-	"name":"systemControllerThreadPoolSize",
-	"label":"System Controller thread pool size",
-	"tooltip":"[ADVANCED] Adjust the thread pool size for the System Controller",
-	"type":"NumericStepper",
-	"value":{$BasicValue=serverSettings.systemControllerThreadPoolSize},
-	"componentParams":
-	{
-		"minimum":1,
-		"maximum":10000
-	}
-},
-
-// EXTENSIONS CONTROLLER THREAD POOL SIZE
-{
-	"name":"extensionControllerThreadPoolSize",
-	"label":"Extensions Controller thread pool size",
-	"tooltip":"[ADVANCED] Adjust the thread pool size for the Extensions Controller",
-	"type":"NumericStepper",
-	"value":{$BasicValue=serverSettings.extensionControllerThreadPoolSize},
-	"componentParams":
-	{
-		"minimum":1,
-		"maximum":10000
-	}
-},
-
 // SERVER TASK SCHEDULER THREAD POOL SIZE
 {
 	"name":"schedulerThreadPoolSize",
@@ -162,34 +134,6 @@
 	{
 		"minimum":1,
 		"maximum":10000
-	}
-},
-
-// SYSTEM CONTROLLER REQUEST QUEUE SIZE
-{
-	"name":"systemControllerRequestQueueSize",
-	"label":"System Controller request queue size",
-	"tooltip":"[ADVANCED] Modifies the maximum size of the System Controller messages queue",
-	"type":"NumericStepper",
-	"value":{$BasicValue=serverSettings.systemControllerRequestQueueSize},
-	"componentParams":
-	{
-		"minimum":10,
-		"maximum":2147483647
-	}
-},
-
-// EXTENSIONS CONTROLLER REQUEST QUEUE SIZE
-{
-	"name":"extensionControllerRequestQueueSize",
-	"label":"Extensions Controller request queue size",
-	"tooltip":"[ADVANCED] Modifies the maximum size of the Extensions Controller messages queue",
-	"type":"NumericStepper",
-	"value":{$BasicValue=serverSettings.extensionControllerRequestQueueSize},
-	"componentParams":
-	{
-		"minimum":10,
-		"maximum":2147483647
 	}
 },
 
@@ -209,6 +153,15 @@
 	"tooltip":"Enable remote debugging of Extensions",
 	"type":"CheckBox",
 	"value":{$BasicValue=serverSettings.extensionRemoteDebug}
+},
+
+// STATS EXTRA LOGGING
+{
+	"name":"statsExtraLoggingEnabled",
+	"label":"Stats extra logging",
+	"tooltip":"Enable extra informations to be logged for statistics collection",
+	"type":"CheckBox",
+	"value":{$BasicValue=serverSettings.statsExtraLoggingEnabled}
 },
 
 //-------------------------------------------
@@ -336,7 +289,7 @@
 {
 	"name":"webSocket.bindAddress",
 	"label":"WebSocket listener address",
-	"tooltip":"IP address used for WebSocket comminication",
+	"tooltip":"IP address used for WebSocket communication",
 	"category":"HTML5 WebSockets",
 	"type":"ComboBox",
 	"value":{$BasicValue=webSocket.bindAddress},
@@ -346,11 +299,11 @@
 	}
 },
 
-// LISTENER PORT
+// LISTENER TCP PORT
 {
 	"name":"webSocket.tcpPort",
 	"label":"WebSocket listener port",
-	"tooltip":"TCP port used for WebSocket comminication",
+	"tooltip":"TCP port used for WebSocket communication",
 	"category":"HTML5 WebSockets",
 	"type":"NumericStepper",
 	"value":{$BasicValue=webSocket.tcpPort},
@@ -358,6 +311,55 @@
 	{
 		"minimum":0,
 		"maximum":65535
+	}
+},
+
+// LISTENER SSL PORT
+{
+	"name":"webSocket.sslPort",
+	"label":"WebSocket Secure listener port",
+	"tooltip":"SSL port used for encrypted WebSocket communication",
+	"category":"HTML5 WebSockets",
+	"type":"NumericStepper",
+	"value":{$BasicValue=webSocket.sslPort},
+	"componentParams":
+	{
+		"minimum":0,
+		"maximum":65535
+	}
+},
+
+// USE SSL
+{
+	"name":"webSocket.isSSL",
+	"label":"Use WSS protocol",
+	"tooltip":"Enable/disable the SSL encryption of WebSockets protocol",
+	"category":"HTML5 WebSockets",
+	"type":"CheckBox",
+	"value":{$BasicValue=webSocket.isSSL}
+},
+
+// KEYSTORE FILE
+{
+	"name":"webSocket.keyStoreFile",
+	"label":"KeyStore file",
+	"tooltip":"Location of the repository of security certificates to be used when WSS is enabled",
+	"category":"HTML5 WebSockets",
+	"type":"TextInput",
+	"value":"{$BasicValue=webSocket.keyStoreFile}"
+},
+
+// KEYSTORE PASSWORD
+{
+	"name":"webSocket.keyStorePassword",
+	"label":"KeyStore password",
+	"tooltip":"Password of the KeyStore repository",
+	"category":"HTML5 WebSockets",
+	"type":"TextInput",
+	"value":"{$BasicValue=webSocket.keyStorePassword}",
+	"componentParams":
+	{
+		"displayAsPassword":true
 	}
 },
 
@@ -369,20 +371,60 @@
 {
 	"name":"webServer.isActive",
 	"label":"Activate",
-	"tooltip":"Enable/disable the embedded http server",
+	"tooltip":"Enable/disable the embedded web server",
 	"category":"Web server",
 	"type":"CheckBox",
 	"value":{$BasicValue=webServer.isActive}
 },
 
-// CONFIGURATION FILE
+// ENABLE HTTP MODULE
 {
-	"name":"webServer.cfgFile",
-	"label":"Configuration file",
-	"tooltip":"[ADVANCED] The location of the embedded http server configuration file",
+	"name":"webServer.enableHttp",
+	"label":"Enable HTTP",
+	"tooltip":"Enable/disable the HTTP module in the embedded web server",
 	"category":"Web server",
-	"type":"TextInput",
-	"value":"{$BasicValue=webServer.cfgFile}"
+	"type":"CheckBox",
+	"value":{$BasicValue=webServer.enableHttp}
+},
+
+// HTTP PORT
+{
+	"name":"webServer.httpPort",
+	"label":"HTTP port",
+	"tooltip":"TCP port used by the embedded web server for HTTP communication",
+	"category":"Web server",
+	"type":"NumericStepper",
+	"value":{$BasicValue=webServer.httpPort},
+	"componentParams":
+	{
+		"minimum":0,
+		"maximum":65535
+	}
+},
+
+// ENABLE HTTPS MODULE
+{
+	"name":"webServer.enableHttps",
+	"label":"Enable HTTPS",
+	"tooltip":"Enable/disable the HTTPS module in the embedded web server",
+	"category":"Web server",
+	"type":"CheckBox",
+	"value":{$BasicValue=webServer.enableHttps}
+},
+
+// HTTPS PORT
+{
+	"name":"webServer.httpsPort",
+	"label":"HTTPS port",
+	"tooltip":"TCP port used by the embedded web server for HTTPS communication",
+	"category":"Web server",
+	"type":"NumericStepper",
+	"value":{$BasicValue=webServer.httpsPort},
+	"componentParams":
+	{
+		"minimum":0,
+		"maximum":65535
+	}
 },
 
 // BLUEBOX POLLING TIMEOUT
@@ -397,6 +439,11 @@
 	{
 		"minimum":25,
 		"maximum":40
+	},
+	"separator":
+	{
+		"pos":"before",
+		"text":"\n<b>BlueBox settings</b>"
 	}
 },
 
@@ -422,8 +469,8 @@
 // USE MASTER SOCKET POLICY
 {
 	"name":"flashCrossdomainPolicy.useMasterSocketPolicy",
-	"label":"Use Flash Master Socket Policy",
-	"tooltip":"If enabled, SmartFoxServer serves the Flash Master Socket Policy over TCP port 843 as required by Adobe's security restrictions",
+	"label":"Activate Flash Socket Policy",
+	"tooltip":"If enabled, SmartFoxServer serves the Flash crossdomain policy over the current TCP port(s) as required by Adobe's security rules",
 	"category":"Adobe Flash Player",
 	"type":"CheckBox",
 	"value":{$BasicValue=flashCrossdomainPolicy.useMasterSocketPolicy}
@@ -497,7 +544,11 @@
 	"tooltip":"The SMTP server account password",
 	"category":"Mailer",
 	"type":"TextInput",
-	"value":"{$BasicValue=mailer.mailPass}"
+	"value":"{$BasicValue=mailer.mailPass}",
+	"componentParams":
+	{
+		"displayAsPassword":true
+	}
 },
 
 //-------------------------------------------
@@ -508,7 +559,7 @@
 {
 	"name":"remoteAdmin.administrators",
 	"label":"Administrators",
-	"tooltip":"The access credentials of SmartFoxServer administrators; removing all the administrators will prevent the Admin Tool to reconnect to the server instance after a disconnection",
+	"tooltip":"The access credentials and permissions of SmartFoxServer administrators; removing all the administrators will prevent the AdminTool to reconnect to the server instance after a disconnection",
 	"category":"Remote admin",
 	"type":"DataGrid",
 	"defaultListItem":
@@ -527,10 +578,32 @@
 			"tooltip":"Administrator's password",
 			"type":"TextInput",
 			"value":"",
-			"validator":"pwd"
+			"validator":"pwd",
+			"componentParams":
+			{
+				"displayAsPassword":true
+			}
+		},
+		{
+			"name":"allowHalt",
+			"label":"Allow halt/restart",
+			"tooltip":"Allow administrator to halt or restart the server",
+			"type":"CheckBox",
+			"value":true
+		},
+		{
+			"name":"disabledModulesString",
+			"label":"Disabled modules",
+			"tooltip":"The list of AdminTool's modules that the administrator is NOT allowed to access",
+			"type":"DualList",
+			"value":"",
+			"componentParams":
+			{
+				"selectableValues":"{$BasicValue=adminHelper.allModules}"
+			}
 		}
 	],
-	"listValues":{$List=administrators, instance=remoteAdmin, fields=login;password},
+	"listValues":{$List=administrators, instance=remoteAdmin, fields=login;password;allowHalt;disabledModulesString},
 	"clazz":"ServerSettings$AdminUser"
 },
 
@@ -575,6 +648,410 @@
 },
 
 //-------------------------------------------
+// ANALYTICS MODULE SETTINGS
+//-------------------------------------------
+
+// SCHEDULE
+{
+	"name":"analytics.isActive",
+	"label":"Schedule log analysis",
+	"tooltip":"Schedule the automatic log analysis process to build data for the AdminTool's Analytics module\nIf not scheduled, the process can be executed manually from within the module itself",
+	"category":"Analytics",
+	"type":"CheckBox",
+	"value":{$BasicValue=analytics.isActive}
+},
+
+// RUN ON DAY OF WEEK
+{
+	"name":"analytics.runOnDay",
+	"label":"Run on day of week",
+	"tooltip":"Schedule the log analysis to run everyday or on a specific day of the week",
+	"category":"Analytics",
+	"type":"ComboBox",
+	"value":"{$BasicValue=analytics.runOnDay}",
+	"componentParams":
+	{
+		"dataProvider":"[everyday],Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday"
+	}
+},
+
+// RUN AT HOUR OF DAY
+{
+	"name":"analytics.runAtHour",
+	"label":"Run at hour of day",
+	"tooltip":"Schedule the log analysis to run at the selected hour of the scheduled day",
+	"category":"Analytics",
+	"type":"NumericStepper",
+	"value":{$BasicValue=analytics.runAtHour},
+	"componentParams":
+	{
+		"minimum":0,
+		"maximum":23
+	}
+},
+
+// RUN ON STARTUP
+{
+	"name":"analytics.runOnStartup",
+	"label":"Run on startup",
+	"tooltip":"If checked, in addition to the scheduled day and hour the log analysis is also executed as soon as SmartFoxServer is started (with 1 minute delay)\nDepending on the logs size, the process can take from a few seconds to many hours",
+	"category":"Analytics",
+	"type":"CheckBox",
+	"value":{$BasicValue=analytics.runOnStartup}
+},
+
+// REBUILD DATABASE
+{
+	"name":"analytics.rebuildDB",
+	"label":"Rebuild database",
+	"tooltip":"If checked, the first log analysis execution destroys the previous Analytics database (if any), rebuilding data from scratch; this flag is then unchecked automatically to avoid accidental data destruction during later executions\n\n<b>IMPORTANT</b>\nThis action deletes all data collected previously and rebuilds it by analyzing the available SmartFoxServer logs; in case some log files were deleted to free disk space, historical data will be lost",
+	"category":"Analytics",
+	"type":"CheckBox",
+	"value":{$BasicValue=analytics.rebuildDB}
+},
+
+// SKIP GEO LOCATION
+{
+	"name":"analytics.skipGeolocation",
+	"label":"Skip geolocation",
+	"tooltip":"If checked, the clients geolocation based on their IP address is not performed during the log analysis\n\n<b>NOTE</b>\nGeolocation should always be enabled, unless the geolocation database (provided by a third party) is outdated and can't be updated (read the AdminTool's documentation for more informations)",
+	"category":"Analytics",
+	"type":"CheckBox",
+	"value":{$BasicValue=analytics.skipGeolocation}
+},
+
+// LOGS SOURCE FOLDER
+{
+	"name":"analytics.sourceFolder",
+	"label":"Logs source folder",
+	"tooltip":"Path to the logs source folder; leave empty to use the SmartFoxServer default logs folder",
+	"category":"Analytics",
+	"type":"TextInput",
+	"value":"{$BasicValue=analytics.sourceFolder}"
+},
+
+// LOGS LOCALE
+{
+	"name":"analytics.locale",
+	"label":"Logs locale",
+	"tooltip":"The two letters ISO 3166 country code indicating the locale of the server which generated the log files; leave empty if logs are generated by the SmartFoxServer instance you are now connected to\n\n<b>NOTE</b>\nUse this parameter if you need to analyze logs generated by another SmartFoxServer instance hosted on a server with a different locale setting",
+	"category":"Analytics",
+	"type":"TextInput",
+	"value":"{$BasicValue=analytics.locale}",
+	"componentParams":
+	{
+		"restrict":"a-zA-Z",
+		"maxChars":2
+	}
+},
+
+//-------------------------------------------
+// THREAD POOLS SETTINGS
+//-------------------------------------------
+
+// SYSTEM CORE THREADS
+{
+	"name":"systemThreadPoolSettings.coreThreads",
+	"label":"Core threads",
+	"tooltip":"Number of core threads in the pool; these will be always available",
+	"category":"Thread pools",
+	"type":"NumericStepper",
+	"value":{$BasicValue=systemThreadPoolSettings.coreThreads},
+	"componentParams":
+	{
+		"minimum":1,
+		"maximum":10000
+	},
+	"separator":
+	{
+		"pos":"before",
+		"text":"<b>IMPORTANT</b>: these settings can affect performance dramatically; change them only if you really know what you are doing\n\n<b>System thread pool</b>"
+	}
+},
+
+// SYSTEM BACKUP THREADS
+{
+	"name":"systemThreadPoolSettings.backupThreads",
+	"label":"Backup threads",
+	"tooltip":"Number of new threads to be added when a backups is called",
+	"category":"Thread pools",
+	"type":"NumericStepper",
+	"value":{$BasicValue=systemThreadPoolSettings.backupThreads},
+	"componentParams":
+	{
+		"minimum":1,
+		"maximum":10000
+	}
+},
+
+// SYSTEM MAX BACKUPS
+{
+	"name":"systemThreadPoolSettings.maxBackups",
+	"label":"Maximum backups",
+	"tooltip":"Number of times backup threads can be called",
+	"category":"Thread pools",
+	"type":"NumericStepper",
+	"value":{$BasicValue=systemThreadPoolSettings.maxBackups},
+	"componentParams":
+	{
+		"minimum":1,
+		"maximum":10000
+	}
+},
+
+// SYSTEM QUEUE SIZE TRIGGERING BACKUP
+{
+	"name":"systemThreadPoolSettings.queueSizeTriggeringBackup",
+	"label":"Queue size triggering a backup",
+	"tooltip":"Minimum size of the queue that will trigger a backup, unless the size goes down below this value within the backup triggering time",
+	"category":"Thread pools",
+	"type":"NumericStepper",
+	"value":{$BasicValue=systemThreadPoolSettings.queueSizeTriggeringBackup},
+	"componentParams":
+	{
+		"minimum":1,
+		"maximum":10000
+	}
+},
+
+// SYSTEM BACKUP TRIGGERING TIME
+{
+	"name":"systemThreadPoolSettings.secondsTriggeringBackup",
+	"label":"Backup triggering time",
+	"tooltip":"The number of seconds after which the backup is called if the queue size keeps being greater than the minimum queue size",
+	"category":"Thread pools",
+	"type":"NumericStepper",
+	"value":{$BasicValue=systemThreadPoolSettings.secondsTriggeringBackup},
+	"componentParams":
+	{
+		"minimum":1,
+		"maximum":10000
+	}
+},
+
+// SYSTEM BACKUP THREAD EXPIRATION TIME
+{
+	"name":"systemThreadPoolSettings.backupThreadsExpiry",
+	"label":"Backup threads expiration",
+	"tooltip":"The number of seconds after which the backup threads are removed, provided they are not needed anymore",
+	"category":"Thread pools",
+	"type":"NumericStepper",
+	"value":{$BasicValue=systemThreadPoolSettings.backupThreadsExpiry},
+	"componentParams":
+	{
+		"minimum":1,
+		"maximum":10000
+	}
+},
+
+// SYSTEM QUEUE SIZE TRIGGERING BACKUP EXPIRATION
+{
+	"name":"systemThreadPoolSettings.queueSizeTriggeringBackupExpiry",
+	"label":"Queue size preventing backup expiration",
+	"tooltip":"The minimum amount of messages in the queue that WILL NOT allow the backup threads to be removed (backup won't expire if the queue size is greater than this value)",
+	"category":"Thread pools",
+	"type":"NumericStepper",
+	"value":{$BasicValue=systemThreadPoolSettings.queueSizeTriggeringBackupExpiry},
+	"componentParams":
+	{
+		"minimum":1,
+		"maximum":10000
+	}
+},
+
+// LOG ACTIVITY
+{
+	"name":"systemThreadPoolSettings.logActivity",
+	"label":"Log activity",
+	"tooltip":"Write basic informations about new threads being added or removed in the log",
+	"category":"Thread pools",
+	"type":"CheckBox",
+	"value":{$BasicValue=systemThreadPoolSettings.logActivity}
+},
+
+// SYSTEM FULL QUEUE WARNING INTERVAL
+{
+	"name":"systemThreadPoolSettings.queueFullWarningInterval",
+	"label":"Full queue warning interval",
+	"tooltip":"The interval, expressed in seconds, between two consecutive warnings being logged if the messages queue is full",
+	"category":"Thread pools",
+	"type":"NumericStepper",
+	"value":{$BasicValue=systemThreadPoolSettings.queueFullWarningInterval},
+	"componentParams":
+	{
+		"minimum":1,
+		"maximum":10000
+	}
+},
+
+// SYSTEM REQUEST QUEUE SIZE
+{
+	"name":"systemControllerRequestQueueSize",
+	"label":"System Controller request queue size",
+	"tooltip":"Modifies the maximum size of the System Controller messages queue",
+	"category":"Thread pools",
+	"type":"NumericStepper",
+	"value":{$BasicValue=serverSettings.systemControllerRequestQueueSize},
+	"componentParams":
+	{
+		"minimum":10,
+		"maximum":2147483647
+	}
+},
+
+//-------------------------------------------
+
+// EXTENSION CORE THREADS
+{
+	"name":"extensionThreadPoolSettings.coreThreads",
+	"label":"Core threads",
+	"tooltip":"Number of core threads in the pool; these will be always available",
+	"category":"Thread pools",
+	"type":"NumericStepper",
+	"value":{$BasicValue=extensionThreadPoolSettings.coreThreads},
+	"componentParams":
+	{
+		"minimum":1,
+		"maximum":10000
+	},
+	"separator":
+	{
+		"pos":"before",
+		"text":"\n<b>Extension thread pool</b>"
+	}
+},
+
+// EXTENSION BACKUP THREADS
+{
+	"name":"extensionThreadPoolSettings.backupThreads",
+	"label":"Backup threads",
+	"tooltip":"Number of new threads to be added when a backup is called",
+	"category":"Thread pools",
+	"type":"NumericStepper",
+	"value":{$BasicValue=extensionThreadPoolSettings.backupThreads},
+	"componentParams":
+	{
+		"minimum":1,
+		"maximum":10000
+	}
+},
+
+// EXTENSION MAX BACKUPS
+{
+	"name":"extensionThreadPoolSettings.maxBackups",
+	"label":"Maximum backups",
+	"tooltip":"Number of times backup threads can be called",
+	"category":"Thread pools",
+	"type":"NumericStepper",
+	"value":{$BasicValue=extensionThreadPoolSettings.maxBackups},
+	"componentParams":
+	{
+		"minimum":1,
+		"maximum":10000
+	}
+},
+
+// EXTENSION QUEUE SIZE TRIGGERING BACKUP
+{
+	"name":"extensionThreadPoolSettings.queueSizeTriggeringBackup",
+	"label":"Queue size triggering a backup",
+	"tooltip":"Minimum size of the queue that will trigger a backup, unless the size goes down below this value within the backup triggering time",
+	"category":"Thread pools",
+	"type":"NumericStepper",
+	"value":{$BasicValue=extensionThreadPoolSettings.queueSizeTriggeringBackup},
+	"componentParams":
+	{
+		"minimum":1,
+		"maximum":10000
+	}
+},
+
+// EXTENSION BACKUP TRIGGERING TIME
+{
+	"name":"extensionThreadPoolSettings.secondsTriggeringBackup",
+	"label":"Backup triggering time",
+	"tooltip":"The number of seconds after which the backup is called if the queue size keeps being greater than the minimum queue size",
+	"category":"Thread pools",
+	"type":"NumericStepper",
+	"value":{$BasicValue=extensionThreadPoolSettings.secondsTriggeringBackup},
+	"componentParams":
+	{
+		"minimum":1,
+		"maximum":10000
+	}
+},
+
+// EXTENSION BACKUP THREAD EXPIRATION TIME
+{
+	"name":"extensionThreadPoolSettings.backupThreadsExpiry",
+	"label":"Backup threads expiration",
+	"tooltip":"The number of seconds after which the backup threads are removed, provided they are not needed anymore",
+	"category":"Thread pools",
+	"type":"NumericStepper",
+	"value":{$BasicValue=extensionThreadPoolSettings.backupThreadsExpiry},
+	"componentParams":
+	{
+		"minimum":1,
+		"maximum":10000
+	}
+},
+
+// EXTENSION QUEUE SIZE TRIGGERING BACKUP EXPIRATION
+{
+	"name":"extensionThreadPoolSettings.queueSizeTriggeringBackupExpiry",
+	"label":"Queue size preventing backup expiration",
+	"tooltip":"The minimum amount of messages in the queue that WILL NOT allow the backup threads to be removed (backup won't expire if the queue size is greater than this value)",
+	"category":"Thread pools",
+	"type":"NumericStepper",
+	"value":{$BasicValue=extensionThreadPoolSettings.queueSizeTriggeringBackupExpiry},
+	"componentParams":
+	{
+		"minimum":1,
+		"maximum":10000
+	}
+},
+
+// LOG ACTIVITY
+{
+	"name":"extensionThreadPoolSettings.logActivity",
+	"label":"Log activity",
+	"tooltip":"Write basic informations about new threads being added or removed in the log",
+	"category":"Thread pools",
+	"type":"CheckBox",
+	"value":{$BasicValue=extensionThreadPoolSettings.logActivity}
+},
+
+// EXTENSION FULL QUEUE WARNING INTERVAL
+{
+	"name":"extensionThreadPoolSettings.queueFullWarningInterval",
+	"label":"Full queue warning interval",
+	"tooltip":"The interval, expressed in seconds, between two consecutive warnings being logged if the messages queue is full",
+	"category":"Thread pools",
+	"type":"NumericStepper",
+	"value":{$BasicValue=extensionThreadPoolSettings.queueFullWarningInterval},
+	"componentParams":
+	{
+		"minimum":1,
+		"maximum":10000
+	}
+},
+
+// EXTENSION REQUEST QUEUE SIZE
+{
+	"name":"extensionControllerRequestQueueSize",
+	"label":"Extensions Controller request queue size",
+	"tooltip":"Modifies the maximum size of the Extensions Controller messages queue",
+	"category":"Thread pools",
+	"type":"NumericStepper",
+	"value":{$BasicValue=serverSettings.extensionControllerRequestQueueSize},
+	"componentParams":
+	{
+		"minimum":10,
+		"maximum":2147483647
+	}
+},
+
+//-------------------------------------------
 // JVM SETTINGS
 //-------------------------------------------
 
@@ -603,7 +1080,7 @@
 {
 	"name":"adminHelper.vmClasspath",
 	"label":"JVM classpath",
-	"tooltip":"A list of search paths for classes and resources used by SmartFoxServer and its custom Extensions \n\n<b>IMPORTANT</b>\nThe following paths are mandatory; if missing, you won't be able to run SmartFoxServer:\n<i>./\nlib/*\nlib/Jetty/*\nextensions/__lib__/*</i>",
+	"tooltip":"A list of search paths for classes and resources used by SmartFoxServer and its custom Extensions \n\n<b>IMPORTANT</b>\nThe following paths are mandatory; if missing, you won't be able to run SmartFoxServer:\n<i>./\nlib/*\nlib/jetty/lib/*\nextensions/__lib__/*</i>",
 	"category":"JVM settings",
 	"type":"DataGrid",
 	"defaultListItem":
