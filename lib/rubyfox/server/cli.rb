@@ -56,7 +56,7 @@ module Rubyfox
 
       no_tasks do
         def env
-          @env ||= Environment.new(ENV)
+          @env ||= Environment.new(ENV, self)
         end
       end
 

@@ -2,11 +2,10 @@ require 'spec_helper'
 
 require 'rubyfox/server/environment'
 
-class FakeEnvironment < Rubyfox::Server::Environment
+class TestAsker
   attr_reader :answers, :asked
 
-  def initialize(*)
-    super
+  def initialize
     @asked = []
     @answers = []
   end
@@ -18,9 +17,9 @@ class FakeEnvironment < Rubyfox::Server::Environment
 end
 
 describe Rubyfox::Server::Environment do
-
   let(:env) { Hash.new }
-  let(:environment) { FakeEnvironment.new(env) }
+  let(:asker) { TestAsker.new }
+  let(:environment) { Rubyfox::Server::Environment.new(env, asker) }
 
   context "[]" do
     it "returns predefined value" do
@@ -29,7 +28,7 @@ describe Rubyfox::Server::Environment do
     end
 
     it "asks for missing value" do
-      environment.answers << "23"
+      asker.answers << "23"
 
       assert_equal "23", environment["foo"]
       assert_equal "23", environment["foo"]
@@ -38,8 +37,8 @@ describe Rubyfox::Server::Environment do
     end
 
     it "keep asking for empty values" do
-      environment.answers << ""
-      environment.answers << "23"
+      asker.answers << ""
+      asker.answers << "23"
 
       assert_equal "23", environment["foo"]
       assert_asked "foo", 2
@@ -66,7 +65,7 @@ describe Rubyfox::Server::Environment do
   def assert_asked(key, amount=1)
     expected = ["Specify env #{key}:"] * amount
 
-    assert_equal expected, environment.asked
+    assert_equal expected, asker.asked
   end
 
 end

@@ -1,13 +1,10 @@
-require 'thor'
-
 module Rubyfox
   module Server
     class Environment
-      include Thor::Shell
-
-      def initialize(env)
-        @env = env
-        @local = {}
+      def initialize(env, asker)
+        @env    = env
+        @asker  = asker
+        @local  = {}
       end
 
       def [](name)
@@ -16,7 +13,7 @@ module Rubyfox
         value || begin
           msg = "Specify env #{name}:"
           loop do
-            answer = ask(msg)
+            answer = @asker.ask(msg)
             unless answer.empty?
               self[name] = answer
               break answer
