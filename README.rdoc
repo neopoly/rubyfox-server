@@ -16,7 +16,7 @@ See http://www.smartfoxserver.com
 
   smartfox install /path/to/smartfox
 
-  smartfox config /path/to/smartfox /path/to/template/dir
+  smartfox configure /path/to/smartfox /path/to/template/dir
 
   smartfox start /path/to/smartfox
 
