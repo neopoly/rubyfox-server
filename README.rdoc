@@ -4,7 +4,7 @@ SmartFox Server bundled as a gem.
 
 Gem[https://rubygems.org/gems/rubyfox-server] |
 Source[https://github.com/neopoly/rubyfox-server] |
-Documentation[http://rubydoc.info/github/neopoly/rubyfox-server/master/file/README.rdoc]
+Documentation[http://www.rubydoc.info/gems/rubyfox-server]
 
 See http://www.smartfoxserver.com
 
