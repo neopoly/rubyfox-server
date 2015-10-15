@@ -9,19 +9,19 @@ SmartFox Server bundled as a gem.
 See http://www.smartfoxserver.com
 
 ## Installation
-  
+
     gem install rubyfox-server
 
 ## Usage
-  
+
     smartfox install /path/to/smartfox
-  
+
     smartfox configure /path/to/smartfox /path/to/template/dir
-  
+
     smartfox start /path/to/smartfox
 
 ## Help
-  
+
     Commands:
       smartfox configure TARGET_DIR TEMPLATE_DIR  # Configure SmartFox Server in TARGET_DIR via TEMPLATE_DIR
       smartfox help [COMMAND]                     # Describe available commands or one specific command
