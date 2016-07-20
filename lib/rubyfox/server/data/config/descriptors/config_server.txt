@@ -292,7 +292,7 @@
 	"tooltip":"IP address used for WebSocket communication",
 	"category":"HTML5 WebSockets",
 	"type":"ComboBox",
-	"value":{$BasicValue=webSocket.bindAddress},
+	"value":"{$BasicValue=webSocket.bindAddress}",
 	"componentParams":
 	{
 		"dataProvider":"{$BasicValue=adminHelper.availableSocketAddresses}"
@@ -931,7 +931,7 @@
 	"value":{$BasicValue=extensionThreadPoolSettings.backupThreads},
 	"componentParams":
 	{
-		"minimum":1,
+		"minimum":0,
 		"maximum":10000
 	}
 },
@@ -946,7 +946,7 @@
 	"value":{$BasicValue=extensionThreadPoolSettings.maxBackups},
 	"componentParams":
 	{
-		"minimum":1,
+		"minimum":0,
 		"maximum":10000
 	}
 },
