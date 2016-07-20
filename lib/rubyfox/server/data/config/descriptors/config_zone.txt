@@ -17,6 +17,15 @@
 	"validator":"notNull"
 },
 
+// USE ENCRYPTION
+{
+	"name":"isEncrypted",
+	"label":"Use Encryption",
+	"tooltip":"When turned on the server will only accept encrypted connections for this Zone",
+	"type":"CheckBox",
+	"value":{$BasicValue=zoneSettings.isEncrypted}
+},
+
 // USE CUSTOM LOGIN
 {
 	"name":"isCustomLogin",

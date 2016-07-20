@@ -2,6 +2,22 @@
 SmartFoxServer 2X Administration Tool
 =====================================
 
+v1.5.2
+======
+
+New features
+------------
+- License Manager module now features a "Reload" button to make SmartFoxServer hot reload the license in case of changes (e.g max CCU upgrade), thus avoiding a full server restart (requires SmartFoxServer 2X v2.11 or later)
+- New setting in License Module to activate an email notification in case the number of users currently connected to the server are approaching the maximum CCU number of the license.
+
+v1.5.1
+======
+
+New features
+------------
+- Dashboard module now shows both SmartFoxServer process CPU load and total system CPU load.
+
+
 v1.5.0
 ======
 
