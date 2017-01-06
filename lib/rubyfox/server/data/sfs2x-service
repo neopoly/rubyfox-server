@@ -110,7 +110,7 @@ test_jvm() {
   if [ "$ver_major" -lt "1" ]; then
     return;
   elif [ "$ver_major" -eq "1" ]; then
-    if [ "$ver_minor" -lt "7" ]; then
+    if [ "$ver_minor" -lt "8" ]; then
       return;
     fi
   fi
@@ -167,7 +167,7 @@ read_vmoptions() {
   if [ ! -r "$vmoptions_file" ]; then
     vmoptions_file="$prg_dir/$vmoptions_file"
   fi
-  if [ -r "$vmoptions_file" ]; then
+  if [ -r "$vmoptions_file" ] && [ -f "$vmoptions_file" ]; then
     exec 8< "$vmoptions_file"
     while read cur_option<&8; do
       is_comment=`expr "W$cur_option" : 'W *#.*'`
@@ -207,24 +207,32 @@ read_vmoptions() {
 }
 
 
+unpack_file() {
+  if [ -f "$1" ]; then
+    jar_file=`echo "$1" | awk '{ print substr($0,1,length-5) }'`
+    bin/unpack200 -r "$1" "$jar_file"
+
+    if [ $? -ne 0 ]; then
+      echo "Error unpacking jar files. The architecture or bitness (32/64)"
+      echo "of the bundled JVM might not match your machine."
+      echo "You might also need administrative privileges for this operation."
+exit 1
+    fi
+  fi
+}
+
 run_unpack200() {
   if [ -f "$1/lib/rt.jar.pack" ]; then
     old_pwd200=`pwd`
     cd "$1"
     echo "Preparing JRE ..."
-    jar_files="lib/rt.jar lib/jfxrt.jar lib/charsets.jar lib/plugin.jar lib/deploy.jar lib/ext/localedata.jar lib/jsse.jar"
-    for jar_file in $jar_files
+    for pack_file in lib/*.jar.pack
     do
-      if [ -f "${jar_file}.pack" ]; then
-        bin/unpack200 -r ${jar_file}.pack $jar_file
-
-        if [ $? -ne 0 ]; then
-          echo "Error unpacking jar files. The architecture or bitness (32/64)"
-          echo "of the bundled JVM might not match your machine."
-          echo "You might also need administrative privileges for this operation."
-exit 1
-        fi
-      fi
+      unpack_file $pack_file
+    done
+    for pack_file in lib/ext/*.jar.pack
+    do
+      unpack_file $pack_file
     done
     cd "$old_pwd200"
   fi
@@ -298,7 +306,8 @@ fi
 
 
 if [ -z "$app_java_home" ]; then
-  common_jvm_locations="/opt/i4j_jres/* /usr/local/i4j_jres/* $HOME/.i4j_jres/* /usr/bin/java* /usr/bin/jdk* /usr/bin/jre* /usr/bin/j2*re* /usr/bin/j2sdk* /usr/java* /usr/java*/jre /usr/jdk* /usr/jre* /usr/j2*re* /usr/j2sdk* /usr/java/j2*re* /usr/java/j2sdk* /opt/java* /usr/java/jdk* /usr/java/jre* /usr/lib/java/jre /usr/local/java* /usr/local/jdk* /usr/local/jre* /usr/local/j2*re* /usr/local/j2sdk* /usr/jdk/java* /usr/jdk/jdk* /usr/jdk/jre* /usr/jdk/j2*re* /usr/jdk/j2sdk* /usr/lib/jvm/* /usr/lib/java* /usr/lib/jdk* /usr/lib/jre* /usr/lib/j2*re* /usr/lib/j2sdk* /System/Library/Frameworks/JavaVM.framework/Versions/1.?/Home"
+  common_jvm_locations="/opt/i4j_jres/* /usr/local/i4j_jres/* $HOME/.i4j_jres/* /usr/bin/java* /usr/bin/jdk* /usr/bin/jre* /usr/bin/j2*re* /usr/bin/j2sdk* /usr/java* /usr/java*/jre /usr/jdk* /usr/jre* /usr/j2*re* /usr/j2sdk* /usr/java/j2*re* /usr/java/j2sdk* /opt/java* /usr/java/jdk* /usr/java/jre* /usr/lib/java/jre /usr/local/java* /usr/local/jdk* /usr/local/jre* /usr/local/j2*re* /usr/local/j2sdk* /usr/jdk/java* /usr/jdk/jdk* /usr/jdk/jre* /usr/jdk/j2*re* /usr/jdk/j2sdk* /usr/lib/jvm/* /usr/lib/java* /usr/lib/jdk* /usr/lib/jre* /usr/lib/j2*re* /usr/lib/j2sdk* /System/Library/Frameworks/JavaVM.framework/Versions/1.?/Home
+ /Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin/Contents/Home /Library/Java/JavaVirtualMachines/*.jdk/Contents/Home/jre"
   for current_location in $common_jvm_locations
   do
 if [ -z "$app_java_home" ]; then
@@ -333,7 +342,7 @@ fi
 
 if [ -z "$app_java_home" ]; then
   echo No suitable Java Virtual Machine could be found on your system.
-  echo The version of the JVM must be at least 1.7.
+  echo The version of the JVM must be at least 1.8.
   echo Please define INSTALL4J_JAVA_HOME to point to a suitable JVM.
   echo You can also try to delete the JVM cache file $db_file
 exit 83
@@ -344,15 +353,15 @@ compiz_workaround
 i4j_classpath="$app_home/.install4j/i4jruntime.jar"
 local_classpath=""
 add_class_path "$i4j_classpath"
-for i in `ls "$app_home/SFS2X/lib" 2> /dev/null | egrep "\.(jar$|zip$)"`
+for i in `ls "$app_home/SFS2X/lib" 2> /dev/null | egrep "\.(jar|zip)$"`
 do
   add_class_path "$app_home/SFS2X/lib/$i"
 done
-for i in `ls "$app_home/SFS2X/extensions/__lib__" 2> /dev/null | egrep "\.(jar$|zip$)"`
+for i in `ls "$app_home/SFS2X/extensions/__lib__" 2> /dev/null | egrep "\.(jar|zip)$"`
 do
   add_class_path "$app_home/SFS2X/extensions/__lib__/$i"
 done
-for i in `ls "$app_home/SFS2X/lib/jetty/lib" 2> /dev/null | egrep "\.(jar$|zip$)"`
+for i in `ls "$app_home/SFS2X/lib/jetty/lib" 2> /dev/null | egrep "\.(jar|zip)$"`
 do
   add_class_path "$app_home/SFS2X/lib/jetty/lib/$i"
 done
@@ -389,14 +398,14 @@ case "$1" in
     start)
         echo "Starting sfs2x-service"
 
-$INSTALL4J_JAVA_PREFIX nohup "$app_java_home/bin/java" -server -Dinstall4j.jvmDir="$app_java_home" -Dexe4j.moduleName="$prg_dir/$progname" "-Dfile.encoding=UTF-8" "-Dinstall4j.launcherId=23" "-Dinstall4j.swt=false" "$vmov_1" "$vmov_2" "$vmov_3" "$vmov_4" "$vmov_5" $INSTALL4J_ADD_VM_PARAMS -classpath "$local_classpath" com.install4j.runtime.launcher.Launcher start com.smartfoxserver.v2.Main false false "" "" true true false "sfs-splash.png" true true 0 0 "" 20 20 "Arial" "0,0,0" 8 500 "version 2.9.0" 20 40 "Arial" "0,0,0" 8 500 -1  > /dev/null 2>&1 &
+$INSTALL4J_JAVA_PREFIX nohup "$app_java_home/bin/java" -server -Dinstall4j.jvmDir="$app_java_home" -Dexe4j.moduleName="$prg_dir/$progname" "-Dfile.encoding=UTF-8" "-Dinstall4j.launcherId=23" "-Dinstall4j.swt=false" "$vmov_1" "$vmov_2" "$vmov_3" "$vmov_4" "$vmov_5" $INSTALL4J_ADD_VM_PARAMS -classpath "$local_classpath" com.install4j.runtime.launcher.Launcher start com.smartfoxserver.v2.Main false false "" "" true true false "sfs-splash.png" true true 0 0 "" 20 20 "Arial" "0,0,0" 8 500 "version 2.12.0" 20 40 "Arial" "0,0,0" 8 500 -1  > /dev/null 2>&1 &
 
 
     ;;
     start-launchd)
         echo "Starting sfs2x-service"
 
-$INSTALL4J_JAVA_PREFIX "$app_java_home/bin/java" -server -Dinstall4j.jvmDir="$app_java_home" -Dexe4j.moduleName="$prg_dir/$progname" "-Dfile.encoding=UTF-8" "-Dinstall4j.launcherId=23" "-Dinstall4j.swt=false" "$vmov_1" "$vmov_2" "$vmov_3" "$vmov_4" "$vmov_5" $INSTALL4J_ADD_VM_PARAMS -classpath "$local_classpath" com.install4j.runtime.launcher.Launcher start com.smartfoxserver.v2.Main false false "" "" true true false "sfs-splash.png" true true 0 0 "" 20 20 "Arial" "0,0,0" 8 500 "version 2.9.0" 20 40 "Arial" "0,0,0" 8 500 -1 
+$INSTALL4J_JAVA_PREFIX "$app_java_home/bin/java" -server -Dinstall4j.jvmDir="$app_java_home" -Dexe4j.moduleName="$prg_dir/$progname" "-Dfile.encoding=UTF-8" "-Dinstall4j.launcherId=23" "-Dinstall4j.swt=false" "$vmov_1" "$vmov_2" "$vmov_3" "$vmov_4" "$vmov_5" $INSTALL4J_ADD_VM_PARAMS -classpath "$local_classpath" com.install4j.runtime.launcher.Launcher start com.smartfoxserver.v2.Main false false "" "" true true false "sfs-splash.png" true true 0 0 "" 20 20 "Arial" "0,0,0" 8 500 "version 2.12.0" 20 40 "Arial" "0,0,0" 8 500 -1 
 
 
     ;;
@@ -415,7 +424,7 @@ $INSTALL4J_JAVA_PREFIX "$app_java_home/bin/java" -server -Dinstall4j.jvmDir="$ap
 
         echo "Restarting sfs2x-service"
 
-$INSTALL4J_JAVA_PREFIX nohup "$app_java_home/bin/java" -server -Dinstall4j.jvmDir="$app_java_home" -Dexe4j.moduleName="$prg_dir/$progname" "-Dfile.encoding=UTF-8" "-Dinstall4j.launcherId=23" "-Dinstall4j.swt=false" "$vmov_1" "$vmov_2" "$vmov_3" "$vmov_4" "$vmov_5" $INSTALL4J_ADD_VM_PARAMS -classpath "$local_classpath" com.install4j.runtime.launcher.Launcher start com.smartfoxserver.v2.Main false false "" "" true true false "sfs-splash.png" true true 0 0 "" 20 20 "Arial" "0,0,0" 8 500 "version 2.9.0" 20 40 "Arial" "0,0,0" 8 500 -1  > /dev/null 2>&1 &
+$INSTALL4J_JAVA_PREFIX nohup "$app_java_home/bin/java" -server -Dinstall4j.jvmDir="$app_java_home" -Dexe4j.moduleName="$prg_dir/$progname" "-Dfile.encoding=UTF-8" "-Dinstall4j.launcherId=23" "-Dinstall4j.swt=false" "$vmov_1" "$vmov_2" "$vmov_3" "$vmov_4" "$vmov_5" $INSTALL4J_ADD_VM_PARAMS -classpath "$local_classpath" com.install4j.runtime.launcher.Launcher start com.smartfoxserver.v2.Main false false "" "" true true false "sfs-splash.png" true true 0 0 "" 20 20 "Arial" "0,0,0" 8 500 "version 2.12.0" 20 40 "Arial" "0,0,0" 8 500 -1  > /dev/null 2>&1 &
 
 
     ;;

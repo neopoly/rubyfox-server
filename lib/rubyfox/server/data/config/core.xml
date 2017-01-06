@@ -1,9 +1,9 @@
 <!--
-	SmartFoxServer 2X v.2.9.x
+	SmartFoxServer 2X v 2.12.x
 	<<< Core Configuration >>>
 	
-	(c) gotoAndPlay 2009-2014
-	www.smartfoxserver.com
+	(c) gotoAndPlay  2009-2016
+	- www.smartfoxserver.com -
 -->
 
 <coreSettings>
@@ -17,8 +17,8 @@
 	
 	<!-- Editable settings -->
 	
-	<!-- Max size of incoming packet -->
-	<maxIncomingRequestSize>1000000</maxIncomingRequestSize>
+	<!-- Max size of incoming packet, in bytes -->
+	<maxIncomingRequestSize>500000</maxIncomingRequestSize>
 	
 	<!-- Max Size for read buffer -->
 	<maxReadBufferSize>1024</maxReadBufferSize>
@@ -27,7 +27,7 @@
 	<maxWriteBufferSize>32768</maxWriteBufferSize>
 	
 	<!-- Session Queue Size -->
-	<sessionPacketQueueSize>160</sessionPacketQueueSize>
+	<sessionPacketQueueSize>150</sessionPacketQueueSize>
 	
 	<!-- Thread Pool Size of the 3 main stages of the Bitswarm Engine -->
 	<socketAcceptorThreadPoolSize>1</socketAcceptorThreadPoolSize>

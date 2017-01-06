@@ -32,6 +32,7 @@
     <allowedRemoteAddresses>
     </allowedRemoteAddresses>
     <adminTcpPort>9933</adminTcpPort>
+    <useEncryption>false</useEncryption>
   </remoteAdmin>
   <bannedUserManager>
     <isAutoRemove>true</isAutoRemove>
@@ -55,7 +56,7 @@
   </webServer>
   <webSocket>
     <isActive>false</isActive>
-    <bindAddress>127.0.0.1</bindAddress>
+    <bindAddress>0.0.0.0</bindAddress>
     <tcpPort>8888</tcpPort>
 	<sslPort>8843</sslPort>
 	<isSSL>false</isSSL>
@@ -75,7 +76,7 @@
  <systemThreadPoolSettings>
    <name>Sys</name>
    <coreThreads>4</coreThreads>
-   <backupThreads>8</backupThreads>
+   <backupThreads>16</backupThreads>
    <maxBackups>16</maxBackups>
    <queueSizeTriggeringBackup>100</queueSizeTriggeringBackup>
    <secondsTriggeringBackup>50</secondsTriggeringBackup>
@@ -87,7 +88,7 @@
  <extensionThreadPoolSettings>
    <name>Ext</name>
    <coreThreads>4</coreThreads>
-   <backupThreads>8</backupThreads>
+   <backupThreads>16</backupThreads>
    <maxBackups>16</maxBackups>
    <queueSizeTriggeringBackup>100</queueSizeTriggeringBackup>
    <secondsTriggeringBackup>50</secondsTriggeringBackup>

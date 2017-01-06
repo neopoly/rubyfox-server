@@ -2,6 +2,17 @@
 SmartFoxServer 2X Administration Tool
 =====================================
 
+v2.0.0
+======
+
+New features
+------------
+- Upgraded interface and Flash Player compatibility; this will allow for future expansions under development.
+- Admin Tool is now ready to be delivered as a native application, when the Flash Player will be phased out from certain browsers.
+- New setting in the "Remote admin" tab of the Server Configurator module makes it possible to encrypt the Admin Tool's connection to the server.
+- A custom name can be assigned to the server in the "General" tab of the Server Configurator module, for easier identification in case of environments running multiple SmartFoxServer instances.
+
+
 v1.5.2
 ======
 
@@ -9,6 +20,7 @@ New features
 ------------
 - License Manager module now features a "Reload" button to make SmartFoxServer hot reload the license in case of changes (e.g max CCU upgrade), thus avoiding a full server restart (requires SmartFoxServer 2X v2.11 or later)
 - New setting in License Module to activate an email notification in case the number of users currently connected to the server are approaching the maximum CCU number of the license.
+
 
 v1.5.1
 ======

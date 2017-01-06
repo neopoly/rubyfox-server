@@ -5,12 +5,10 @@
 [depend]
 ssl
 
+[optional]
+http2
+http-forwarded
+
 [xml]
 etc/jetty-https.xml
 
-[ini-template]
-## HTTPS Configuration
-# HTTP port to listen on
-https.port=8443
-# HTTPS idle timeout in milliseconds
-https.timeout=30000
