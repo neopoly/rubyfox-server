@@ -6,8 +6,8 @@ require 'rubyfox/server/version'
 Gem::Specification.new do |gem|
   gem.name          = "rubyfox-server"
   gem.version       = Rubyfox::Server::VERSION
-  gem.authors       = ["Peter Suschlik"]
-  gem.email         = ["ps@neopoly.de"]
+  gem.authors       = ["Peter Leitzen", "Volker Schäfer"]
+  gem.email         = ["pl@neopoly.de", "vs@neopoly.de"]
   gem.description   = %q{SmartFox Server bundled as a gem}
   gem.summary       = %q{}
   gem.homepage      = "https://github.com/neopoly/rubyfox-server"
