@@ -44,8 +44,16 @@ module Rubyfox
 
       desc "start TARGET_DIR", "Start SmartFox Server in TARGET_DIR"
       def start(target_dir)
+        ['INT', 'TERM'].each do |signal|
+          trap signal do
+            throw :shutdown_signal
+          end
+        end
+
         inside(target_dir) do
-          system "sh ./sfs2x.sh"
+          catch :shutdown_signal do
+            system "sh ./sfs2x.sh"
+          end
         end
       end
 
