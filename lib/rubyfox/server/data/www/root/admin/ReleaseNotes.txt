@@ -2,6 +2,14 @@
 SmartFoxServer 2X Administration Tool
 =====================================
 
+v2.0.1
+======
+
+New features
+------------
+- JavaScript Extension type added to Zone Configurator module.
+
+
 v2.0.0
 ======
 

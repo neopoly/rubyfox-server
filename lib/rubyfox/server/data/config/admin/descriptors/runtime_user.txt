@@ -429,6 +429,13 @@
 			}
 		},
 		{
+			"name":"private",
+			"label":"Private",
+			"tooltip":"Private variable updates are sent to the owner's client only",
+			"type":"CheckBox",
+			"value":false
+		},
+		{
 			"name":"hidden",
 			"label":"Hidden",
 			"tooltip":"Hidden variables are not updated on the client side",
@@ -444,7 +451,7 @@
 			"validator":"notNull"
 		}
 	],
-	"listValues":{$List=variables, instance=user, fields=name;type;hidden;value},
+	"listValues":{$List=variables, instance=user, fields=name;type;private;hidden;value},
 	"edit":false
 },
 

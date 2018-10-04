@@ -282,98 +282,6 @@
 },
 
 //-------------------------------------------
-// HTML WEBSOCKETS
-//-------------------------------------------
-
-// ACTIVE
-{
-	"name":"webSocket.isActive",
-	"label":"Activate WebSocket protocol",
-	"tooltip":"Enable/disable the HTML5 WebSockets protocol support",
-	"category":"HTML5 WebSockets",
-	"type":"CheckBox",
-	"value":{$BasicValue=webSocket.isActive}
-},
-
-// LISTENER ADDRESS
-{
-	"name":"webSocket.bindAddress",
-	"label":"WebSocket listener address",
-	"tooltip":"IP address used for WebSocket communication",
-	"category":"HTML5 WebSockets",
-	"type":"ComboBox",
-	"value":"{$BasicValue=webSocket.bindAddress}",
-	"componentParams":
-	{
-		"dataProvider":"{$BasicValue=adminHelper.availableSocketAddresses}"
-	}
-},
-
-// LISTENER TCP PORT
-{
-	"name":"webSocket.tcpPort",
-	"label":"WebSocket listener port",
-	"tooltip":"TCP port used for WebSocket communication",
-	"category":"HTML5 WebSockets",
-	"type":"NumericStepper",
-	"value":{$BasicValue=webSocket.tcpPort},
-	"componentParams":
-	{
-		"minimum":0,
-		"maximum":65535
-	}
-},
-
-// LISTENER SSL PORT
-{
-	"name":"webSocket.sslPort",
-	"label":"WebSocket Secure listener port",
-	"tooltip":"SSL port used for encrypted WebSocket communication",
-	"category":"HTML5 WebSockets",
-	"type":"NumericStepper",
-	"value":{$BasicValue=webSocket.sslPort},
-	"componentParams":
-	{
-		"minimum":0,
-		"maximum":65535
-	}
-},
-
-// USE SSL
-{
-	"name":"webSocket.isSSL",
-	"label":"Use WSS protocol",
-	"tooltip":"Enable/disable the SSL encryption of WebSockets protocol",
-	"category":"HTML5 WebSockets",
-	"type":"CheckBox",
-	"value":{$BasicValue=webSocket.isSSL}
-},
-
-// KEYSTORE FILE
-{
-	"name":"webSocket.keyStoreFile",
-	"label":"KeyStore file",
-	"tooltip":"Location of the repository of security certificates to be used when WSS is enabled",
-	"category":"HTML5 WebSockets",
-	"type":"TextInput",
-	"value":"{$BasicValue=webSocket.keyStoreFile}"
-},
-
-// KEYSTORE PASSWORD
-{
-	"name":"webSocket.keyStorePassword",
-	"label":"KeyStore password",
-	"tooltip":"Password of the KeyStore repository",
-	"category":"HTML5 WebSockets",
-	"type":"TextInput",
-	"value":"{$BasicValue=webSocket.keyStorePassword}",
-	"componentParams":
-	{
-		"displayAsPassword":true
-	}
-},
-
-//-------------------------------------------
 // WEB SERVER
 //-------------------------------------------
 
@@ -397,11 +305,11 @@
 	"value":{$BasicValue=webServer.enableHttp}
 },
 
-// HTTP PORT
+// HTTP/WS PORT
 {
 	"name":"webServer.httpPort",
-	"label":"HTTP port",
-	"tooltip":"TCP port used by the embedded web server for HTTP communication",
+	"label":"HTTP/WS port",
+	"tooltip":"TCP port used by the embedded web server for HTTP and WS communication",
 	"category":"Web server",
 	"type":"NumericStepper",
 	"value":{$BasicValue=webServer.httpPort},
@@ -422,11 +330,11 @@
 	"value":{$BasicValue=webServer.enableHttps}
 },
 
-// HTTPS PORT
+// HTTPS/WSS PORT
 {
 	"name":"webServer.httpsPort",
-	"label":"HTTPS port",
-	"tooltip":"TCP port used by the embedded web server for HTTPS communication",
+	"label":"HTTPS/WSS port",
+	"tooltip":"TCP port used by the embedded web server for HTTPS and WSS communication",
 	"category":"Web server",
 	"type":"NumericStepper",
 	"value":{$BasicValue=webServer.httpsPort},
@@ -435,6 +343,26 @@
 		"minimum":0,
 		"maximum":65535
 	}
+},
+
+// ENABLE WS/WSS COMMUNICATION
+{
+	"name":"webServer.isWSActive",
+	"label":"Enable WS/WSS",
+	"tooltip":"Enable/disable the WebSocket communication (both WS and WSS) through the HTTP/S modules; requires one of the two modules (or both) to be active",
+	"category":"Web server",
+	"type":"CheckBox",
+	"value":{$BasicValue=webServer.isWSActive}
+},
+
+// USE WS BINARY PROTOCOL
+{
+	"name":"webServer.useWSBinaryProtocol",
+	"label":"Use WS binary protocol",
+	"tooltip":"Use binary protocol for WebSocket communication; this must match the specs of the client API",
+	"category":"Web server",
+	"type":"CheckBox",
+	"value":{$BasicValue=webServer.useWSBinaryProtocol}
 },
 
 // BLUEBOX POLLING TIMEOUT
@@ -894,6 +822,16 @@
 	"value":{$BasicValue=systemThreadPoolSettings.logActivity}
 },
 
+// PRE START CORE THREADS
+{
+	"name":"systemThreadPoolSettings.prestartAllCoreThreads",
+	"label":"Prestart all core threads",
+	"tooltip":"Immediately instantiate all core threads. When turned off threads will be created lazily, when actual work is submitted",
+	"category":"Thread pools",
+	"type":"CheckBox",
+	"value":{$BasicValue=systemThreadPoolSettings.prestartAllCoreThreads}
+},
+
 //-------------------------------------------
 
 // EXTENSION CORE THREADS
@@ -1014,6 +952,16 @@
 	"category":"Thread pools",
 	"type":"CheckBox",
 	"value":{$BasicValue=extensionThreadPoolSettings.logActivity}
+},
+
+// PRE START CORE THREADS
+{
+	"name":"extensionThreadPoolSettings.prestartAllCoreThreads",
+	"label":"Prestart all core threads",
+	"tooltip":"Immediately instantiate all core threads. When turned off threads will be created lazily, when actual work is submitted",
+	"category":"Thread pools",
+	"type":"CheckBox",
+	"value":{$BasicValue=extensionThreadPoolSettings.prestartAllCoreThreads}
 },
 
 //-------------------------------------------

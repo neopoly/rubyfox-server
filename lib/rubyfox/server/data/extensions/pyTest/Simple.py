@@ -13,7 +13,7 @@ class ServerEventListener(ISFSEventListener):
 		trace("Event: " + event.toString())
 
 sfsEventListener = None
-VERSION = "1.0.1"
+VERSION = "1.0.0"
 
 def init():
 	global sfsEventListener

@@ -53,16 +53,9 @@
     <isActive>true</isActive>
     <blueBoxPollingTimeout>26</blueBoxPollingTimeout>
     <blueBoxMsgQueueSize>40</blueBoxMsgQueueSize>
+	<isWSActive>true</isWSActive>
+	<useWSBinaryProtocol>true</useWSBinaryProtocol>
   </webServer>
-  <webSocket>
-    <isActive>false</isActive>
-    <bindAddress>0.0.0.0</bindAddress>
-    <tcpPort>8888</tcpPort>
-	<sslPort>8843</sslPort>
-	<isSSL>false</isSSL>
-    <keyStoreFile>config/keystore.jks</keyStoreFile>
-    <keyStorePassword>password</keyStorePassword>
-  </webSocket>
   <analytics>
     <isActive>false</isActive>
     <runOnDay>[everyday]</runOnDay>
@@ -77,7 +70,7 @@
    <name>Sys</name>
    <coreThreads>4</coreThreads>
    <backupThreads>16</backupThreads>
-   <maxBackups>16</maxBackups>
+   <maxBackups>64</maxBackups>
    <queueSizeTriggeringBackup>100</queueSizeTriggeringBackup>
    <secondsTriggeringBackup>50</secondsTriggeringBackup>
    <backupThreadsExpiry>3600</backupThreadsExpiry>
@@ -89,7 +82,7 @@
    <name>Ext</name>
    <coreThreads>4</coreThreads>
    <backupThreads>16</backupThreads>
-   <maxBackups>16</maxBackups>
+   <maxBackups>64</maxBackups>
    <queueSizeTriggeringBackup>100</queueSizeTriggeringBackup>
    <secondsTriggeringBackup>50</secondsTriggeringBackup>
    <backupThreadsExpiry>3600</backupThreadsExpiry>

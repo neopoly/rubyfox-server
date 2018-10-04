@@ -258,7 +258,7 @@
 {
 	"name":"extension.name",
 	"label":"Name",
-	"tooltip":"The name of the Extension to be plugged at Room level; the '__lib__' folder is also listed, in case one or more Extension jar files are deployed there for specific class-loading purposes\n\nIf a new Extension is deployed on the server while editing the Zone settings, cancel and re-edit the zone to update this list",
+	"tooltip":"The name of the Extension to be plugged at Room level; the '__lib__' folder is also listed, in case one or more Java Extensions are deployed there for specific class-loading purposes\n\nIf a new Extension is deployed on the server while editing the Zone settings, cancel and re-edit the zone to update this list",
 	"category":"Room Extension",
 	"type":"ComboBox",
 	"value":"{$BasicValue=extension.name}",
@@ -281,7 +281,7 @@
 	"trigger":true,
 	"componentParams":
 	{
-		"dataProvider":"JAVA,PYTHON"
+		"dataProvider":"JAVA,JAVASCRIPT,PYTHON"
 	}
 },
 
@@ -289,7 +289,7 @@
 {
 	"name":"extension.file",
 	"label":"Main class",
-	"tooltip":"The fully qualified name of the main Extension class; this class must extend either SFSExtension or BaseSFSExtension classes",
+	"tooltip":"The fully qualified name of the main Extension class; Java Extensions must extend either SFSExtension or BaseSFSExtension classes",
 	"category":"Room Extension",
 	"type":"ComboBox",
 	"value":"{$BasicValue=extension.file}",
@@ -303,7 +303,7 @@
 {
 	"name":"extension.filterClass",
 	"label":"Use naming convention",
-	"tooltip":"Filter the 'Main class' box showing the classes with names ending with the word 'Extension' only (for example 'com.example.MyJavaExtension' or 'MyPythonExtension.py')\n\n<b>NOTE</b>: this setting is used to improve the Admin Tool usage only, so it doesn't affect the server configuration in any way",
+	"tooltip":"Filter the 'Main class' box showing the classes with names ending with the word 'Extension' only (for example 'com.example.MyJavaExtension' or 'MyJavaScriptExtension.js')\n\n<b>NOTE</b>: this setting is used to improve the Admin Tool usage only, so it doesn't affect the server configuration in any way",
 	"category":"Room Extension",
 	"type":"CheckBox",
 	"value":false,

@@ -689,7 +689,7 @@
 {
 	"name":"extension.name",
 	"label":"Name",
-	"tooltip":"The name of the Extension to be plugged at Zone level; the '__lib__' folder is also listed, in case one or more Extension jar files are deployed there for specific class-loading purposes\n\nIf a new Extension is deployed on the server while editing the Zone settings, cancel and re-edit the Zone to update this list",
+	"tooltip":"The name of the Extension to be plugged at Zone level; the '__lib__' folder is also listed, in case one or more Java Extensions are deployed there for specific class-loading purposes\n\nIf a new Extension is deployed on the server while editing the Zone settings, cancel and re-edit the Zone to update this list",
 	"category":"Zone Extension",
 	"type":"ComboBox",
 	"value":"{$BasicValue=extension.name}",
@@ -712,7 +712,7 @@
 	"trigger":true,
 	"componentParams":
 	{
-		"dataProvider":"JAVA,PYTHON"
+		"dataProvider":"JAVA,JAVASCRIPT,PYTHON"
 	}
 },
 
@@ -720,7 +720,7 @@
 {
 	"name":"extension.file",
 	"label":"Main class",
-	"tooltip":"The fully qualified name of main Extension class; this class must extend either SFSExtension or BaseSFSExtension classes",
+	"tooltip":"The fully qualified name of main Extension class; Java Extensions must extend either SFSExtension or BaseSFSExtension classes",
 	"category":"Zone Extension",
 	"type":"ComboBox",
 	"value":"{$BasicValue=extension.file}",

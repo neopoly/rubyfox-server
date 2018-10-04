@@ -9,4 +9,4 @@ if [ -d "$JRE_FOLDER" ]; then
 fi
 
 CPATH="./:lib/*:lib/jetty/lib/*:extensions/__lib__/*"
-exec ${JAVA_CMD} -cp ${CPATH} -Dfile.encoding=UTF-8 com.smartfoxserver.v2.Main $1 $2
+${JAVA_CMD} -cp ${CPATH} -Dfile.encoding=UTF-8 com.smartfoxserver.v2.Main $1 $2
