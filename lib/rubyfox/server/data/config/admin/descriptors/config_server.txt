@@ -365,6 +365,27 @@
 	"value":{$BasicValue=webServer.useWSBinaryProtocol}
 },
 
+// ALLOWED WEBSOCKET ORIGINS
+{
+	"name":"webServer.allowedWebsocketOrigins",
+	"label":"Allowed client origins",
+	"tooltip":"List of origins from which the client should be allowed to connect. It should represent only the URL(s) where the client can be downloaded from",
+	"category":"Web server",
+	"type":"DataGrid",
+	"defaultListItem":
+	[
+		{
+			"name":"origin",
+			"label":"Valid origins",
+			"tooltip":"Origin URL",
+			"type":"TextInput",
+			"value":"",
+			"validator":"notNull"
+		}
+	],
+	"listValues":{$List=allowedWebsocketOrigins, instance=webServer, createField=origin}
+},
+
 // BLUEBOX POLLING TIMEOUT
 {
 	"name":"webServer.blueBoxPollingTimeout",
