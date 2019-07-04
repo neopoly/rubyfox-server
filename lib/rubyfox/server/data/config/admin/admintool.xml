@@ -17,6 +17,7 @@
 		<module id="ServerConfigurator" name="Server Configurator" description="Edit the global settings of the SmartFoxServer instance"/>
 		<module id="ZoneConfigurator" name="Zone Configurator" description="Create and delete SmartFoxServer Zones and static Rooms, or edit the settings of the existing ones"/>
 		<module id="ExtensionManager" name="Extension Manager" description="Upload Extension files to the SmartFoxServer instance"/>
+		<module id="ServletManager" name="Servlet Manager" description="Upload servlets to SmartFoxServer instance's web server"/>
 		<module id="LicenseManager" name="License Manager" description="Configure the license of the SmartFoxServer instance"/>
 	</modules>
 	

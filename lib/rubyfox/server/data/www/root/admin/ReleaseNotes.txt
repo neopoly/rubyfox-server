@@ -2,6 +2,15 @@
 SmartFoxServer 2X Administration Tool
 =====================================
 
+v2.1.0
+======
+
+New features
+------------
+- Servlet Manager module added, to easily deploy Java servlets to the web server internal to SmartFoxServer.
+- SSL Certificate Management popup added to Server Configurator's Web server tab.
+
+
 v2.0.1
 ======
 
