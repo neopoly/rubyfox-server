@@ -10,7 +10,7 @@ plus
 jsp
 
 [files]
-lib/
+lib/cdi/
 maven://javax.enterprise/cdi-api/1.2|lib/cdi/javax.enterprise.cdi-api-1.2.jar
 maven://javax.interceptor/javax.interceptor-api/1.2|lib/cdi/javax.interceptor-api-1.2.jar
 maven://javax.inject/javax.inject/1|lib/cdi/javax.inject-1.0.jar
@@ -28,7 +28,6 @@ maven://org.jboss.logging/jboss-logging/3.1.3.GA|lib/cdi/jboss-logging-3.1.3.GA.
 lib/cdi/*.jar
 lib/cdi-core-${jetty.version}.jar
 lib/cdi-servlet-${jetty.version}.jar
-lib/cdi-websocket-${jetty.version}.jar
 
 [xml]
 etc/jetty-cdi.xml
