@@ -95,7 +95,3 @@ https://raw.githubusercontent.com/eclipse/jetty.project/master/jetty-server/src/
 
 ## Set the timeout (in seconds) of the SslSession cache timeout
 # jetty.sslContext.sslSessionTimeout=-1
-
-## Allow SSL renegotiation
-# jetty.sslContext.renegotiationAllowed=true
-# jetty.sslContext.renegotiationLimit=5

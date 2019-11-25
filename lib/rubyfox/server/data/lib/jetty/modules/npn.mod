@@ -1,4 +1,0 @@
-#
-# NPN Module
-#
-# DISABLED

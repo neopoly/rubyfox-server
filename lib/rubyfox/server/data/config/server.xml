@@ -53,7 +53,7 @@
     <isActive>true</isActive>
     <blueBoxPollingTimeout>26</blueBoxPollingTimeout>
     <blueBoxMsgQueueSize>40</blueBoxMsgQueueSize>
-	<isWSActive>true</isWSActive>
+	<isWSActive>false</isWSActive>
 	<useWSBinaryProtocol>true</useWSBinaryProtocol>
   </webServer>
   <analytics>
