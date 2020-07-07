@@ -8,5 +8,5 @@ if [ -d "$JRE_FOLDER" ]; then
     JAVA_CMD="../jre/bin/java"
 fi
 
-CPATH="./:lib/*:lib/jetty/lib/*:extensions/__lib__/*"
+CPATH="./:lib/*:lib/apache-tomcat/bin/*:extensions/__lib__/*"
 exec ${JAVA_CMD} -cp ${CPATH} -Dfile.encoding=UTF-8 com.smartfoxserver.v2.Main $1 $2

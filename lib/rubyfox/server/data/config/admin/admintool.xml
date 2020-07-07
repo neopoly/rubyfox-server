@@ -19,6 +19,7 @@
 		<module id="ExtensionManager" name="Extension Manager" description="Upload Extension files to the SmartFoxServer instance"/>
 		<module id="ServletManager" name="Servlet Manager" description="Upload servlets to SmartFoxServer instance's web server"/>
 		<module id="LicenseManager" name="License Manager" description="Configure the license of the SmartFoxServer instance"/>
+		<!-- <module id="CustomTool" name="Custom Tool" description="This is a test custom module" className="my.namespace.CustomToolReqHandler"/> -->
 	</modules>
 	
 </admintool>

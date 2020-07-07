@@ -8,6 +8,4 @@
 (?i:assfucker)
 (?i:asslicker)
 (?i:bastard)
-(?i:nigger)
-(?i:nigga)
 ([f|F][\W]*[u|U][\W]*[c|C][\W]*[k|K][\W]*)

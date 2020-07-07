@@ -8,7 +8,7 @@
 
 <html>
     <head>
-        <title>ConversionTable of Kilometers perLiter and Miles per Gallon </title>
+        <title>ConversionTable of Kilometers per Liter and Miles per Gallon </title>
     </head>
     <body>
     <h2 style="color:#cc0000">:: JSP Example ::</h2>

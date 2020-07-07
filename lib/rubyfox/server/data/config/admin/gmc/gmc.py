@@ -1,12 +1,36 @@
+#
+#  _____ _____ ____     _____ _____ ____  _____
+# |   __|     |    \   |     |     |    \|   __|
+# |  |  |  |  |  |  |  | | | |  |  |  |  |   __|
+# |_____|_____|____/   |_|_|_|_____|____/|_____|
+#  _____ _____ _____ _____ _____ __    _____
+# |     |     |   | |   __|     |  |  |   __|
+# |   --|  |  | | | |__   |  |  |  |__|   __|
+# |_____|_____|_|___|_____|_____|_____|_____|
+#
+# SmartFoxServer2X Admin Console Scripts
+#
+# (c) 2012-2016 gotoAndPlay()
+# @author Marco Lapi
+#
+# Version 2.x
+#
+
+# Python Imports
 import types
 import sys
 
+
+#
+# This global variable allows to lock the Console so that it can't be misused
+#
 __CONSOLE_LOCK = False
 
+# Java Imports
 import java
 from com.smartfoxserver.v2.entities.data import *
 
-__scripts = [	
+__scripts = [
 				{'name':'version()', 'doc':'Shows the Console extension version'},
 				{'name':'reloadScripts()', 'doc':'Reload the dynamic server scripts'},
 				{'name':'execute()', 'doc':'Launches the last loaded script again'},
@@ -14,12 +38,12 @@ __scripts = [
 				{'name':'controller(id)', 'doc':'Obtain one of the controllers from its id. 0=System, 1=Extension, 2=Smasher'},
 				{'name':'zones()', 'doc':'List of active zones'}
 			]
-			
-__shortcuts = [	
+
+__shortcuts = [
 				{'name':'ESC', 'doc':'Clears current command'},
 				{'name':'UP ARROW', 'doc':'Previous command in history'},
 				{'name':'DOWN ARROW', 'doc':'Next command in history'},
-				{'name':'CTRL + SPACE', 'doc':'Show command history'},
+				{'name':'CTRL + SPACE', 'doc':'Show code hinting'},
 				{'name':'CTRL + BACKSPACE', 'doc':'Clear console text'}
 			]
 
@@ -37,22 +61,29 @@ def help():
 	for (key, value) in _2XGlobals_.items():
 		if value != None:
 			cl = str(value.getClass())
-			text += "<font color='#FFCC00'>" + key + "</font>\t\t\t" + cl.split(".")[-1] + "\n"
+			text += "<span class='text-highlight'>" + key + "</span>\t\t\t" + cl.split(".")[-1] + "\n"
 
-	text += "\n<font color='#FFCC00'>extras()</font>\t\tFor more custom function calls"
-	text += "\n<font color='#FFCC00'>shortcuts()</font>\tFor keyboard shortcuts details\n"
+	text += "\n<span class='text-highlight'>extras()</span>\t\tFor more custom function calls"
+	text += "\n<span class='text-highlight'>shortcuts()</span>\tFor keyboard shortcuts details\n"
 	return text
 
 def shortcuts():
 	"""Shows list of useful keyboard shortcuts"""
 	return __showList__(__shortcuts)
-	
+
 
 def extras():
 	"""Shows list of useful methods"""
 	return __showList__(__scripts)
-	
-		
+
+
+
+
+# -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- ==
+# Useful methods
+# (can be added dynamically)
+# -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- ==
+
 def version():
 	return __parent__.VER
 
@@ -63,7 +94,7 @@ def controller(id):
 
 def reloadScripts():
 	__parent__.init()
-	return "<font color='#ffCC00'>[[ Reload success! ]]</font>"
+	return "<span class='text-highlight'>[[ Reload success! ]]</span>"
 
 def files(path='.'):
 	import os
@@ -74,11 +105,16 @@ def zones():
 
 
 
+
+# -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- ==
+# Private methods
+# -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- == -- ==
+
 def __showList__(someList):
 	text = ""
-	
+
 	for item in someList:
-		text += "<font color='#FFCC00'>" + item['name'] + "</font>"
+		text += "<span class='text-highlight'>" + item['name'] + "</span>"
 		text += ":" + __getSpacer__(item['name']) + item['doc'] + "\n"
 	return text
 
@@ -86,6 +122,9 @@ def __hints__(obj, target):
 	if obj == None:
 		return
 
+	#
+	# Generate all hints excluding private members
+	#
 	hints = None
 
 	try:
@@ -102,17 +141,15 @@ def __hints__(obj, target):
 
 	sfso = SFSObject()
 	sfso.putUtfStringArray('h', hints)
-	
+
 	return sfso
 
 def __getSpacer__(inputStr):
 	DEFAULT_SPACES = 25
 	spacer = " "
-	
+
 	nSpaces = DEFAULT_SPACES - len(inputStr)
 	if nSpaces > 0:
 		spacer = " " * nSpaces
-	
-	return spacer
 
-	
+	return spacer

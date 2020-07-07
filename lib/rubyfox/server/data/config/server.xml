@@ -1,4 +1,4 @@
-<serverSettings>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><serverSettings>
   <socketAddresses>
     <socket address="0.0.0.0" port="9933" type="TCP"/>
     <socket address="127.0.0.1" port="9933" type="UDP"/>
@@ -31,13 +31,13 @@
     </administrators>
     <allowedRemoteAddresses>
     </allowedRemoteAddresses>
-    <adminTcpPort>9933</adminTcpPort>
+    <adminTcpPort>-1</adminTcpPort>
     <useEncryption>false</useEncryption>
   </remoteAdmin>
   <bannedUserManager>
     <isAutoRemove>true</isAutoRemove>
     <isPersistent>true</isPersistent>
-    <customPersistenceClass></customPersistenceClass>
+    <customPersistenceClass/>
   </bannedUserManager>
   <extensionRemoteDebug>true</extensionRemoteDebug>
   <useFriendlyExceptions>true</useFriendlyExceptions>
@@ -53,8 +53,7 @@
     <isActive>true</isActive>
     <blueBoxPollingTimeout>26</blueBoxPollingTimeout>
     <blueBoxMsgQueueSize>40</blueBoxMsgQueueSize>
-	<isWSActive>false</isWSActive>
-	<useWSBinaryProtocol>true</useWSBinaryProtocol>
+	 <isWSActive>true</isWSActive>
   </webServer>
   <analytics>
     <isActive>false</isActive>
@@ -63,8 +62,8 @@
     <runOnStartup>false</runOnStartup>
     <rebuildDB>false</rebuildDB>
     <skipGeolocation>false</skipGeolocation>
-    <sourceFolder></sourceFolder>
-    <locale></locale>
+    <sourceFolder/>
+    <locale/>
   </analytics>
  <systemThreadPoolSettings>
    <name>Sys</name>
@@ -94,8 +93,8 @@
   <useDebugMode>true</useDebugMode>
   <sessionMaxIdleTime>30</sessionMaxIdleTime>
   <userMaxIdleTime>300</userMaxIdleTime>
-  <licenseCode></licenseCode>
-  <licenseEmails></licenseEmails>
+  <licenseCode/>
+  <licenseEmails/>
   <ghostHunterEnabled>true</ghostHunterEnabled>
   <statsExtraLoggingEnabled>true</statsExtraLoggingEnabled>
 </serverSettings>

@@ -21,7 +21,7 @@
 {
 	"name":"isEncrypted",
 	"label":"Use encryption",
-	"tooltip":"If turned on, the server will only accept encrypted connections for this Zone; otherwise either encrypted and non-encrypted connections are allowed",
+	"tooltip":"When active the server will only allow encrypted sessions to login in this Zone. Otherwise only unencrypted sessions are allowed to login.",
 	"type":"CheckBox",
 	"value":{$BasicValue=zoneSettings.isEncrypted}
 },
@@ -60,10 +60,15 @@
 	"tooltip":"The maximum number of login attempts (in the same session) allowed by the Zone",
 	"type":"NumericStepper",
 	"value":{$BasicValue=zoneSettings.maxFailedLogins},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":1,
 		"maximum":30
+	},
+	"attributes":
+	{
+		"min":1,
+		"max":30
 	}
 },
 
@@ -74,10 +79,15 @@
 	"tooltip":"The maximum number of users allowed in the Zone",
 	"type":"NumericStepper",
 	"value":{$BasicValue=zoneSettings.maxUsers},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":1,
 		"maximum":2147483647
+	},
+	"attributes":
+	{
+		"min":1,
+		"max":2147483647
 	}
 },
 
@@ -88,10 +98,15 @@
 	"tooltip":"The maximum number of Rooms that can be created",
 	"type":"NumericStepper",
 	"value":{$BasicValue=zoneSettings.maxRooms},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":1,
 		"maximum":2147483647
+	},
+	"attributes":
+	{
+		"min":1,
+		"max":2147483647
 	}
 },
 
@@ -102,10 +117,15 @@
 	"tooltip":"The maximum number of Rooms that one user can create/own (at the same time)",
 	"type":"NumericStepper",
 	"value":{$BasicValue=zoneSettings.maxRoomsCreatedPerUser},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":0,
 		"maximum":2147483647
+	},
+	"attributes":
+	{
+		"min":0,
+		"max":2147483647
 	}
 },
 
@@ -116,10 +136,15 @@
 	"tooltip":"The maximum number of User Variables that each user can set",
 	"type":"NumericStepper",
 	"value":{$BasicValue=zoneSettings.maxUserVariablesAllowed},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":0,
 		"maximum":2147483647
+	},
+	"attributes":
+	{
+		"min":0,
+		"max":2147483647
 	}
 },
 
@@ -130,10 +155,15 @@
 	"tooltip":"The maximum number of Room Variables allowed in a Room",
 	"type":"NumericStepper",
 	"value":{$BasicValue=zoneSettings.maxRoomVariablesAllowed},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":0,
 		"maximum":2147483647
+	},
+	"attributes":
+	{
+		"min":0,
+		"max":2147483647
 	}
 },
 
@@ -144,10 +174,15 @@
 	"tooltip":"The minimum number of characters for a Room name",
 	"type":"NumericStepper",
 	"value":{$BasicValue=zoneSettings.minRoomNameChars},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":1,
 		"maximum":2147483647
+	},
+	"attributes":
+	{
+		"min":1,
+		"max":2147483647
 	}
 },
 
@@ -158,10 +193,15 @@
 	"tooltip":"The maximum number of characters for a Room name",
 	"type":"NumericStepper",
 	"value":{$BasicValue=zoneSettings.maxRoomNameChars},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":1,
 		"maximum":2147483647
+	},
+	"attributes":
+	{
+		"min":1,
+		"max":2147483647
 	}
 },
 
@@ -208,10 +248,15 @@
 	"tooltip":"Maximum waiting-timeframe (in seconds) for transparent client reconnection",
 	"type":"NumericStepper",
 	"value":{$BasicValue=zoneSettings.userReconnectionSeconds},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":0,
 		"maximum":2147483647
+	},
+	"attributes":
+	{
+		"min":0,
+		"max":2147483647
 	}
 },
 
@@ -222,10 +267,15 @@
 	"tooltip":"Maximum idle time for a logged user (in seconds), after which the user is disconnected. This setting overrides the 'User maximum idle time' setting in the Server Configurator, allowing a per-Zone approach",
 	"type":"NumericStepper",
 	"value":{$BasicValue=zoneSettings.overrideMaxUserIdleTime},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":5,
 		"maximum":2147483647
+	},
+	"attributes":
+	{
+		"min":5,
+		"max":2147483647
 	}
 },
 
@@ -254,9 +304,13 @@
 	"tooltip":"Comma-separated list of Group names; this setting restricts the user access to Room groups: clients will only be able to listen for events and create or join Rooms in these Groups",
 	"type":"TextInput",
 	"value":"{$BasicValue=zoneSettings.publicRoomGroups}",
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"restrict":"a-zA-Z0-9,_"
+	},
+	"attributes":
+	{
+		"pattern":"[a-zA-Z0-9,_]+"
 	}
 },
 
@@ -267,9 +321,13 @@
 	"tooltip":"Comma-separated list of Group names; this setting indicates which Group/s should be registered for each client in this Zone",
 	"type":"TextInput",
 	"value":"{$BasicValue=zoneSettings.defaultRoomGroups}",
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"restrict":"a-zA-Z0-9,_"
+	},
+	"attributes":
+	{
+		"pattern":"[a-zA-Z0-9,_]+"
 	}
 },
 
@@ -298,10 +356,53 @@
 	"tooltip":"The mamximum number of Users that can be invited at once via a client-side JoinRoomInvitationRequest",
 	"type":"NumericStepper",
 	"value":{$BasicValue=zoneSettings.maxUsersPerJoinInvitationRequest},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":1,
 		"maximum":8
+	},
+	"attributes":
+	{
+		"min":1,
+		"max":8
+	}
+},
+
+// FINDUSER CLIENT MAX RESULTS
+{
+	"name":"maxFindUserResults",
+	"label":"Max FindUser results",
+	"tooltip":"The mamximum number of results sent to a client-side FindUser request. Recommended range = 30...60",
+	"type":"NumericStepper",
+	"value":{$BasicValue=zoneSettings.maxFindUserResults},
+	"componentParams": // DEPRECATED
+	{
+		"minimum":1,
+		"maximum":10000
+	},
+	"attributes":
+	{
+		"min":1,
+		"max":10000
+	}
+},
+
+// FINDROOM CLIENT MAX RESULTS
+{
+	"name":"maxFindRoomResults",
+	"label":"Max FindRoom results",
+	"tooltip":"The mamximum number of results sent to a client-side FindRoom request. Recommended range = 30...60",
+	"type":"NumericStepper",
+	"value":{$BasicValue=zoneSettings.maxFindRoomResults},
+	"componentParams": // DEPRECATED
+	{
+		"minimum":1,
+		"maximum":10000
+	},
+	"attributes":
+	{
+		"min":1,
+		"max":10000
 	}
 },
 
@@ -317,9 +418,13 @@
 	"category":"Advanced",
 	"type":"TextInput",
 	"value":"{$BasicValue=zoneSettings.defaultPlayerIdGeneratorClass}",
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"restrict":"a-zA-Z0-9._"
+	},
+	"attributes":
+	{
+		"pattern":"[a-zA-Z0-9._]+"
 	}
 },
 
@@ -331,10 +436,11 @@
 	"category":"Advanced",
 	"type":"DualList",
 	"value":"",
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"selectableValues":""
-	}
+	},
+	"dataProvider":""
 },
 
 // USER COUNT CHANGE EVENT UPDATE INTERVAL
@@ -345,10 +451,15 @@
 	"category":"Advanced",
 	"type":"NumericStepper",
 	"value":{$BasicValue=zoneSettings.userCountChangeUpdateInterval},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":0,
 		"maximum":2147483647
+	},
+	"attributes":
+	{
+		"min":0,
+		"max":2147483647
 	}
 },
 
@@ -361,7 +472,7 @@
 	"name":"wordsFilter.isActive",
 	"label":"Activate",
 	"tooltip":"Enable/disable the words filter",
-	"category":"Words filter",
+	"category":"Words Filter",
 	"type":"CheckBox",
 	"value":{$BasicValue=wordsFilter.isActive}
 },
@@ -371,13 +482,18 @@
 	"name":"wordsFilter.maxBadWordsPerMessage",
 	"label":"Maximum bad words per message",
 	"tooltip":"If a single message contains a number of bad words which exceeds this value, the user will be kicked immediately, without warnings; set this value to 0 to disable immediate kicking",
-	"category":"Words filter",
+	"category":"Words Filter",
 	"type":"NumericStepper",
 	"value":{$BasicValue=wordsFilter.maxBadWordsPerMessage},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":0,
 		"maximum":2147483647
+	},
+	"attributes":
+	{
+		"min":0,
+		"max":2147483647
 	}
 },
 
@@ -386,7 +502,7 @@
 	"name":"wordsFilter.useWarnings",
 	"label":"Send warnings",
 	"tooltip":"Send a warning (as a Moderator message) whenever a message contains a bad word",
-	"category":"Words filter",
+	"category":"Words Filter",
 	"type":"CheckBox",
 	"value":{$BasicValue=wordsFilter.useWarnings}
 },
@@ -396,13 +512,18 @@
 	"name":"wordsFilter.warningsBeforeKick",
 	"label":"Warnings before kicking",
 	"tooltip":"Number of warnings after which the user sending messages containing bad words is kicked; this counter is in place even if warnings are not actually sent to the user (see 'Send warnings')",
-	"category":"Words filter",
+	"category":"Words Filter",
 	"type":"NumericStepper",
 	"value":{$BasicValue=wordsFilter.warningsBeforeKick},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":0,
 		"maximum":2147483647
+	},
+	"attributes":
+	{
+		"min":0,
+		"max":2147483647
 	}
 },
 
@@ -411,13 +532,18 @@
 	"name":"wordsFilter.kicksBeforeBan",
 	"label":"Kicks before banning",
 	"tooltip":"Number of times a user is kicked before he/she is banned automatically",
-	"category":"Words filter",
+	"category":"Words Filter",
 	"type":"NumericStepper",
 	"value":{$BasicValue=wordsFilter.kicksBeforeBan},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":0,
 		"maximum":2147483647
+	},
+	"attributes":
+	{
+		"min":0,
+		"max":2147483647
 	}
 },
 
@@ -426,13 +552,18 @@
 	"name":"wordsFilter.kicksBeforeBanMinutes",
 	"label":"Kick before banning timeframe",
 	"tooltip":"User is banned if he/she is kicked the above number of times within the specified timeframe (expressed in minutes)",
-	"category":"Words filter",
+	"category":"Words Filter",
 	"type":"NumericStepper",
 	"value":{$BasicValue=wordsFilter.kicksBeforeBanMinutes},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":0,
 		"maximum":2147483647
+	},
+	"attributes":
+	{
+		"min":0,
+		"max":2147483647
 	}
 },
 
@@ -441,13 +572,18 @@
 	"name":"wordsFilter.banDuration",
 	"label":"Duration of banning",
 	"tooltip":"Timeframe (expressed in minutes) during which the banned user won't be able to connect to the SmartFoxServer instance",
-	"category":"Words filter",
+	"category":"Words Filter",
 	"type":"NumericStepper",
 	"value":{$BasicValue=wordsFilter.banDuration},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":1,
 		"maximum":2147483647
+	},
+	"attributes":
+	{
+		"min":1,
+		"max":2147483647
 	}
 },
 
@@ -456,7 +592,7 @@
 	"name":"wordsFilter.warningMessage",
 	"label":"Warning message",
 	"tooltip":"The message sent to a user being warned",
-	"category":"Words filter",
+	"category":"Words Filter",
 	"type":"TextInput",
 	"value":"{$BasicValue=wordsFilter.warningMessage}"
 },
@@ -466,7 +602,7 @@
 	"name":"wordsFilter.kickMessage",
 	"label":"Kicking message",
 	"tooltip":"The message sent to a user being kicked",
-	"category":"Words filter",
+	"category":"Words Filter",
 	"type":"TextInput",
 	"value":"{$BasicValue=wordsFilter.kickMessage}"
 },
@@ -476,7 +612,7 @@
 	"name":"wordsFilter.banMessage",
 	"label":"Banning message",
 	"tooltip":"The message sent to a user being banned",
-	"category":"Words filter",
+	"category":"Words Filter",
 	"type":"TextInput",
 	"value":"{$BasicValue=wordsFilter.banMessage}"
 },
@@ -486,13 +622,18 @@
 	"name":"wordsFilter.secondsBeforeBanOrKick",
 	"label":"Time before banning or kicking",
 	"tooltip":"Number of seconds before the kick or ban actions occur after the kick/ban message has been sent",
-	"category":"Words filter",
+	"category":"Words Filter",
 	"type":"NumericStepper",
 	"value":{$BasicValue=wordsFilter.secondsBeforeBanOrKick},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":0,
 		"maximum":2147483647
+	},
+	"attributes":
+	{
+		"min":0,
+		"max":2147483647
 	}
 },
 
@@ -502,13 +643,14 @@
 	"name":"wordsFilter.banMode",
 	"label":"Ban mode",
 	"tooltip":"The default banning modality; can be by IP address or by username",
-	"category":"Words filter",
+	"category":"Words Filter",
 	"type":"ComboBox",
 	"value":"{$BasicValue=wordsFilter.banMode}",
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"dataProvider":"IP,NAME"
-	}
+	},
+	"dataProvider":"IP,NAME"
 },
 
 // WORDS FILE
@@ -516,7 +658,7 @@
 	"name":"wordsFilter.wordsFile",
 	"label":"Words file",
 	"tooltip":"An external file in which each line contains a word or a valid regular expression. The 'Filter mode' setting indicates if matching words in user messages will be allowed or not; bad words are masked with the character set in the 'Hide bad words with character' parameter",
-	"category":"Words filter",
+	"category":"Words Filter",
 	"type":"TextInput",
 	"value":"{$BasicValue=wordsFilter.wordsFile}"
 },
@@ -526,12 +668,17 @@
 	"name":"wordsFilter.hideBadWordWithCharacter",
 	"label":"Hide bad words with character",
 	"tooltip":"Character to be used to mask the bad words in user messages",
-	"category":"Words filter",
+	"category":"Words Filter",
 	"type":"TextInput",
 	"value":"{$BasicValue=wordsFilter.hideBadWordWithCharacter}",
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"maxChars":1
+	},
+	"attributes":
+	{
+		"size":1,
+		"maxlength":1
 	}
 },
 
@@ -541,13 +688,14 @@
 	"name":"wordsFilter.filterMode",
 	"label":"Filter mode",
 	"tooltip":"User messages words filtering mode: if 'WHITELIST', words matching the words file content are allowed only; if 'BLACKLIST', all words matching the words file content are considered as bad and filtered out",
-	"category":"Words filter",
+	"category":"Words Filter",
 	"type":"ComboBox",
 	"value":"{$BasicValue=wordsFilter.filterMode}",
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"dataProvider":"BLACKLIST,WHITELIST"
-	}
+	},
+	"dataProvider":"BLACKLIST,WHITELIST"
 },
 
 //-------------------------------------------
@@ -559,7 +707,7 @@
 	"name":"floodFilter.isActive",
 	"label":"Activate",
 	"tooltip":"Enable/disable the flood filter",
-	"category":"Flood filter",
+	"category":"Flood Filter",
 	"type":"CheckBox",
 	"value":{$BasicValue=floodFilter.isActive}
 },
@@ -569,13 +717,18 @@
 	"name":"floodFilter.banDurationMinutes",
 	"label":"Duration of banning",
 	"tooltip":"Timeframe (expressed in minutes) during which the banned user won't be able to connect to the SmartFoxServer instance",
-	"category":"Flood filter",
+	"category":"Flood Filter",
 	"type":"NumericStepper",
 	"value":{$BasicValue=floodFilter.banDurationMinutes},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":1,
 		"maximum":2147483647
+	},
+	"attributes":
+	{
+		"min":1,
+		"max":2147483647
 	}
 },
 
@@ -584,13 +737,18 @@
 	"name":"floodFilter.maxFloodingAttempts",
 	"label":"Maximum # of flooding attempts",
 	"tooltip":"Number of times a user can try flooding the server before he/she is banned automatically; a flooding attempt is registered whenever the maximum number of messages per second for any request type is exceeded",
-	"category":"Flood filter",
+	"category":"Flood Filter",
 	"type":"NumericStepper",
 	"value":{$BasicValue=floodFilter.maxFloodingAttempts},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
-		"minimum":0,
+		"minimum":1,
 		"maximum":2147483647
+	},
+	"attributes":
+	{
+		"min":1,
+		"max":2147483647
 	}
 },
 
@@ -599,13 +757,18 @@
 	"name":"floodFilter.secondsBeforeBan",
 	"label":"Time before banning",
 	"tooltip":"Number of seconds before the ban action occurs after the ban message has been sent",
-	"category":"Flood filter",
+	"category":"Flood Filter",
 	"type":"NumericStepper",
 	"value":{$BasicValue=floodFilter.secondsBeforeBan},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":0,
 		"maximum":2147483647
+	},
+	"attributes":
+	{
+		"min":0,
+		"max":2147483647
 	}
 },
 
@@ -614,7 +777,7 @@
 	"name":"floodFilter.banMessage",
 	"label":"Ban message",
 	"tooltip":"The message sent to a user being banned due to server flooding",
-	"category":"Flood filter",
+	"category":"Flood Filter",
 	"type":"TextInput",
 	"value":"{$BasicValue=floodFilter.banMessage}"
 },
@@ -625,13 +788,14 @@
 	"name":"floodFilter.banMode",
 	"label":"Ban mode",
 	"tooltip":"The default banning modality; can be by IP address or by username",
-	"category":"Flood filter",
+	"category":"Flood Filter",
 	"type":"ComboBox",
 	"value":"{$BasicValue=floodFilter.banMode}",
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"dataProvider":"IP,NAME"
-	}
+	},
+	"dataProvider":"IP,NAME"
 },
 
 // LOG FLOODING ATTEMPTS
@@ -639,7 +803,7 @@
 	"name":"floodFilter.logFloodingAttempts",
 	"label":"Log flooding attempts",
 	"tooltip":"Toggle logging of the flooding attempts",
-	"category":"Flood filter",
+	"category":"Flood Filter",
 	"type":"CheckBox",
 	"value":{$BasicValue=floodFilter.logFloodingAttempts}
 },
@@ -649,7 +813,7 @@
 	"name":"floodFilter.requestFilters",
 	"label":"Request filters",
 	"tooltip":"Filters applied to client requests to identify flooding attempts",
-	"category":"Flood filter",
+	"category":"Flood Filter",
 	"type":"DataGrid",
 	"defaultListItem":
 	[
@@ -659,10 +823,11 @@
 			"tooltip":"Name of the request to be filtered",
 			"type":"ComboBox",
 			"value":"",
-			"componentParams":
+			"componentParams": // DEPRECATED
 			{
 				"dataProvider":"{$BasicValue=floodFilter.requestsList}"
-			}
+			},
+			"dataProvider":"{$BasicValue=floodFilter.requestsList}"
 		},
 		{
 			"name":"maxRequestsPerSecond",
@@ -670,10 +835,15 @@
 			"tooltip":"Maximum number of requests per second after which a flooding attempt is registered",
 			"type":"NumericStepper",
 			"value":20,
-			"componentParams":
+			"componentParams": // DEPRECATED
 			{
 				"minimum":1,
 				"maximum":1000
+			},
+			"attributes":
+			{
+				"min":1,
+				"max":1000
 			}
 		}
 	],
@@ -695,10 +865,11 @@
 	"value":"{$BasicValue=extension.name}",
 	"trigger":true,
 	"triggerData":{$List=extClasses, instance=extensionsHelper, fields=name;type;classesString},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"dataProvider":"{$ListToString=extNames, instance=extensionsHelper}"
-	}
+	},
+	"dataProvider":"{$ListToString=extNames, instance=extensionsHelper}"
 },
 
 // TYPE
@@ -710,10 +881,11 @@
 	"type":"ComboBox",
 	"value":"{$BasicValue=extension.type}",
 	"trigger":true,
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"dataProvider":"JAVA,JAVASCRIPT,PYTHON"
-	}
+	},
+	"dataProvider":"JAVA,JAVASCRIPT,PYTHON"
 },
 
 // MAIN CLASS
@@ -724,10 +896,11 @@
 	"category":"Zone Extension",
 	"type":"ComboBox",
 	"value":"{$BasicValue=extension.file}",
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"dataProvider":""
-	}
+	},
+	"dataProvider":""
 },
 
 // USE NAMING CONVENTION
@@ -760,10 +933,11 @@
 	"category":"Zone Extension",
 	"type":"ComboBox",
 	"value":"{$BasicValue=extension.reloadMode}",
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"dataProvider":"AUTO,MANUAL,NONE"
-	}
+	},
+	"dataProvider":"AUTO,MANUAL,NONE"
 },
 
 //-------------------------------------------
@@ -775,7 +949,7 @@
 	"name":"databaseManager.active",
 	"label":"Activate",
 	"tooltip":"Enable/disable the database manager",
-	"category":"Database manager",
+	"category":"Database Manager",
 	"type":"CheckBox",
 	"value":{$BasicValue=databaseManager.active}
 },
@@ -785,7 +959,7 @@
 	"name":"databaseManager.driverName",
 	"label":"Database driver class",
 	"tooltip":"The fully qualified name of the database driver class; the driver jar should be added to the 'extensions/__lib__/' folder",
-	"category":"Database manager",
+	"category":"Database Manager",
 	"type":"TextInput",
 	"value":"{$BasicValue=databaseManager.driverName}"
 },
@@ -795,7 +969,7 @@
 	"name":"databaseManager.connectionString",
 	"label":"Connection string",
 	"tooltip":"A valid connection string including connection type, address, port and database name. Example using MySQL: jdbc:mysql://<ipAddress>:<port>/<databaseName>",
-	"category":"Database manager",
+	"category":"Database Manager",
 	"type":"TextInput",
 	"value":"{$BasicValue=databaseManager.connectionString}"
 },
@@ -805,7 +979,7 @@
 	"name":"databaseManager.userName",
 	"label":"Username",
 	"tooltip":"A valid username for the database connection",
-	"category":"Database manager",
+	"category":"Database Manager",
 	"type":"TextInput",
 	"value":"{$BasicValue=databaseManager.userName}"
 },
@@ -815,7 +989,7 @@
 	"name":"databaseManager.password",
 	"label":"Password",
 	"tooltip":"The password corresponding to the above username for the database connection",
-	"category":"Database manager",
+	"category":"Database Manager",
 	"type":"TextInput",
 	"value":"{$BasicValue=databaseManager.password}"
 },
@@ -825,7 +999,7 @@
 	"name":"databaseManager.testSql",
 	"label":"Test SQL",
 	"tooltip":"A simple test SQL code to be executed in order to verify the database connection at boot-time",
-	"category":"Database manager",
+	"category":"Database Manager",
 	"type":"TextInput",
 	"value":"{$BasicValue=databaseManager.testSql}"
 },
@@ -835,10 +1009,15 @@
 	"name":"databaseManager.maxActiveConnections",
 	"label":"Maximum # of active connections",
 	"tooltip":"The maximum amount of active connections in the connection pool",
-	"category":"Database manager",
+	"category":"Database Manager",
 	"type":"NumericStepper",
 	"value":{$BasicValue=databaseManager.maxActiveConnections},
-	"componentParams":
+	"componentParams": // DEPRECATED
+	{
+		"minimum":1,
+		"maximum":65536
+	},
+	"attributes":
 	{
 		"minimum":1,
 		"maximum":65536
@@ -850,10 +1029,15 @@
 	"name":"databaseManager.maxIdleConnections",
 	"label":"Maximum # of idle connections",
 	"tooltip":"The maximum amount of idle connections in the connection pool",
-	"category":"Database manager",
+	"category":"Database Manager",
 	"type":"NumericStepper",
 	"value":{$BasicValue=databaseManager.maxIdleConnections},
-	"componentParams":
+	"componentParams": // DEPRECATED
+	{
+		"minimum":1,
+		"maximum":65536
+	},
+	"attributes":
 	{
 		"minimum":1,
 		"maximum":65536
@@ -865,13 +1049,14 @@
 	"name":"databaseManager.exhaustedPoolAction",
 	"label":"Exhausted pool action",
 	"tooltip":"The action to take when the connection pool is exhausted: 'FAIL' will throw and exception; 'BLOCK' will hold the current thread for some time (see 'Block time') before failing; 'GROW' will create more connections",
-	"category":"Database manager",
+	"category":"Database Manager",
 	"type":"ComboBox",
 	"value":"{$BasicValue=databaseManager.exhaustedPoolAction}",
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"dataProvider":"FAIL,BLOCK,GROW"
-	}
+	},
+	"dataProvider":"FAIL,BLOCK,GROW"
 },
 
 // BLOCK TIME
@@ -879,10 +1064,15 @@
 	"name":"databaseManager.blockTime",
 	"label":"Block time",
 	"tooltip":"The amount of milliseconds to wait for in case of BLOCK action",
-	"category":"Database manager",
+	"category":"Database Manager",
 	"type":"NumericStepper",
 	"value":{$BasicValue=databaseManager.blockTime},
-	"componentParams":
+	"componentParams": // DEPRECATED
+	{
+		"minimum":20,
+		"maximum":2147483647
+	},
+	"attributes":
 	{
 		"minimum":20,
 		"maximum":2147483647
@@ -911,7 +1101,12 @@
 	"category":"Buddy List",
 	"type":"NumericStepper",
 	"value":{$BasicValue=buddyList.maxItemsPerList},
-	"componentParams":
+	"componentParams": // DEPRECATED
+	{
+		"minimum":1,
+		"maximum":2147483647
+	},
+	"attributes":
 	{
 		"minimum":1,
 		"maximum":2147483647
@@ -926,7 +1121,12 @@
 	"category":"Buddy List",
 	"type":"NumericStepper",
 	"value":{$BasicValue=buddyList.maxBuddyVariables},
-	"componentParams":
+	"componentParams": // DEPRECATED
+	{
+		"minimum":0,
+		"maximum":2147483647
+	},
+	"attributes":
 	{
 		"minimum":0,
 		"maximum":2147483647
@@ -951,7 +1151,12 @@
 	"category":"Buddy List",
 	"type":"NumericStepper",
 	"value":{$BasicValue=buddyList.offlineBuddyVariablesCacheSize},
-	"componentParams":
+	"componentParams": // DEPRECATED
+	{
+		"minimum":0,
+		"maximum":2147483647
+	},
+	"attributes":
 	{
 		"minimum":0,
 		"maximum":2147483647
@@ -966,9 +1171,13 @@
 	"category":"Buddy List",
 	"type":"TextInput",
 	"value":"{$BasicValue=buddyList.customStorageClass}",
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"restrict":"a-zA-Z0-9._"
+	},
+	"attributes":
+	{
+		"pattern":"[a-zA-Z0-9._]+"
 	}
 },
 
@@ -1022,7 +1231,7 @@
 	"name":"privilegeManager.active",
 	"label":"Activate",
 	"tooltip":"Enable/disable the Privilege Management features",
-	"category":"Privilege manager",
+	"category":"Privilege Manager",
 	"type":"CheckBox",
 	"value":{$BasicValue=privilegeManager.active}
 },
@@ -1032,7 +1241,7 @@
 	"name":"privilegeManager.profiles",
 	"label":"Profiles",
 	"tooltip":"A list of privilege profiles. Each profile can provide a list of denied requests",
-	"category":"Privilege manager",
+	"category":"Privilege Manager",
 	"type":"DataGrid",
 	"defaultListItem":
 	[
@@ -1043,7 +1252,12 @@
 			"type":"NumericStepper",
 			"value":-1,
 			"validator":"posNum",
-			"componentParams":
+			"componentParams": // DEPRECATED
+			{
+				"minimum":-1,
+				"maximum":65535
+			},
+			"attributes":
 			{
 				"minimum":-1,
 				"maximum":65535
@@ -1063,10 +1277,11 @@
 			"tooltip":"A list of the requests that are denied for the current user profile",
 			"type":"DualList",
 			"value":"",
-			"componentParams":
+			"componentParams": // DEPRECATED
 			{
 				"selectableValues":"{$BasicValue=zoneSettings.deniableRequests}"
-			}
+			},
+			"dataProvider":"{$BasicValue=zoneSettings.deniableRequests}"
 		},
 		{
 			"name":"permissionFlagsString",
@@ -1074,10 +1289,11 @@
 			"tooltip":"Specify special permissions for the current user profile",
 			"type":"DualList",
 			"value":"",
-			"componentParams":
+			"componentParams": // DEPRECATED
 			{
 				"selectableValues":"{$EnumToString=com.smartfoxserver.v2.security.SystemPermission}"
-			}
+			},
+			"dataProvider":"{$EnumToString=com.smartfoxserver.v2.security.SystemPermission}"
 		}
 	],
 	"listValues":{$List=profiles, instance=privilegeManager, fields=intId;name;deniedRequestsString;permissionFlagsString},

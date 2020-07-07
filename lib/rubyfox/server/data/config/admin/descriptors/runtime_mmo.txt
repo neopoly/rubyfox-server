@@ -12,7 +12,7 @@
 	"name":"defaultAOI",
 	"label":"Default AoI",
 	"tooltip":"The distance along the x,y,z axes describing the 'Area of Interest' within which the other users presence in the Room is 'known' to the client",
-	"category":"MMO settings",
+	"category":"MMO Settings",
 	"type":"Vector3D",
 	"value":"{$BasicValue=room.defaultAOI}",
 	"edit":false
@@ -23,7 +23,7 @@
 	"name":"mapLowerLimit",
 	"label":"Lower map limits",
 	"tooltip":"The lower limits for each of the user position coordinates (x,y,z) in the MMORoom",
-	"category":"MMO settings",
+	"category":"MMO Settings",
 	"type":"Vector3D",
 	"value":"{$BasicValue=room.mapLowerLimit}",
 	"edit":false
@@ -34,7 +34,7 @@
 	"name":"mapHigherLimit",
 	"label":"Higher map limits",
 	"tooltip":"The upper limits for each of the user position coordinates (x,y,z) in the MMORoom",
-	"category":"MMO settings",
+	"category":"MMO Settings",
 	"type":"Vector3D",
 	"value":"{$BasicValue=room.mapHigherLimit}",
 	"edit":false
@@ -45,7 +45,7 @@
 	"name":"userLimboMaxSeconds",
 	"label":"User max limbo time",
 	"tooltip":"The maximum amount of seconds allowed between the MMORoom join and the first time the user position is set in the Room; if this time is exeeded, the user is kicked from the Room automatically",
-	"category":"MMO settings",
+	"category":"MMO Settings",
 	"type":"NumericStepper",
 	"value":{$BasicValue=room.userLimboMaxSeconds},
 	"edit":false
@@ -56,7 +56,7 @@
 	"name":"proximityListUpdateMillis",
 	"label":"Millis between proximity list updates",
 	"tooltip":"Minimum time between two subsequent PROXIMITY_LIST_UPDATE events sent to the clients",
-	"category":"MMO settings",
+	"category":"MMO Settings",
 	"type":"NumericStepper",
 	"value":{$BasicValue=room.proximityListUpdateMillis},
 	"edit":false
@@ -67,7 +67,7 @@
 	"name":"sendAOIEntryPoint",
 	"label":"Send AoI entry point",
 	"tooltip":"Send the other users entry coordinates in the client's AoI as reserved properties on the User object in the PROXIMITY_LIST_UPDATE event",
-	"category":"MMO settings",
+	"category":"MMO Settings",
 	"type":"CheckBox",
 	"value":{$BasicValue=room.sendAOIEntryPoint},
 	"edit":false

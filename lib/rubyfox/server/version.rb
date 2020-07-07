@@ -1,5 +1,5 @@
 module Rubyfox
   module Server
-    VERSION = "2.13.7.3"
+    VERSION = "2.16.0.0"
   end
 end

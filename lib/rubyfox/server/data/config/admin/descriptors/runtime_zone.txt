@@ -12,7 +12,7 @@
 	"name":"userCount",
 	"label":"Current # of users",
 	"tooltip":"The number of users in the Zone",
-	"category":"Zone traffic",
+	"category":"Zone Traffic",
 	"type":"NumericStepper",
 	"value":{$BasicValue=zone.userCount},
 	"edit":false
@@ -23,7 +23,7 @@
 	"name":"maxTraffic",
 	"label":"Maximum # of users",
 	"tooltip":"The maximum number of concurrent users since the server was started",
-	"category":"Zone traffic",
+	"category":"Zone Traffic",
 	"type":"NumericStepper",
 	"value":{$BasicValue=traffic.maxTraffic},
 	"edit":false
@@ -34,7 +34,7 @@
 	"name":"trafficAverage",
 	"label":"Average # of users",
 	"tooltip":"The average number of concurrent users; the value is referred to the last 24 hours (or less, if data is not available due to server not running)",
-	"category":"Zone traffic",
+	"category":"Zone Traffic",
 	"type":"NumericStepper",
 	"value":{$BasicValue=traffic.trafficAverage},
 	"edit":false
@@ -45,7 +45,7 @@
 	"name":"totalRooms",
 	"label":"Current Room count",
 	"tooltip":"The total number of Rooms (both regular and game Rooms) currently existing in the Zone",
-	"category":"Zone traffic",
+	"category":"Zone Traffic",
 	"type":"NumericStepper",
 	"value":{$BasicValue=zone.totalRoomCount},
 	"edit":false
@@ -56,7 +56,7 @@
 	"name":"gameRooms",
 	"label":"Current # of game Rooms",
 	"tooltip":"The number of game Rooms currently existing in the Zone",
-	"category":"Zone traffic",
+	"category":"Zone Traffic",
 	"type":"NumericStepper",
 	"value":{$BasicValue=zone.gameRoomCount},
 	"edit":false
@@ -71,7 +71,7 @@
 	"name":"active",
 	"label":"Is active",
 	"tooltip":"Enable/disable the Zone",
-	"category":"Runtime Zone settings",
+	"category":"Runtime Zone Settings",
 	"type":"CheckBox",
 	"value":{$BasicValue=zone.active}
 },
@@ -81,7 +81,7 @@
 	"name":"name",
 	"label":"Zone name",
 	"tooltip":"The Zone name",
-	"category":"Runtime Zone settings",
+	"category":"Runtime Zone Settings",
 	"type":"TextInput",
 	"value":"{$BasicValue=zone.name}",
 	"edit":false
@@ -92,13 +92,18 @@
 	"name":"maxAllowedUsers",
 	"label":"Maximum # of users",
 	"tooltip":"The maximum number of users allowed in the Zone",
-	"category":"Runtime Zone settings",
+	"category":"Runtime Zone Settings",
 	"type":"NumericStepper",
 	"value":{$BasicValue=zone.maxAllowedUsers},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":1,
 		"maximum":2147483647
+	},
+	"attributes":
+	{
+		"min":1,
+		"max":2147483647
 	}
 },
 
@@ -107,13 +112,18 @@
 	"name":"maxAllowedRooms",
 	"label":"Maximum # of Rooms",
 	"tooltip":"The maximum number of Rooms allowed in the Zone",
-	"category":"Runtime Zone settings",
+	"category":"Runtime Zone Settings",
 	"type":"NumericStepper",
 	"value":{$BasicValue=zone.maxAllowedRooms},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":1,
 		"maximum":2147483647
+	},
+	"attributes":
+	{
+		"min":1,
+		"max":2147483647
 	}
 },
 
@@ -122,13 +132,18 @@
 	"name":"maxRoomsCreatedPerUserLimit",
 	"label":"Maximum # of Rooms per user",
 	"tooltip":"The maximum number of Rooms that a user can own/create (at the same time)",
-	"category":"Runtime Zone settings",
+	"category":"Runtime Zone Settings",
 	"type":"NumericStepper",
 	"value":{$BasicValue=zone.maxRoomsCreatedPerUserLimit},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":0,
 		"maximum":2147483647
+	},
+	"attributes":
+	{
+		"min":0,
+		"max":2147483647
 	}
 },
 
@@ -137,13 +152,18 @@
 	"name":"maxUserVariablesAllowed",
 	"label":"Maximum # of User Variables",
 	"tooltip":"The maximum number of User Variables that a user can create",
-	"category":"Runtime Zone settings",
+	"category":"Runtime Zone Settings",
 	"type":"NumericStepper",
 	"value":{$BasicValue=zone.maxUserVariablesAllowed},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":0,
 		"maximum":2147483647
+	},
+	"attributes":
+	{
+		"min":0,
+		"max":2147483647
 	}
 },
 
@@ -152,13 +172,18 @@
 	"name":"maxRoomVariablesAllowed",
 	"label":"Maximum # of Room Variables",
 	"tooltip":"The maximum number of Room Variables for a Room",
-	"category":"Runtime Zone settings",
+	"category":"Runtime Zone Settings",
 	"type":"NumericStepper",
 	"value":{$BasicValue=zone.maxRoomVariablesAllowed},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":0,
 		"maximum":2147483647
+	},
+	"attributes":
+	{
+		"min":0,
+		"max":2147483647
 	}
 },
 
@@ -167,13 +192,18 @@
 	"name":"minRoomNameChars",
 	"label":"Minimum length of Room names",
 	"tooltip":"The minimum number of characters allowed for a Room name",
-	"category":"Runtime Zone settings",
+	"category":"Runtime Zone Settings",
 	"type":"NumericStepper",
 	"value":{$BasicValue=zone.minRoomNameChars},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":1,
 		"maximum":2147483647
+	},
+	"attributes":
+	{
+		"min":1,
+		"max":2147483647
 	}
 },
 
@@ -182,13 +212,18 @@
 	"name":"maxRoomNameChars",
 	"label":"Maximum length of Room names",
 	"tooltip":"The maximum number of characters for a Room name",
-	"category":"Runtime Zone settings",
+	"category":"Runtime Zone Settings",
 	"type":"NumericStepper",
 	"value":{$BasicValue=zone.maxRoomNameChars},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":1,
 		"maximum":2147483647
+	},
+	"attributes":
+	{
+		"min":1,
+		"max":2147483647
 	}
 },
 
@@ -197,7 +232,7 @@
 	"name":"userCountChangeUpdateInterval",
 	"label":"'userCountChange' throttler interval",
 	"tooltip":"The rate (in milliseconds) at which the 'userCountChange' event is dispatched; 0 means realtime",
-	"category":"Runtime Zone settings",
+	"category":"Runtime Zone Settings",
 	"type":"NumericStepper",
 	"value":{$BasicValue=zone.userCountChangeUpdateInterval},
 	"edit":false
@@ -208,13 +243,18 @@
 	"name":"userReconnectionSeconds",
 	"label":"User reconnection timeframe",
 	"tooltip":"Maximum waiting-timeframe (in seconds) for transparent client reconnection",
-	"category":"Runtime Zone settings",
+	"category":"Runtime Zone Settings",
 	"type":"NumericStepper",
 	"value":{$BasicValue=zone.userReconnectionSeconds},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":0,
 		"maximum":2147483647
+	},
+	"attributes":
+	{
+		"min":0,
+		"max":2147483647
 	}
 },
 
@@ -223,13 +263,18 @@
 	"name":"maxUserIdleTime",
 	"label":"User maximum idle time",
 	"tooltip":"Maximum idle time for a logged user (in seconds), after which the user is disconnected",
-	"category":"Runtime Zone settings",
+	"category":"Runtime Zone Settings",
 	"type":"NumericStepper",
 	"value":{$BasicValue=zone.maxUserIdleTime},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":5,
 		"maximum":2147483647
+	},
+	"attributes":
+	{
+		"min":5,
+		"max":2147483647
 	}
 },
 
@@ -238,7 +283,7 @@
 	"name":"customLogin",
 	"label":"Custom login enabled",
 	"tooltip":"If turned on, the login logic will be handled by the developer's Zone extension",
-	"category":"Runtime Zone settings",
+	"category":"Runtime Zone Settings",
 	"type":"CheckBox",
 	"value":{$BasicValue=zone.customLogin},
 	"edit":false
@@ -249,7 +294,7 @@
 	"name":"guestUserAllowed",
 	"label":"Allow guest users access",
 	"tooltip":"When active any empty user names will be turned into an auto-generated guest username, otherwise the login will be refused",
-	"category":"Runtime Zone settings",
+	"category":"Runtime Zone Settings",
 	"type":"CheckBox",
 	"value":{$BasicValue=zone.guestUserAllowed}
 },
@@ -259,7 +304,7 @@
 	"name":"filterUserNames",
 	"label":"Apply words filter to usernames",
 	"tooltip":"Words filter must be active; also, this setting is valid if 'Filter mode' in the Zone configuration is set to 'BLACKLIST' only",
-	"category":"Runtime Zone settings",
+	"category":"Runtime Zone Settings",
 	"type":"CheckBox",
 	"value":{$BasicValue=zone.filterUserNames}
 },
@@ -269,7 +314,7 @@
 	"name":"filterRoomNames",
 	"label":"Apply words filter to Room names",
 	"tooltip":"Words filter must be active; also, this setting is valid if 'Filter mode' in the Zone configuration is set to 'BLACKLIST' only",
-	"category":"Runtime Zone settings",
+	"category":"Runtime Zone Settings",
 	"type":"CheckBox",
 	"value":{$BasicValue=zone.filterRoomNames}
 },
@@ -279,7 +324,7 @@
 	"name":"filterPrivateMessages",
 	"label":"Apply words filter to private messages",
 	"tooltip":"Words filter must be active",
-	"category":"Runtime Zone settings",
+	"category":"Runtime Zone Settings",
 	"type":"CheckBox",
 	"value":{$BasicValue=zone.filterPrivateMessages}
 },
@@ -289,9 +334,9 @@
 	"name":"groups",
 	"label":"Room Groups",
 	"tooltip":"List of available Room Group names",
-	"category":"Runtime Zone settings",
+	"category":"Runtime Zone Settings",
 	"type":"DataGrid",
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"height":100
 	},
@@ -314,7 +359,7 @@
 	"name":"uploadEnabled",
 	"label":"Allow file uploading",
 	"tooltip":"If enabled, files can be uploaded by clients to the server via regular HTTP post requests. Internal web server must be active and the HTTP protocol enabled (see Web server tab in Server Configurator module)",
-	"category":"Runtime Zone settings",
+	"category":"Runtime Zone Settings",
 	"type":"CheckBox",
 	"value":{$BasicValue=zone.uploadEnabled}
 },
@@ -324,7 +369,7 @@
 	"name":"dbActiveConnections",
 	"label":"Active database connections",
 	"tooltip":"The number of currently active database connections in the connection pool",
-	"category":"Runtime Zone settings",
+	"category":"Runtime Zone Settings",
 	"type":"NumericStepper",
 	"value":{$BasicValue=dBManager.activeConnections},
 	"edit":false
@@ -335,7 +380,7 @@
 	"name":"dbIdleConnections",
 	"label":"Idle database connections",
 	"tooltip":"The number of currently idle database connections in the connection pool",
-	"category":"Runtime Zone settings",
+	"category":"Runtime Zone Settings",
 	"type":"NumericStepper",
 	"value":{$BasicValue=dBManager.idleConnections},
 	"edit":false

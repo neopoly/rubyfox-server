@@ -7,7 +7,6 @@
 // GENERAL SETTINGS
 //-------------------------------------------
 
-
 // SERVER NAME
 {
 	"name":"serverName",
@@ -31,10 +30,11 @@
 			"tooltip":"IP address used by SmartFoxServer",
 			"type":"ComboBox",
 			"value":"127.0.0.1",
-			"componentParams":
+			"componentParams": // DEPRECATED
 			{
 				"dataProvider":"{$BasicValue=adminHelper.availableSocketAddresses}"
-			}
+			},
+			"dataProvider":"{$BasicValue=adminHelper.availableSocketAddresses}"
 		},
 		{
 			"name":"port",
@@ -42,10 +42,15 @@
 			"tooltip":"Port used by SmartFoxServer",
 			"type":"NumericStepper",
 			"value":9933,
-			"componentParams":
+			"componentParams": // DEPRECATED
 			{
 				"minimum":0,
 				"maximum":65535
+			},
+			"attributes":
+			{
+				"min":0,
+				"max":65535
 			}
 		},
 		{
@@ -54,10 +59,11 @@
 			"tooltip":"Communication protocol",
 			"type":"ComboBox",
 			"value":"TCP",
-			"componentParams":
+			"componentParams": // DEPRECATED
 			{
 				"dataProvider":"TCP,UDP"
-			}
+			},
+			"dataProvider":"TCP,UDP"
 		}
 	],
 	"listValues":{$List=socketAddresses, instance=serverSettings, fields=address;port;type},
@@ -71,10 +77,15 @@
 	"tooltip":"Maximum idle time for a session (in seconds), after which the client is disconnected; setting a value between 10 and 30 seconds is recommended",
 	"type":"NumericStepper",
 	"value":{$BasicValue=serverSettings.sessionMaxIdleTime},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":5,
 		"maximum":2147483647
+	},
+	"attributes":
+	{
+		"min":5,
+		"max":2147483647
 	}
 },
 
@@ -85,10 +96,15 @@
 	"tooltip":"Maximum idle time for a logged user (in seconds), after which the user is disconnected; this value must be greater than the session maximum idle time",
 	"type":"NumericStepper",
 	"value":{$BasicValue=serverSettings.userMaxIdleTime},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":5,
 		"maximum":2147483647
+	},
+	"attributes":
+	{
+		"min":5,
+		"max":2147483647
 	}
 },
 
@@ -99,10 +115,15 @@
 	"tooltip":"Specifies the minimum message size (in bytes) that triggers the protocol compression; recommended values are those equal to or greater than 1024 bytes",
 	"type":"NumericStepper",
 	"value":{$BasicValue=serverSettings.protocolCompressionThreshold},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":256,
 		"maximum":2147483647
+	},
+	"attributes":
+	{
+		"min":256,
+		"max":2147483647
 	}
 },
 
@@ -140,10 +161,15 @@
 	"tooltip":"[ADVANCED] Adjust the thread pool size for the System Scheduler",
 	"type":"NumericStepper",
 	"value":{$BasicValue=serverSettings.schedulerThreadPoolSize},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":1,
 		"maximum":10000
+	},
+	"attributes":
+	{
+		"min":1,
+		"max":10000
 	}
 },
 
@@ -183,13 +209,18 @@
 	"name":"ipFilter.maxConnectionsPerAddress",
 	"label":"Maximum connections per IP address",
 	"tooltip":"Maximum number of connections coming from the same client IP address",
-	"category":"IP filter",
+	"category":"IP Filter",
 	"type":"NumericStepper",
 	"value":{$BasicValue=ipFilter.maxConnectionsPerAddress},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":1,
 		"maximum":2147483647
+	},
+	"attributes":
+	{
+		"min":1,
+		"max":2147483647
 	}
 },
 
@@ -198,7 +229,7 @@
 	"name":"ipFilter.addressBlackList",
 	"label":"IP addresses black-list",
 	"tooltip":"The black-list prevents the connection attempts coming from the listed client IP addresses",
-	"category":"IP filter",
+	"category":"IP Filter",
 	"type":"DataGrid",
 	"defaultListItem":
 	[
@@ -209,7 +240,7 @@
 			"type":"TextInput",
 			"value":"",
 			"validator":"ip",
-			"componentParams":
+			"componentParams": // DEPRECATED (implicit in validator)
 			{
 				"restrict":"0-9./"
 			}
@@ -223,7 +254,7 @@
 	"name":"ipFilter.addressWhiteList",
 	"label":"IP addresses white-list",
 	"tooltip":"The white-list overrides the maximum connections per IP address limit, allowing any number of connections coming from the listed client IP addresses",
-	"category":"IP filter",
+	"category":"IP Filter",
 	"type":"DataGrid",
 	"defaultListItem":
 	[
@@ -234,7 +265,7 @@
 			"type":"TextInput",
 			"value":"",
 			"validator":"ip",
-			"componentParams":
+			"componentParams": // DEPRECATED (implicit in validator)
 			{
 				"restrict":"0-9./"
 			}
@@ -252,7 +283,7 @@
 	"name":"bannedUserManager.isAutoRemove",
 	"label":"Auto-remove",
 	"tooltip":"Automatically remove banned users from the ban list when their ban-timeframe expires",
-	"category":"Ban manager",
+	"category":"Ban Manager",
 	"type":"CheckBox",
 	"value":{$BasicValue=bannedUserManager.isAutoRemove}
 },
@@ -262,7 +293,7 @@
 	"name":"bannedUserManager.isPersistent",
 	"label":"Persistent",
 	"tooltip":"Persistently store the banned user list so that it's not lost across SmartFoxServer restarts (recommended)",
-	"category":"Ban manager",
+	"category":"Ban Manager",
 	"type":"CheckBox",
 	"value":{$BasicValue=bannedUserManager.isPersistent}
 },
@@ -272,12 +303,16 @@
 	"name":"bannedUserManager.customPersistenceClass",
 	"label":"Custom persistence class name",
 	"tooltip":"Allows to provide a custom class to implement banned user list persistence",
-	"category":"Ban manager",
+	"category":"Ban Manager",
 	"type":"TextInput",
 	"value":"{$BasicValue=bannedUserManager.customPersistenceClass}",
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"restrict":"a-zA-Z0-9._"
+	},
+	"attributes":
+	{
+		"pattern":"[a-zA-Z0-9._]+"
 	}
 },
 
@@ -290,7 +325,7 @@
 	"name":"webServer.isActive",
 	"label":"Activate",
 	"tooltip":"Enable/disable the embedded web server",
-	"category":"Web server",
+	"category":"Web Server",
 	"type":"CheckBox",
 	"value":{$BasicValue=webServer.isActive}
 },
@@ -300,7 +335,7 @@
 	"name":"webServer.enableHttp",
 	"label":"Enable HTTP",
 	"tooltip":"Enable/disable the HTTP module in the embedded web server",
-	"category":"Web server",
+	"category":"Web Server",
 	"type":"CheckBox",
 	"value":{$BasicValue=webServer.enableHttp}
 },
@@ -309,14 +344,19 @@
 {
 	"name":"webServer.httpPort",
 	"label":"HTTP/WS port",
-	"tooltip":"TCP port used by the embedded web server for HTTP and WS communication",
-	"category":"Web server",
+	"tooltip":"TCP port used by the embedded web server for HTTP and WS communication\n\n<b>NOTE</b>\nThe entered value is ignored if HTTP module is disabled",
+	"category":"Web Server",
 	"type":"NumericStepper",
 	"value":{$BasicValue=webServer.httpPort},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":0,
 		"maximum":65535
+	},
+	"attributes":
+	{
+		"min":0,
+		"max":65535
 	}
 },
 
@@ -325,7 +365,7 @@
 	"name":"webServer.enableHttps",
 	"label":"Enable HTTPS",
 	"tooltip":"Enable/disable the HTTPS module in the embedded web server",
-	"category":"Web server",
+	"category":"Web Server",
 	"type":"CheckBox",
 	"value":{$BasicValue=webServer.enableHttps}
 },
@@ -334,14 +374,19 @@
 {
 	"name":"webServer.httpsPort",
 	"label":"HTTPS/WSS port",
-	"tooltip":"TCP port used by the embedded web server for HTTPS and WSS communication",
-	"category":"Web server",
+	"tooltip":"TCP port used by the embedded web server for HTTPS and WSS communication\n\n<b>NOTE</b>\nThe entered value is ignored if HTTPS module is disabled",
+	"category":"Web Server",
 	"type":"NumericStepper",
 	"value":{$BasicValue=webServer.httpsPort},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":0,
 		"maximum":65535
+	},
+	"attributes":
+	{
+		"min":0,
+		"max":65535
 	}
 },
 
@@ -350,26 +395,26 @@
 	"name":"webServer.isWSActive",
 	"label":"Enable WS/WSS",
 	"tooltip":"Enable/disable the WebSocket communication (both WS and WSS) through the HTTP/S modules; requires one of the two modules (or both) to be active",
-	"category":"Web server",
+	"category":"Web Server",
 	"type":"CheckBox",
 	"value":{$BasicValue=webServer.isWSActive}
 },
 
-// USE WS BINARY PROTOCOL
+// ENABLE X-FORWARDED-FOR DIRECTIVE
 {
-	"name":"webServer.useWSBinaryProtocol",
-	"label":"Use WS binary protocol",
-	"tooltip":"Use binary protocol for WebSocket communication; this must match the specs of the client API",
-	"category":"Web server",
+	"name":"webServer.isXForwardedForActive",
+	"label":"Enable X-Forwarded-For",
+	"tooltip":"Enable this feature only if your server is behind a proxy/firewall supporting the X-Forwarded-For directive. It allows to detect the original IP address of the remote client",
+	"category":"Web Server",
 	"type":"CheckBox",
-	"value":{$BasicValue=webServer.useWSBinaryProtocol}
+	"value":{$BasicValue=webServer.isXForwardedForActive}
 },
 
 // ALLOWED WEBSOCKET ORIGINS
 {
 	"name":"webServer.allowedWebsocketOrigins",
 	"label":"Allowed client origins",
-	"tooltip":"List of origins from which the client should be allowed to connect. It should represent only the URL(s) where the client can be downloaded from",
+	"tooltip":"List of origins from which the client should be allowed to connect; it should represent only the URL(s) where the client can be downloaded from",
 	"category":"Web server",
 	"type":"DataGrid",
 	"defaultListItem":
@@ -386,23 +431,66 @@
 	"listValues":{$List=allowedWebsocketOrigins, instance=webServer, createField=origin}
 },
 
+// TOMCAT STATUS ACCESS
+{
+	"name":"webServer.tomcatUsers",
+	"label":"Tomcat users",
+	"tooltip":"The credentials to enter the advanced web server status console, accessible from the AdminTool's Dashboard module",
+	"category":"Web server",
+	"type":"DataGrid",
+	"defaultListItem":
+	[
+		{
+			"name":"username",
+			"label":"Username",
+			"tooltip":"Tomcat's username",
+			"type":"TextInput",
+			"value":"",
+			"validator":"notNull"
+		},
+		{
+			"name":"password",
+			"label":"Password",
+			"tooltip":"Tomcat's password",
+			"type":"TextInput",
+			"value":"",
+			"validator":"pwd",
+			"componentParams": // DEPRECATED
+			{
+				"displayAsPassword":true
+			},
+			"attributes":
+			{
+				"type":"password"
+			}
+		}
+	],
+	"listValues":{$List=tomcatUsers, instance=webServer, fields=username;password},
+	"clazz":"TomcatUser"
+},
+
 // BLUEBOX POLLING TIMEOUT
 {
 	"name":"webServer.blueBoxPollingTimeout",
 	"label":"BlueBox polling timeout",
 	"tooltip":"The amount of seconds after which a client connected through the BlueBox is considered disconnected if he doesn't send a polling request",
-	"category":"Web server",
+	"category":"Web Server",
 	"type":"NumericStepper",
 	"value":{$BasicValue=webServer.blueBoxPollingTimeout},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":25,
 		"maximum":40
 	},
+	"attributes":
+	{
+		"min":25,
+		"max":40
+	},
 	"separator":
 	{
 		"pos":"before",
-		"text":"\n<b>BlueBox settings</b>"
+		"text":"\n<b>BlueBox Settings</b>"
 	}
 },
 
@@ -411,13 +499,18 @@
 	"name":"webServer.blueBoxMsgQueueSize",
 	"label":"BlueBox messages queue size",
 	"tooltip":"The maximum amount of messages that can be queued for each client connected through the BlueBox",
-	"category":"Web server",
+	"category":"Web Server",
 	"type":"NumericStepper",
 	"value":{$BasicValue=webServer.blueBoxMsgQueueSize},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":20,
 		"maximum":100
+	},
+	"attributes":
+	{
+		"min":20,
+		"max":100
 	}
 },
 
@@ -478,10 +571,15 @@
 	"category":"Mailer",
 	"type":"NumericStepper",
 	"value":{$BasicValue=mailer.smtpPort},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":0,
 		"maximum":65535
+	},
+	"attributes":
+	{
+		"min":0,
+		"max":65535
 	}
 },
 
@@ -504,9 +602,13 @@
 	"category":"Mailer",
 	"type":"TextInput",
 	"value":"{$BasicValue=mailer.mailPass}",
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"displayAsPassword":true
+	},
+	"attributes":
+	{
+		"type":"password"
 	}
 },
 
@@ -519,7 +621,7 @@
 	"name":"remoteAdmin.administrators",
 	"label":"Administrators",
 	"tooltip":"The access credentials and permissions of SmartFoxServer administrators; removing all the administrators will prevent the AdminTool to reconnect to the server instance after a disconnection",
-	"category":"Remote admin",
+	"category":"Remote Admin",
 	"type":"DataGrid",
 	"defaultListItem":
 	[
@@ -538,9 +640,13 @@
 			"type":"TextInput",
 			"value":"",
 			"validator":"pwd",
-			"componentParams":
+			"componentParams": // DEPRECATED
 			{
 				"displayAsPassword":true
+			},
+			"attributes":
+			{
+				"type":"password"
 			}
 		},
 		{
@@ -556,10 +662,11 @@
 			"tooltip":"The list of AdminTool's modules that the administrator is NOT allowed to access",
 			"type":"DualList",
 			"value":"",
-			"componentParams":
+			"componentParams": // DEPRECATED
 			{
 				"selectableValues":"{$BasicValue=adminHelper.allModules}"
-			}
+			},
+			"dataProvider":"{$BasicValue=adminHelper.allModules}"
 		}
 	],
 	"listValues":{$List=administrators, instance=remoteAdmin, fields=login;password;allowHalt;disabledModulesString},
@@ -567,7 +674,7 @@
 	"separator":
 	{
 		"pos":"before",
-		"text":"<b>IMPORTANT</b>: al the settings below, except 'Use encryption', are <b>applied immediately</b> on submission, without a server restart being required"
+		"text":"<b>IMPORTANT</b>: all settings below, except 'Use encryption', are <b>applied immediately</b> on submission, without a server restart being required"
 	}
 },
 
@@ -576,7 +683,7 @@
 	"name":"remoteAdmin.allowedRemoteAddresses",
 	"label":"Allowed client IP addresses",
 	"tooltip":"List of client IP address which are allowed to access the SmartFoxServer's administration; leave the list empty to skip this check on administrator login",
-	"category":"Remote admin",
+	"category":"Remote Admin",
 	"type":"DataGrid",
 	"defaultListItem":
 	[
@@ -587,7 +694,7 @@
 			"type":"TextInput",
 			"value":"",
 			"validator":"ip",
-			"componentParams":
+			"componentParams": // DEPRECATED (implicit in validator)
 			{
 				"restrict":"0-9."
 			}
@@ -601,13 +708,18 @@
 	"name":"remoteAdmin.adminTcpPort",
 	"label":"Administration TCP port",
 	"tooltip":"TCP port number used for administration; set it to -1 to skip this check on administrator login",
-	"category":"Remote admin",
+	"category":"Remote Admin",
 	"type":"NumericStepper",
 	"value":{$BasicValue=remoteAdmin.adminTcpPort},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":-1,
 		"maximum":65535
+	},
+	"attributes":
+	{
+		"min":-1,
+		"max":65535
 	}
 },
 
@@ -616,7 +728,7 @@
 	"name":"remoteAdmin.useEncryption",
 	"label":"Use encryption",
 	"tooltip":"Enable connection encryption for the Admin Tool; after the restart, the 'Use encryption' checkbox on the login screen must be flagged in order to be able to establish a connection with the server",
-	"category":"Remote admin",
+	"category":"Remote Admin",
 	"type":"CheckBox",
 	"value":{$BasicValue=remoteAdmin.useEncryption}
 },
@@ -643,10 +755,11 @@
 	"category":"Analytics",
 	"type":"ComboBox",
 	"value":"{$BasicValue=analytics.runOnDay}",
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"dataProvider":"[everyday],Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday"
-	}
+	},
+	"dataProvider":"[everyday],Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday"
 },
 
 // RUN AT HOUR OF DAY
@@ -657,10 +770,15 @@
 	"category":"Analytics",
 	"type":"NumericStepper",
 	"value":{$BasicValue=analytics.runAtHour},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":0,
 		"maximum":23
+	},
+	"attributes":
+	{
+		"min":0,
+		"max":23
 	}
 },
 
@@ -712,10 +830,16 @@
 	"category":"Analytics",
 	"type":"TextInput",
 	"value":"{$BasicValue=analytics.locale}",
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"restrict":"a-zA-Z",
 		"maxChars":2
+	},
+	"attributes":
+	{
+		"pattern":"[a-zA-Z]{2}",
+		"size":2,
+		"maxlength":2
 	}
 },
 
@@ -728,18 +852,23 @@
 	"name":"systemThreadPoolSettings.coreThreads",
 	"label":"Core threads",
 	"tooltip":"Number of core threads in the pool; these will be always available",
-	"category":"Thread pools",
+	"category":"Thread Pools",
 	"type":"NumericStepper",
 	"value":{$BasicValue=systemThreadPoolSettings.coreThreads},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":1,
 		"maximum":10000
 	},
+	"attributes":
+	{
+		"min":1,
+		"max":10000
+	},
 	"separator":
 	{
 		"pos":"before",
-		"text":"<b>IMPORTANT</b>: these settings can affect performance dramatically; change them only if you really know what you are doing\n\n<b>System thread pool</b>"
+		"text":"<b>IMPORTANT</b>: these settings can affect performance dramatically; change them only if you really know what you are doing\n\n<b>System Thread Pool.</b>"
 	}
 },
 
@@ -748,13 +877,18 @@
 	"name":"systemThreadPoolSettings.backupThreads",
 	"label":"Backup threads",
 	"tooltip":"Number of new threads to be added when a backups is called",
-	"category":"Thread pools",
+	"category":"Thread Pools",
 	"type":"NumericStepper",
 	"value":{$BasicValue=systemThreadPoolSettings.backupThreads},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":1,
 		"maximum":10000
+	},
+	"attributes":
+	{
+		"min":1,
+		"max":10000
 	}
 },
 
@@ -763,13 +897,18 @@
 	"name":"systemThreadPoolSettings.maxBackups",
 	"label":"Maximum backups",
 	"tooltip":"Number of times backup threads can be called",
-	"category":"Thread pools",
+	"category":"Thread Pools",
 	"type":"NumericStepper",
 	"value":{$BasicValue=systemThreadPoolSettings.maxBackups},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":1,
 		"maximum":10000
+	},
+	"attributes":
+	{
+		"min":1,
+		"max":10000
 	}
 },
 
@@ -778,13 +917,18 @@
 	"name":"systemThreadPoolSettings.queueSizeTriggeringBackup",
 	"label":"Queue size triggering a backup",
 	"tooltip":"Minimum size of the queue that will trigger a backup, unless the size goes down below this value within the backup triggering time",
-	"category":"Thread pools",
+	"category":"Thread Pools",
 	"type":"NumericStepper",
 	"value":{$BasicValue=systemThreadPoolSettings.queueSizeTriggeringBackup},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":1,
 		"maximum":10000
+	},
+	"attributes":
+	{
+		"min":1,
+		"max":10000
 	}
 },
 
@@ -793,13 +937,18 @@
 	"name":"systemThreadPoolSettings.secondsTriggeringBackup",
 	"label":"Backup triggering time",
 	"tooltip":"The number of seconds after which the backup is called if the queue size keeps being greater than the minimum queue size",
-	"category":"Thread pools",
+	"category":"Thread Pools",
 	"type":"NumericStepper",
 	"value":{$BasicValue=systemThreadPoolSettings.secondsTriggeringBackup},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":1,
 		"maximum":10000
+	},
+	"attributes":
+	{
+		"min":1,
+		"max":10000
 	}
 },
 
@@ -808,13 +957,18 @@
 	"name":"systemThreadPoolSettings.backupThreadsExpiry",
 	"label":"Backup threads expiration",
 	"tooltip":"The number of seconds after which the backup threads are removed, provided they are not needed anymore",
-	"category":"Thread pools",
+	"category":"Thread Pools",
 	"type":"NumericStepper",
 	"value":{$BasicValue=systemThreadPoolSettings.backupThreadsExpiry},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":1,
 		"maximum":10000
+	},
+	"attributes":
+	{
+		"min":1,
+		"max":10000
 	}
 },
 
@@ -823,13 +977,18 @@
 	"name":"systemThreadPoolSettings.queueSizeTriggeringBackupExpiry",
 	"label":"Queue size preventing backup expiration",
 	"tooltip":"The minimum amount of messages in the queue that WILL NOT allow the backup threads to be removed (backup won't expire if the queue size is greater than this value)",
-	"category":"Thread pools",
+	"category":"Thread Pools",
 	"type":"NumericStepper",
 	"value":{$BasicValue=systemThreadPoolSettings.queueSizeTriggeringBackupExpiry},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":1,
 		"maximum":10000
+	},
+	"attributes":
+	{
+		"min":1,
+		"max":10000
 	}
 },
 
@@ -838,7 +997,7 @@
 	"name":"systemThreadPoolSettings.logActivity",
 	"label":"Log activity",
 	"tooltip":"Write basic informations about new threads being added or removed in the log",
-	"category":"Thread pools",
+	"category":"Thread Pools",
 	"type":"CheckBox",
 	"value":{$BasicValue=systemThreadPoolSettings.logActivity}
 },
@@ -860,18 +1019,23 @@
 	"name":"extensionThreadPoolSettings.coreThreads",
 	"label":"Core threads",
 	"tooltip":"Number of core threads in the pool; these will be always available",
-	"category":"Thread pools",
+	"category":"Thread Pools",
 	"type":"NumericStepper",
 	"value":{$BasicValue=extensionThreadPoolSettings.coreThreads},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":1,
 		"maximum":10000
 	},
+	"attributes":
+	{
+		"min":1,
+		"max":10000
+	},
 	"separator":
 	{
 		"pos":"before",
-		"text":"\n<b>Extension thread pool</b>"
+		"text":"\n<b>Extension Thread Pool</b>"
 	}
 },
 
@@ -880,13 +1044,18 @@
 	"name":"extensionThreadPoolSettings.backupThreads",
 	"label":"Backup threads",
 	"tooltip":"Number of new threads to be added when a backup is called",
-	"category":"Thread pools",
+	"category":"Thread Pools",
 	"type":"NumericStepper",
 	"value":{$BasicValue=extensionThreadPoolSettings.backupThreads},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":1,
 		"maximum":10000
+	},
+	"attributes":
+	{
+		"min":1,
+		"max":10000
 	}
 },
 
@@ -895,13 +1064,18 @@
 	"name":"extensionThreadPoolSettings.maxBackups",
 	"label":"Maximum backups",
 	"tooltip":"Number of times backup threads can be called",
-	"category":"Thread pools",
+	"category":"Thread Pools",
 	"type":"NumericStepper",
 	"value":{$BasicValue=extensionThreadPoolSettings.maxBackups},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":1,
 		"maximum":10000
+	},
+	"attributes":
+	{
+		"min":1,
+		"max":10000
 	}
 },
 
@@ -910,13 +1084,18 @@
 	"name":"extensionThreadPoolSettings.queueSizeTriggeringBackup",
 	"label":"Queue size triggering a backup",
 	"tooltip":"Minimum size of the queue that will trigger a backup, unless the size goes down below this value within the backup triggering time",
-	"category":"Thread pools",
+	"category":"Thread Pools",
 	"type":"NumericStepper",
 	"value":{$BasicValue=extensionThreadPoolSettings.queueSizeTriggeringBackup},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":1,
 		"maximum":10000
+	},
+	"attributes":
+	{
+		"min":1,
+		"max":10000
 	}
 },
 
@@ -925,13 +1104,18 @@
 	"name":"extensionThreadPoolSettings.secondsTriggeringBackup",
 	"label":"Backup triggering time",
 	"tooltip":"The number of seconds after which the backup is called if the queue size keeps being greater than the minimum queue size",
-	"category":"Thread pools",
+	"category":"Thread Pools",
 	"type":"NumericStepper",
 	"value":{$BasicValue=extensionThreadPoolSettings.secondsTriggeringBackup},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":1,
 		"maximum":10000
+	},
+	"attributes":
+	{
+		"min":1,
+		"max":10000
 	}
 },
 
@@ -940,13 +1124,18 @@
 	"name":"extensionThreadPoolSettings.backupThreadsExpiry",
 	"label":"Backup threads expiration",
 	"tooltip":"The number of seconds after which the backup threads are removed, provided they are not needed anymore",
-	"category":"Thread pools",
+	"category":"Thread Pools",
 	"type":"NumericStepper",
 	"value":{$BasicValue=extensionThreadPoolSettings.backupThreadsExpiry},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":1,
 		"maximum":10000
+	},
+	"attributes":
+	{
+		"min":1,
+		"max":10000
 	}
 },
 
@@ -955,13 +1144,18 @@
 	"name":"extensionThreadPoolSettings.queueSizeTriggeringBackupExpiry",
 	"label":"Queue size preventing backup expiration",
 	"tooltip":"The minimum amount of messages in the queue that WILL NOT allow the backup threads to be removed (backup won't expire if the queue size is greater than this value)",
-	"category":"Thread pools",
+	"category":"Thread Pools",
 	"type":"NumericStepper",
 	"value":{$BasicValue=extensionThreadPoolSettings.queueSizeTriggeringBackupExpiry},
-	"componentParams":
+	"componentParams": // DEPRECATED
 	{
 		"minimum":1,
 		"maximum":10000
+	},
+	"attributes":
+	{
+		"min":1,
+		"max":10000
 	}
 },
 
@@ -970,7 +1164,7 @@
 	"name":"extensionThreadPoolSettings.logActivity",
 	"label":"Log activity",
 	"tooltip":"Write basic informations about new threads being added or removed in the log",
-	"category":"Thread pools",
+	"category":"Thread Pools",
 	"type":"CheckBox",
 	"value":{$BasicValue=extensionThreadPoolSettings.logActivity}
 },
@@ -986,6 +1180,26 @@
 },
 
 //-------------------------------------------
+// GEOLOCATION DB
+//-------------------------------------------
+
+// UPDATE DATE
+{
+	"name":"adminHelper.geoDbReleaseDate",
+	"label":"Installed database release date",
+	"tooltip":"Release date of the currently installed version of MaxMind's GeoLite2 Country database",
+	"category":"Geolocation DB",
+	"type":"TextInput",
+	"value":"{$BasicValue=adminHelper.geoDbReleaseDate}",
+	"edit":false,
+	"separator":
+	{
+		"pos":"before",
+		"text":"In SmartFoxServer, the <strong>automatic geolocation</strong> of every client and the <strong>demographic view</strong> in the AdminTool's Analytics module are based on <a href=\"http://dev.maxmind.com/geoip/geoip2/geolite2/\" target=\"_blank\">MaxMind's GeoLite2 Country database</a>. An updated version of the database is made available by MaxMind weekly, every Tuesday."
+	}
+},
+
+//-------------------------------------------
 // JVM SETTINGS
 //-------------------------------------------
 
@@ -994,7 +1208,7 @@
 	"name":"adminHelper.vmOptions",
 	"label":"JVM options",
 	"tooltip":"A list of additional settings to fine tune the Java Virtual Machine when running the SmartFoxServer process \n\n<b>IMPORTANT</b>\nThe following options are mandatory; if missing, SmartFoxServer execution could be negatively affected:\n<i>-Dfile.encoding=UTF-8</i>",
-	"category":"JVM settings",
+	"category":"JVM Settings",
 	"type":"DataGrid",
 	"defaultListItem":
 	[
@@ -1014,8 +1228,8 @@
 {
 	"name":"adminHelper.vmClasspath",
 	"label":"JVM classpath",
-	"tooltip":"A list of search paths for classes and resources used by SmartFoxServer and its custom Extensions \n\n<b>IMPORTANT</b>\nThe following paths are mandatory; if missing, you won't be able to run SmartFoxServer:\n<i>./\nlib/*\nlib/jetty/lib/*\nextensions/__lib__/*</i>",
-	"category":"JVM settings",
+	"tooltip":"A list of search paths for classes and resources used by SmartFoxServer and its custom Extensions \n\n<b>IMPORTANT</b>\nThe following paths are mandatory; if missing, you won't be able to run SmartFoxServer:\n<i>./\nlib/*\nlib/apache-tomcat/bin/*\nextensions/__lib__/*</i>",
+	"category":"JVM Settings",
 	"type":"DataGrid",
 	"defaultListItem":
 	[
