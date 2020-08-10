@@ -25,9 +25,12 @@ module Rubyfox
       end
 
       desc "configure TARGET_DIR TEMPLATE_DIR", "Configure SmartFox Server in TARGET_DIR via TEMPLATE_DIR"
+
       def configure(target_dir, template_dir)
         template_dir = File.expand_path(template_dir, Dir.pwd)
         target_dir = File.expand_path(target_dir, Dir.pwd)
+
+        verify_version(template_dir)
 
         Dir["#{template_dir}/**/*"].each do |file|
           if File.file?(file)
@@ -40,10 +43,14 @@ module Rubyfox
             end
           end
         end
+      rescue WrongVersionError => e
+        STDERR.puts e.message
       end
+
       map "config" => :configure
 
       desc "start TARGET_DIR", "Start SmartFox Server in TARGET_DIR"
+
       def start(target_dir)
         inside(target_dir) do
           system "sh ./sfs2x.sh"
@@ -68,6 +75,31 @@ module Rubyfox
         types = MIME::Types.type_for(file)
         types.empty? || types.any? { |type| type.media_type == "text" }
       end
+
+      def verify_version(template_dir)
+        filename = "#{template_dir}/version"
+        if File.exist?(filename)
+          expected_version = File.read(filename)
+          version = Rubyfox::Server::VERSION
+
+          unless satisfied_version?(expected_version, version)
+            msg = query = <<~MSG.chomp
+              Configuration failed!
+
+              Your rubyfox-server version: #{version}
+              Needed version: ~>#{expected_version}
+            MSG
+            raise WrongVersionError.new(msg)
+          end
+        end
+      end
+
+      def satisfied_version?(expected_version, version)
+        requirement = Gem::Requirement.new("~> #{expected_version}")
+        requirement.satisfied_by?(Gem::Version.create(version))
+      end
+
+      class WrongVersionError < RuntimeError; end
     end
   end
 end
