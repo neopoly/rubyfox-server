@@ -1,9 +1,9 @@
-require 'thor'
-require 'mime/types'
+require "thor"
+require "mime/types"
 
-require 'rubyfox/server'
-require 'rubyfox/server/version'
-require 'rubyfox/server/environment'
+require "rubyfox/server"
+require "rubyfox/server/version"
+require "rubyfox/server/environment"
 
 module Rubyfox
   module Server
@@ -15,6 +15,7 @@ module Rubyfox
       end
 
       desc "install TARGET_DIR", "Install SmartFox Server into TARGET_DIR"
+
       def install(target_dir)
         if File.exist?(target_dir)
           abort "Directory #{target_dir} already exists!"
@@ -50,6 +51,7 @@ module Rubyfox
       end
 
       desc "version", "Display version of this command"
+
       def version
         puts Rubyfox::Server::VERSION
       end
