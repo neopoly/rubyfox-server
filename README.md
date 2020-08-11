@@ -19,6 +19,7 @@ See http://www.smartfoxserver.com
     smartfox configure /path/to/smartfox /path/to/template/dir
 
     smartfox start /path/to/smartfox
+    
 
 ## Help
 
@@ -34,6 +35,24 @@ See http://www.smartfoxserver.com
 The version of this gem is tied to the real version of SmartFox Server.
 
 Example: Gem version 2.3.0.x contains SmartFox Server version 2.3.0.
+
+## Version check
+
+To enable gem version verification, add a version file to your template folder.
+
+Example: `.../version`
+```
+2.16.0
+```
+
+If the version is not satisfied, the following output is printed:
+```
+Configuration failed!
+
+Your rubyfox-server version: 2.15.0.0
+Needed version: ~>2.16.0
+```
+
 
 ## Contributing
 
