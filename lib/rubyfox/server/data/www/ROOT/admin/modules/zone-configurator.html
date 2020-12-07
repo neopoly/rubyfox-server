@@ -42,7 +42,17 @@
 				<div id="znc-main" class="px-3 pt-3">
 					<div id="znc-tabNavigator">
 						<ul class="nav nav-tabs" id="tabs" role="tablist"></ul>
-						<div class="tab-content" id="tabPanels"></div>
+						<div class="tab-content" id="tabPanels">
+							<div class="tab-pane" id="tabpane-wordsFilter" role="tabpanel" aria-labelledby="tab-wordsFilter">
+								<!-- A form is created here automatically, containing the words filter settings -->
+								<hr/>
+								<div class="custom-tab-content">
+									<!-- Custom tab content used in Zone configuration only (when displaying Room configuration this tab pane never shows up) -->
+									<label class="config-form-separator-label mb-3 font-weight-bold">Words Files Editor</label>
+									<words-files-manager id="znc-wordsFilesManager" class="form-group row"></words-files-manager>
+								</div>
+							</div>
+						</div>
 					</div>
 
 					<div id="znc-buttons" class="sticky-bottom-controls py-3 bg-color-default">

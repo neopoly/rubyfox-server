@@ -155,12 +155,13 @@ view-stack.adjust-height-100 {
 	border: none !important;
 }
 
-.k-input, .k-textbox {
+.k-input, .k-textbox, .k-textarea {
 	color: #495057 !important;
 	text-indent: 0 !important;
 }
 
 .k-textbox:focus,
+.k-textarea:focus,
 .k-numerictextbox .k-state-focused,
 .k-numerictextbox .k-state-hover,
 .k-combobox .k-state-focused {
@@ -169,6 +170,7 @@ view-stack.adjust-height-100 {
 }
 
 .k-textbox:focus,
+.k-textarea:focus,
 .k-dropdown .k-state-focused,
 .k-numerictextbox .k-state-focused,
 .k-numerictextbox .k-state-hover,
