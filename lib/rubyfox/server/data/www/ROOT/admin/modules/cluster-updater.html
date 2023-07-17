@@ -1,0 +1,47 @@
+<cluster-updater-module class="module" id="cluster-updater-module">
+	<style>
+		#cup-progressBar {
+			width: 100%;
+		}
+	</style>
+
+	<view-stack id="cup-viewstack" class="flex-grow-1">
+		<div id="cup-loading" class="position-relative">
+			<div class="float-centered-loading">
+				Requesting data...
+				<div id="cup-progressBar"></div>
+			</div>
+		</div>
+		<div id="cup-error" class="position-relative">
+			<div class="float-centered-text w-50">
+				<div class="mb-3">The following error occurred while trying to connect to Overcast. Try again and, if the error persists, please report the issue to the SmartFoxServer team.</div>
+				<div class="mb-3"><strong id="cup-error1Msg"></strong></div>
+				<button id="cup-retryBt" type="button" class="k-button k-primary"><i class="fas fa-redo-alt mr-1"></i>Retry</button>
+			</div>
+		</div>
+		<div id="cup-none" class="position-relative">
+			<div class="float-centered-text w-50">This node is already running the latest SmartFoxServer version.</div>
+		</div>
+		<div id="cup-main" class="p-3">
+			<div class="row no-gutters">
+				<div class="col-md-6 light-box p-3">
+					<p class="h5">Installed server version: <strong id="cup-currentVer"></strong></p>
+					<p class="h5">Available server version: <strong id="cup-updateVer"></strong> <span id="cup-criticalUpd" class="badge badge-danger">CRITICAL</span></p>
+					<p class="h6" id="cup-includedVer"></p>
+					<hr>
+					<p class="text-muted"><strong>NOTE</strong>: the update will be installed immediately upon confirmation and a server restart will be triggered at then of the process, closing the current session as well.</p>
+					<hr>
+					<div class="my-3">
+						<button id="cup-updateBt" type="button" class="k-button k-primary mr-2"><i class="fas fa-download mr-1"></i>Update</button>
+						<button id="cup-refreshBt" type="button" class="k-button k-secondary">&nbsp;<i class="fas fa-redo-alt mr-1"></i>&nbsp;</button>
+					</div>
+					<p id="cup-error2Msg" class="text-danger"></p>
+				</div>
+				<div class="col-md-6 dark-box p-3">
+					<p class="h5">Release notes</p>
+					<div id="cup-releaseNotes"></div>
+				</div>
+			</div>
+		</div>
+	</view-stack>
+</cluster-updater-module>

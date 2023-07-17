@@ -91,8 +91,8 @@ create_db_entry() {
   db_new_file=${db_file}_new
   if [ -f "$db_file" ]; then
     awk '$2 != "'"$test_dir"'" {print $0}' $db_file > $db_new_file
-    rm "$db_file"
-    mv "$db_new_file" "$db_file"
+    cp "$db_new_file" "$db_file"
+    rm "$db_new_file" 2> /dev/null
   fi
   dir_escaped=`echo "$test_dir" | sed -e 's/ /\\\\ /g'`
   echo "JRE_VERSION	$dir_escaped	$ver_major	$ver_minor	$ver_micro	$ver_patch" >> $db_file
@@ -148,17 +148,17 @@ test_jvm() {
   if [ "$ver_major" = "" ]; then
     return;
   fi
-  if [ "$ver_major" -lt "1" ]; then
+  if [ "$ver_major" -lt "11" ]; then
     return;
-  elif [ "$ver_major" -eq "1" ]; then
-    if [ "$ver_minor" -lt "8" ]; then
-      return;
-    fi
   fi
 
   if [ "$ver_major" = "" ]; then
     return;
   fi
+  if [ "$ver_major" -gt "16" ]; then
+    return;
+  fi
+
   app_java_home=$test_dir
 }
 
@@ -280,8 +280,8 @@ if [ -f "$app_home/.install4j/pref_jre.cfg" ]; then
     read file_jvm_home < "$app_home/.install4j/pref_jre.cfg"
     test_jvm "$file_jvm_home"
     if [ -z "$app_java_home" ] && [ $tested_jvm = "false" ]; then
-if [ -f "$db_file" ]; then
-  rm "$db_file" 2> /dev/null
+if [ -w "$db_file" ]; then
+  /bin/sh -c ': > "$db_file"' 2> /dev/null
 fi
         test_jvm "$file_jvm_home"
     fi
@@ -291,8 +291,8 @@ fi
 if [ -z "$app_java_home" ]; then
   test_jvm "$app_home/jre" 
   if [ -z "$app_java_home" ] && [ $tested_jvm = "false" ]; then
-if [ -f "$db_file" ]; then
-  rm "$db_file" 2> /dev/null
+if [ -w "$db_file" ]; then
+  /bin/sh -c ': > "$db_file"' 2> /dev/null
 fi
     test_jvm "$app_home/jre"
   fi
@@ -334,7 +334,7 @@ fi
 
 
 if [ -z "$app_java_home" ]; then
-  common_jvm_locations="/opt/i4j_jres/* /usr/local/i4j_jres/* $HOME/.i4j_jres/* /usr/bin/java* /usr/bin/jdk* /usr/bin/jre* /usr/bin/j2*re* /usr/bin/j2sdk* /usr/java* /usr/java*/jre /usr/jdk* /usr/jre* /usr/j2*re* /usr/j2sdk* /usr/java/j2*re* /usr/java/j2sdk* /opt/java* /usr/java/jdk* /usr/java/jre* /usr/lib/java/jre /usr/local/java* /usr/local/jdk* /usr/local/jre* /usr/local/j2*re* /usr/local/j2sdk* /usr/jdk/java* /usr/jdk/jdk* /usr/jdk/jre* /usr/jdk/j2*re* /usr/jdk/j2sdk* /usr/lib/jvm/* /usr/lib/java* /usr/lib/jdk* /usr/lib/jre* /usr/lib/j2*re* /usr/lib/j2sdk* /System/Library/Frameworks/JavaVM.framework/Versions/1.?/Home /Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin/Contents/Home /Library/Java/JavaVirtualMachines/*.jdk/Contents/Home/jre /Library/Java/JavaVirtualMachines/*.jre/Contents/Home /Library/Java/JavaVirtualMachines/*.jdk/Contents/Home"
+  common_jvm_locations=" /usr/bin/java* /usr/bin/jdk* /usr/bin/jre* /usr/bin/j2*re* /usr/bin/j2sdk* /usr/java* /usr/java*/jre /usr/jdk* /usr/jre* /usr/j2*re* /usr/j2sdk* /usr/java/j2*re* /usr/java/j2sdk* /opt/java* /usr/java/jdk* /usr/java/jre* /usr/lib/java/jre /usr/local/java* /usr/local/jdk* /usr/local/jre* /usr/local/j2*re* /usr/local/j2sdk* /usr/jdk/java* /usr/jdk/jdk* /usr/jdk/jre* /usr/jdk/j2*re* /usr/jdk/j2sdk* /usr/lib/jvm/* /usr/lib/java* /usr/lib/jdk* /usr/lib/jre* /usr/lib/j2*re* /usr/lib/j2sdk* /System/Library/Frameworks/JavaVM.framework/Versions/1.?/Home /Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin/Contents/Home /Library/Java/JavaVirtualMachines/*.jdk/Contents/Home/jre /Library/Java/JavaVirtualMachines/*.jre/Contents/Home /Library/Java/JavaVirtualMachines/*.jdk/Contents/Home"
   for current_location in $common_jvm_locations
   do
 if [ -z "$app_java_home" ]; then
@@ -361,8 +361,8 @@ if [ -f "$app_home/.install4j/inst_jre.cfg" ]; then
     read file_jvm_home < "$app_home/.install4j/inst_jre.cfg"
     test_jvm "$file_jvm_home"
     if [ -z "$app_java_home" ] && [ $tested_jvm = "false" ]; then
-if [ -f "$db_file" ]; then
-  rm "$db_file" 2> /dev/null
+if [ -w "$db_file" ]; then
+  /bin/sh -c ': > "$db_file"' 2> /dev/null
 fi
         test_jvm "$file_jvm_home"
     fi
@@ -398,40 +398,36 @@ cd "$app_home"
 app_home=`pwd`
 bundled_jre_home="$app_home/jre"
 
-if [ "__i4j_lang_restart" = "$1" ]; then
-  cd "$old_pwd"
-else
 cd "$prg_dir"/.
 
+cache_home="$XDG_CACHE_HOME"
+if [ "W$cache_home" = "W" ]; then
+  cache_home="$HOME/.cache"
 fi
-if [ "__i4j_extract_and_exit" = "$1" ]; then
-  cd "$old_pwd"
-  exit 0
-fi
-db_home=$HOME
-db_file_suffix=
+db_home="$cache_home/install4j"
+mkdir -p "$db_home" > /dev/null 2>&1
+db_file="$db_home/jre_version"
 if [ ! -w "$db_home" ]; then
   db_home=/tmp
-  db_file_suffix=_$USER
+  db_file="$db_home/install4j_jre_version_$USER"
 fi
-db_file=$db_home/.install4j$db_file_suffix
 if [ -d "$db_file" ] || ([ -f "$db_file" ] && [ ! -r "$db_file" ]) || ([ -f "$db_file" ] && [ ! -w "$db_file" ]); then
-  db_file=$db_home/.install4j_jre$db_file_suffix
+  db_file="${db_file}.2"
 fi
-if [ ! "__i4j_lang_restart" = "$1" ]; then
+if [ ! "__i4j_lang_restart" = "$1" ] && [ ! "__i4j_auth_restart" = "$1" ]; then
 run_unpack200 "$bundled_jre_home"
 run_unpack200 "$bundled_jre_home/jre"
 fi
 search_jre
 if [ -z "$app_java_home" ]; then
-if [ -f "$db_file" ]; then
-  rm "$db_file" 2> /dev/null
+if [ -w "$db_file" ]; then
+  /bin/sh -c ': > "$db_file"' 2> /dev/null
 fi
   search_jre
 fi
 if [ -z "$app_java_home" ]; then
   echo "No suitable Java Virtual Machine could be found on your system."
-  echo The version of the JVM must be at least 1.8.
+  echo The version of the JVM must be at least 11 and at most 16.
   echo Please define INSTALL4J_JAVA_HOME to point to a suitable JVM.
   exit 83
 fi

@@ -411,7 +411,7 @@ input.k-invalid,
 	z-index: 30;
 	top: 0;
 	right: 0;
-	padding: 1rem;
+	margin: 1rem;
 }
 
 /* Title and subtitle */
@@ -1327,6 +1327,47 @@ config-label {
 	opacity: .5;
 }
 
+.special-box {
+	background-color: #FFF;
+	border-radius: .5rem;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	justify-content: center;
+}
+
+.special-box.gray {
+	background-color: var(--background-color-default);
+}
+
+.special-box-label {
+	font-size: 1.75rem;
+	text-align: center;
+}
+
+.special-box-value {
+	font-weight: bold;
+	font-size: 2rem;
+	text-align: center;
+	align-items: center;
+	line-height: 1em;
+}
+
+.special-box-container {
+	flex-grow: 1;
+	font-size: 2rem;
+	text-align: center;
+	align-items: center;
+	line-height: 1em;
+}
+
+.special-box-container .value-label {
+	font-size: .725rem;
+	font-weight: normal;
+	opacity: .5;
+	align-items: center;
+}
+
 .transparent {
 	background: none;
 }
@@ -1400,7 +1441,8 @@ table.traffic-details .table-item {
 }
 
 .console,
-.k-grid.console-rows .k-grid-content tr td {
+.k-grid.console-rows .k-grid-content tr td,
+.rel-notes {
 	font-family: 'Free Mono', monospace;
 	white-space: pre-wrap;
 }

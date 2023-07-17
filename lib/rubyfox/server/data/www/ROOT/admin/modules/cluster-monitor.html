@@ -1,0 +1,185 @@
+<cluster-monitor-module class="module" id="cluster-monitor-module">
+	<style>
+		.nodes-container {
+			max-height: 500px;
+			overflow-y: auto;
+		}
+
+		.name-cell {
+			line-height: 1em;
+    		padding: .5em 0;
+		}
+
+		.name-admin-link {
+			color: #fd7d24 !important;
+		}
+
+		.name-admin-link:hover {
+			color: #d35802 !important;
+		}
+
+		#clm-nodesList .k-grouping-row {
+			/* background-color: #F4F4F4; */
+		}
+
+		#clm-nodesList .k-grouping-row td {
+			border-top: 1px solid #DDDDE4;
+			font-style: italic;
+			color: #6c757d;
+		}
+	</style>
+
+	<div id="clm-tabNavigator" class="p-3 flex-grow-1">
+		<ul class="nav nav-tabs" id="tabs">
+			<li class="nav-item">
+				<a class="nav-link active" id="clm-clusterStatus-tab" data-toggle="tab" href="#clm-clusterStatus" role="tab" aria-controls="clm-clusterStatus" aria-selected="true">Cluster Status</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" id="clm-orchestrationLog-tab" data-toggle="tab" href="#clm-orchestrationLog" role="tab" aria-controls="clm-orchestrationLog" aria-selected="false">Orchestration Log</a>
+			</li>
+		</ul>
+		<div class="tab-content" id="tabPanels">
+			<div class="tab-pane show active" id="clm-clusterStatus" role="tabpanel" aria-labelledby="clm-clusterStatus-tab">
+				<div class="d-flex mb-2">
+					<small id="clm-lobbyState">
+						<span class="active"><i class="fas fa-circle text-success"></i> Lobby is active</span>
+						<span class="inactive"><i class="fas fa-circle text-secondary"></i> Lobby is inactive</span>
+						<i class="fas fa-question-circle text-muted help" title="An active lobby manages all game nodes in the cluster; an inactive one doesn't participate in the cluster"></i>
+					</small>
+				</div>
+				<div class="row">
+					<div class="col-sm-6 col-lg-3 mb-3">
+						<div class="special-box gray">
+							<span class="special-box-label my-1">Uptime</span>
+							<div class="d-flex justify-content-around font-weight-bold special-box-container">
+								<div><div id="clm-uptimeDays">---</div><div class="value-label">days</div></div>
+								<div>:<div class="value-label">&nbsp;</div></div>
+								<div><div id="clm-uptimeHours">--</div><div class="value-label">hours</div></div>
+								<div>:<div class="value-label">&nbsp;</div></div>
+								<div><div id="clm-uptimeMinutes">--</div><div class="value-label">minutes</div></div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-lg-3 mb-3">
+						<div class="special-box gray">
+							<span class="special-box-label my-1">Total Nodes</span>
+							<div class="d-flex justify-content-around font-weight-bold special-box-container">
+								<div><div id="clm-totalActiveNodes">---</div><div class="value-label">active</div></div>
+								<div><div id="clm-totalInactiveNodes">--</div><div class="value-label">inactive</div></div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-lg-3 mb-3">
+						<div class="special-box gray">
+							<span class="special-box-label my-1">Total CCU</span>
+							<div class="d-flex justify-content-around font-weight-bold special-box-container">
+								<div><div id="clm-totalCcuLobby">---</div><div class="value-label">lobby</div></div>
+								<div><div id="clm-totalCcuNodes">--</div><div class="value-label">nodes</div></div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-lg-3 mb-3">
+						<div class="special-box gray">
+							<span class="special-box-label my-1">Total Rooms</span>
+							<div class="d-flex justify-content-around font-weight-bold special-box-container">
+								<div><div id="clm-totalRooms">---</div><div class="value-label">on nodes</div></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="nodes-container">
+					<div id="clm-nodesList"></div>
+				</div>
+				<div class="row no-gutters">
+					<div class="col-md-7 text-md-right pt-3">
+						<button id="clm-deactivateBt" type="button" class="btn btn-secondary btn-sm mb-1" title="Deactivate nodes" disabled><i class="fas fa-trash"></i> Deactivate <span id="clm-deactivateNodesNum">nodes</span></button>
+						<button id="clm-scaleUpBt" type="button" class="btn btn-secondary btn-sm mb-1" title="Scale-up"><i class="fas fa-angle-double-up"></i> Scale-up</button>
+						<button id="clm-refreshBt" type="button" class="btn btn-secondary btn-sm mb-1" title="Refresh now"><i class="fas fa-sync-alt"></i></button>
+					</div>
+					<div class="col-md-5 order-md-first pt-3">
+						<div id="clm-mainRangeContainer">
+							<label class="text-muted pr-1">Range:</label>
+							<select id="clm-mainRangeDD" class="dropdown-sm dropdown-secondary"></select>
+						</div>
+					</div>
+				</div>
+				<div id="clm-nodeMiniChartsContainer"></div>
+			</div>
+
+			<div class="tab-pane" id="clm-orchestrationLog" role="tabpanel" aria-labelledby="clm-orchestrationLog-tab">
+				<p class="text-muted"><em>Log messages are not displayed in realtime, but with a fixed refresh rate of 3 seconds. The list contains a maximum of <span id="clm_maxLogMsgs">xxx</span> messages; older messages are discarded as new ones are added.</em></p>
+				<div id="clm-logGrid"></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal" id="clm-chartModal" tabindex="-1" role="dialog" aria-labelledby="clm-chartModalTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<div>
+						<h5 class="modal-title text-primary" id="clm-chartModalTitle"></h5>
+						<div class="d-flex align-items-baseline">
+							<label class="text-muted pr-1">Node:</label>
+							<strong id="clm-chartNodeAlias" class="pr-1"></strong>
+							<small id="clm-chartNodeName" class="pr-1"></small>
+						</div>
+						<div>
+							<label class="text-muted pr-1">Range:</label>
+							<select id="clm-chartRangeDD" class="dropdown-sm dropdown-secondary"></select>
+						</div>
+					</div>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div id="clm-nodeDetailChartContainer"></div>
+				</div>
+				<!--
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+				-->
+			</div>
+		</div>
+	</div>
+
+	<div class="modal" id="clm-scaleUpModal" tabindex="-1" role="dialog" aria-labelledby="clm-scaleUpModalTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title text-primary" id="clm-scaleUpModalTitle">Trigger Cluster Scale-up</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body in-flow-invalid-msg">
+					<fieldset id="clm-scaleUpForm">
+						<div class="form-row">
+							<div class="form-group">
+								<div class="col-form-label form-label-container">
+									<label for="clm-numNodesNS" class="form-label">Number of nodes</label>
+								</div>
+								<div class="inner-widget">
+									<input id="clm-numNodesNS" class="form-control" name="numNodes" value="1" required data-required-msg="Required">
+									<span class="k-invalid-msg" data-for="numNodes"></span>
+								</div>
+							</div>
+						</div>
+					</fieldset>
+				</div>
+				<div class="modal-footer flex-column">
+					<div class="d-flex w-100">
+						<div class="flex-grow-1 text-left">
+							<button id="clm-scaleUpModalBt" type="button" class="k-button k-primary"><i class="fas fa-angle-double-up mr-1"></i>Scale-up</button>
+						</div>
+						<div class="flex-grow-1 text-right">
+							<button type="button" class="k-button k-secondary" data-dismiss="modal">Cancel</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</cluster-monitor-module>

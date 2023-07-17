@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><serverSettings>
   <socketAddresses>
     <socket address="0.0.0.0" port="9933" type="TCP"/>
-    <socket address="127.0.0.1" port="9933" type="UDP"/>
+    <socket address="0.0.0.0" port="9933" type="UDP"/>
   </socketAddresses>
   <ipFilter>
     <addressBlackList>

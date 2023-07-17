@@ -51,7 +51,7 @@
     <meta http-equiv="expires" content="0"/><!-- 0 is an invalid value and should be treated as 'now' -->
     <meta http-equiv="content-language" content="en"/>
     <meta name="author" content="Cedrik LIME"/>
-    <meta name="copyright" content="copyright 2005-2019 the Apache Software Foundation"/>
+    <meta name="copyright" content="copyright 2005-2021 the Apache Software Foundation"/>
     <meta name="robots" content="noindex,nofollow,noarchive"/>
     <title>Sessions Administration: details for <%= currentSessionId %></title>
 </head>
@@ -119,7 +119,7 @@
 
    <table style="text-align: left;" border="1" cellpadding="2" cellspacing="2">
    <% int nAttributes = 0;
-      Enumeration attributeNamesEnumeration = currentHttpSession.getAttributeNames();
+      Enumeration<String> attributeNamesEnumeration = currentHttpSession.getAttributeNames();
       while (attributeNamesEnumeration.hasMoreElements()) {
           attributeNamesEnumeration.nextElement();
           ++nAttributes;
@@ -143,7 +143,7 @@
        <tbody>
    <% attributeNamesEnumeration = currentHttpSession.getAttributeNames();
       while (attributeNamesEnumeration.hasMoreElements()) {
-          String attributeName = (String) attributeNamesEnumeration.nextElement();
+          String attributeName = attributeNamesEnumeration.nextElement();
    %>
            <tr>
                <td align="center">

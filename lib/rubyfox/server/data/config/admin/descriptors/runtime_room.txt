@@ -249,6 +249,17 @@
 	"edit":true
 },
 
+// SUPPRESS USER LIST
+{
+	"name":"suppressUserList",
+	"label":"Suppress User List",
+	"tooltip":"If enabled the Room will neither send a list of Users when joining it, nor trigger update events when other Users enter or leave it",
+	"category":"Runtime Room Settings",
+	"type":"CheckBox",
+	"value":{$BasicValue=room.suppressUserList},
+	"edit":false
+},
+
 //-------------------------------------------
 // PERMISSIONS AND EVENTS
 //-------------------------------------------

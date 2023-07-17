@@ -53,6 +53,15 @@
 	"value":{$BasicValue=zoneSettings.geoLocationEnabled}
 },
 
+// TOGGLE KEEPALIVE
+{
+	"name":"lagMonitorKeepAlive",
+	"label":"Enable Keepalive",
+	"tooltip":"Allows client side LagMonitor requests to act as keepalive pings, resetting the idle timer. When active the client will essentially not be disconnected for being idle",
+	"type":"CheckBox",
+	"value":{$BasicValue=zoneSettings.lagMonitorKeepAlive}
+},
+
 // MAX FAILED LOGIN ATTEMPTS
 {
 	"name":"maxFailedLogins",

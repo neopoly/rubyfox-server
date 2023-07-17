@@ -1,8 +1,8 @@
 <!--
-	SmartFoxServer 2X v 2.14.x
+	SmartFoxServer 2X v 2.19.x
 	<<< Core Configuration >>>
 	
-	(c) gotoAndPlay  2009-2019
+	(c) gotoAndPlay  2009-2023
 	- www.smartfoxserver.com -
 -->
 
@@ -34,8 +34,8 @@
 	<socketReaderThreadPoolSize>1</socketReaderThreadPoolSize>
 	<socketWriterThreadPoolSize>3</socketWriterThreadPoolSize>	
 	
-	<!-- Enable disable Nagle algorithm on sockets, true == disable -->
-	<tcpNoDelay>true</tcpNoDelay>
+	<!-- Enable or disable Nagle algorithm on sockets, true == disable -->
+	<tcpNoDelay>false</tcpNoDelay>
 
 	<!-- BlueBox Settings -->
 	<bbMaxLogFiles>10</bbMaxLogFiles>

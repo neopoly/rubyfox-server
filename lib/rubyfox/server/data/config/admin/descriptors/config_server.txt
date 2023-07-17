@@ -67,7 +67,8 @@
 		}
 	],
 	"listValues":{$List=socketAddresses, instance=serverSettings, fields=address;port;type},
-	"clazz":"ServerSettings$SocketAddress"
+	"clazz":"ServerSettings$SocketAddress",
+	"denyEmpty":true
 },
 
 // SESSION MAX IDLE TIME
@@ -334,7 +335,7 @@
 {
 	"name":"webServer.enableHttp",
 	"label":"Enable HTTP",
-	"tooltip":"Enable/disable the HTTP module in the embedded web server",
+	"tooltip":"Enable/disable the HTTP connector in the embedded web server",
 	"category":"Web Server",
 	"type":"CheckBox",
 	"value":{$BasicValue=webServer.enableHttp}
@@ -344,7 +345,7 @@
 {
 	"name":"webServer.httpPort",
 	"label":"HTTP/WS port",
-	"tooltip":"TCP port used by the embedded web server for HTTP and WS communication\n\n<b>NOTE</b>\nThe entered value is ignored if HTTP module is disabled",
+	"tooltip":"TCP port used by the embedded web server for HTTP and WS communication\n\n<b>NOTE</b>\nThe entered value is ignored if HTTP connector is disabled",
 	"category":"Web Server",
 	"type":"NumericStepper",
 	"value":{$BasicValue=webServer.httpPort},
@@ -360,11 +361,41 @@
 	}
 },
 
+// MAX HTTP THREADS
+{
+	"name":"webServer.maxHttpThreads",
+	"label":"Maximum HTTP threads",
+	"tooltip":"The maximum number of request processing threads to be created by the web server HTTP connector, which therefore determines the maximum number of simultaneous requests that can be handled",
+	"category":"Web Server",
+	"type":"NumericStepper",
+	"value":{$BasicValue=webServer.maxHttpThreads},
+	"attributes":
+	{
+		"min":1,
+		"max":2147483648
+	}
+},
+
+// MAX HTTP CONNECTIONS
+{
+	"name":"webServer.maxHttpConnections",
+	"label":"Maximum HTTP connections",
+	"tooltip":"The maximum number of HTTP connections that the web server will accept and process at any given time",
+	"category":"Web Server",
+	"type":"NumericStepper",
+	"value":{$BasicValue=webServer.maxHttpConnections},
+	"attributes":
+	{
+		"min":1,
+		"max":2147483648
+	}
+},
+
 // ENABLE HTTPS MODULE
 {
 	"name":"webServer.enableHttps",
 	"label":"Enable HTTPS",
-	"tooltip":"Enable/disable the HTTPS module in the embedded web server",
+	"tooltip":"Enable/disable the HTTPS connector in the embedded web server",
 	"category":"Web Server",
 	"type":"CheckBox",
 	"value":{$BasicValue=webServer.enableHttps}
@@ -374,7 +405,7 @@
 {
 	"name":"webServer.httpsPort",
 	"label":"HTTPS/WSS port",
-	"tooltip":"TCP port used by the embedded web server for HTTPS and WSS communication\n\n<b>NOTE</b>\nThe entered value is ignored if HTTPS module is disabled",
+	"tooltip":"TCP port used by the embedded web server for HTTPS and WSS communication\n\n<b>NOTE</b>\nThe entered value is ignored if HTTPS connector is disabled",
 	"category":"Web Server",
 	"type":"NumericStepper",
 	"value":{$BasicValue=webServer.httpsPort},
@@ -390,11 +421,41 @@
 	}
 },
 
+// MAX HTTPS THREADS
+{
+	"name":"webServer.maxHttpsThreads",
+	"label":"Maximum HTTPS threads",
+	"tooltip":"The maximum number of request processing threads to be created by the web server HTTPS connector, which therefore determines the maximum number of simultaneous requests that can be handled",
+	"category":"Web Server",
+	"type":"NumericStepper",
+	"value":{$BasicValue=webServer.maxHttpsThreads},
+	"attributes":
+	{
+		"min":1,
+		"max":2147483648
+	}
+},
+
+// MAX HTTPS CONNECTIONS
+{
+	"name":"webServer.maxHttpsConnections",
+	"label":"Maximum HTTPS connections",
+	"tooltip":"The maximum number of HTTPS connections that the web server will accept and process at any given time",
+	"category":"Web Server",
+	"type":"NumericStepper",
+	"value":{$BasicValue=webServer.maxHttpsConnections},
+	"attributes":
+	{
+		"min":1,
+		"max":2147483648
+	}
+},
+
 // ENABLE WS/WSS COMMUNICATION
 {
 	"name":"webServer.isWSActive",
 	"label":"Enable WS/WSS",
-	"tooltip":"Enable/disable the WebSocket communication (both WS and WSS) through the HTTP/S modules; requires one of the two modules (or both) to be active",
+	"tooltip":"Enable/disable the WebSocket communication (both WS and WSS) through the HTTP/S modules; requires one of the two connectors (or both) to be active",
 	"category":"Web Server",
 	"type":"CheckBox",
 	"value":{$BasicValue=webServer.isWSActive}
@@ -473,7 +534,7 @@
 {
 	"name":"webServer.blueBoxPollingTimeout",
 	"label":"BlueBox polling timeout",
-	"tooltip":"The amount of seconds after which a client connected through the BlueBox is considered disconnected if he doesn't send a polling request",
+	"tooltip":"The amount of seconds after which a client connected through the BlueBox is considered disconnected if it doesn't send a polling request",
 	"category":"Web Server",
 	"type":"NumericStepper",
 	"value":{$BasicValue=webServer.blueBoxPollingTimeout},
@@ -490,7 +551,7 @@
 	"separator":
 	{
 		"pos":"before",
-		"text":"\n<b>BlueBox Settings</b>"
+		"text":"<hr><b>BlueBox Settings</b>"
 	}
 },
 
@@ -612,6 +673,16 @@
 	}
 },
 
+// USE SSL
+{
+	"name":"mailer.useSSL",
+	"label":"Use SSL",
+	"tooltip":"Enable/disable SSL. We recommend keeping it turned on!",
+	"category":"Mailer",
+	"type":"CheckBox",
+	"value":{$BasicValue=mailer.useSSL}
+},
+
 //-------------------------------------------
 // REMOTE ADMIN
 //-------------------------------------------
@@ -620,8 +691,9 @@
 {
 	"name":"remoteAdmin.administrators",
 	"label":"Administrators",
-	"tooltip":"The access credentials and permissions of SmartFoxServer administrators; removing all the administrators will prevent the AdminTool to reconnect to the server instance after a disconnection",
+	"tooltip":"The access credentials and permissions of SmartFoxServer administrators; removing all the administrators is not permitted as this would prevent further interacting with the server after the configuration submission",
 	"category":"Remote Admin",
+	"immediate":true,
 	"type":"DataGrid",
 	"defaultListItem":
 	[
@@ -671,29 +743,26 @@
 	],
 	"listValues":{$List=administrators, instance=remoteAdmin, fields=login;password;allowHalt;disabledModulesString},
 	"clazz":"AdminUser",
-	"separator":
-	{
-		"pos":"before",
-		"text":"<b>IMPORTANT</b>: all settings below, except 'Use encryption', are <b>applied immediately</b> on submission, without a server restart being required"
-	}
+	"denyEmpty":true
 },
 
 // ALLOWED REMOTE ADDRESSES
 {
 	"name":"remoteAdmin.allowedRemoteAddresses",
 	"label":"Allowed client IP addresses",
-	"tooltip":"List of client IP address which are allowed to access the SmartFoxServer's administration; leave the list empty to skip this check on administrator login",
+	"tooltip":"List of client IP addresses or IP ranges which are allowed to access the SmartFoxServer's administration; leave the list empty to skip this check on administrator login",
 	"category":"Remote Admin",
+	"immediate":true,
 	"type":"DataGrid",
 	"defaultListItem":
 	[
 		{
 			"name":"ipAddress",
-			"label":"IP address",
-			"tooltip":"Client IP address",
+			"label":"IP address or range",
+			"tooltip":"Client IP address or range",
 			"type":"TextInput",
 			"value":"",
-			"validator":"ip",
+			"validator":"ipRange",
 			"componentParams": // DEPRECATED (implicit in validator)
 			{
 				"restrict":"0-9."
@@ -706,9 +775,10 @@
 // ADMIN TCP PORT
 {
 	"name":"remoteAdmin.adminTcpPort",
-	"label":"Administration TCP port",
-	"tooltip":"TCP port number used for administration; set it to -1 to skip this check on administrator login",
+	"label":"Administration port",
+	"tooltip":"Port number used for administration; set it to -1 to skip this check on administrator login",
 	"category":"Remote Admin",
+	"immediate":true,
 	"type":"NumericStepper",
 	"value":{$BasicValue=remoteAdmin.adminTcpPort},
 	"componentParams": // DEPRECATED

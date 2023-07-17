@@ -248,16 +248,18 @@
 								<hr/>
 								<div class="custom-tab-content">
 									<label class="config-form-separator-label mb-3 font-weight-bold">Kick User</label>
-									<div>Force user disconnection by kicking him/her; a message can be sent to the user to describe the reason of the action.</div>
+									<div>Force user disconnection by kicking them; a message can be sent to the user to describe the reason of the action.</div>
 									<div class="row no-gutters my-2">
 										<div class="col-lg pr-lg-2">
 											<input id="znm-kickMsgIn" class="k-textbox form-control w-100 my-1" placeholder="Message"/>
 										</div>
 										<div class="col-lg-auto col-xl-6">
-											<div class="d-inline-block" class="my-1">
+											<div class="d-inline-block my-1">
 												<input id="znm-kickDelayNS" class="form-control" style="max-width: 130px"/>
 											</div>
-											<button id="znm-kickBt" type="button" class="k-button k-primary my-1 ml-1"><i class="fas fa-bolt mr-1"></i>Kick</button>
+										</div>
+										<div class="col-12 my-1">
+											<button id="znm-kickBt" type="button" class="k-button k-primary"><i class="fas fa-bolt mr-1"></i>Kick</button>
 										</div>
 									</div>
 									<div class="text-muted">Kicked users can reconnect immediately.</div>
@@ -265,18 +267,21 @@
 								<hr/>
 								<div class="custom-tab-content">
 									<label class="config-form-separator-label mb-3 font-weight-bold">Ban User</label>
-									<div>Force user disconnection by banning his/her username (default) or IP address; a message can be sent to the user to describe the reason of the action.</div>
+									<div>Force user disconnection by banning their username (default) or IP address; a message can be sent to the user to explain the action taken and a reason can be saved for future reference (see Ban Manager module).</div>
 									<div class="row no-gutters my-2">
-										<div class="col-lg pr-lg-2">
+										<div class="col-lg-6 col-xl pr-lg-2">
 											<input id="znm-banMsgIn" class="k-textbox form-control w-100 my-1" placeholder="Message"/>
 										</div>
-										<div class="d-inline-flex col-lg-auto pr-xl-2">
+										<div class="col-lg-6 col-xl pr-xl-2">
+											<input id="znm-banRsnIn" class="k-textbox form-control w-100 my-1" placeholder="Reason"/>
+										</div>
+										<div class="d-inline-flex col-sm-auto pr-sm-2">
 											<input id="znm-banModeDD" class="form-control my-1" style="width: 90px"/>
 											<div class="d-inline-block my-1 ml-2">
 												<input id="znm-banDelayNS" class="form-control" style="max-width: 130px"/>
 											</div>
 										</div>
-										<div class="d-inline-flex col-xl-auto">
+										<div class="d-inline-flex col-sm-auto">
 											<div class="d-inline-block my-1">
 												<input id="znm-banDurationNS" class="form-control" style="max-width: 130px"/>
 											</div>
@@ -285,7 +290,9 @@
 										        <option value="hours">hours</option>
 										        <option value="days" selected>days</option>
 										    </select>
-											<button id="znm-banBt" type="button" class="k-button k-primary my-1"><i class="fas fa-ban mr-1"></i>Ban</button>
+										</div>
+										<div class="col-12 my-1">
+											<button id="znm-banBt" type="button" class="k-button k-primary"><i class="fas fa-ban mr-1"></i>Ban</button>
 										</div>
 									</div>
 									<div class="text-muted">Banned users can't reconnect until the ban duration time has passed (default: 1 day).</div>

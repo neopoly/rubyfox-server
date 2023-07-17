@@ -496,7 +496,7 @@
 {
 	"name":"buddyOnline",
 	"label":"User is online as buddy",
-	"tooltip":"The user can decide to go online or offline in the buddy system at any time during his session",
+	"tooltip":"The user can decide to go online or offline in the buddy system at any time during their session",
 	"category":"Buddy Properties",
 	"type":"CheckBox",
 	"value":{$BasicValue=buddyProps.online},
@@ -591,14 +591,14 @@
 		{
 			"name":"blocked",
 			"label":"Blocked",
-			"tooltip":"If the buddy is blocked the user won't receive any messages from him/her",
+			"tooltip":"If the buddy is blocked the user won't receive any messages from them",
 			"type":"CheckBox",
 			"value":false
 		},
 		{
 			"name":"temp",
 			"label":"Temp",
-			"tooltip":"A temporary buddy will be lost as soon as the user disconnects, unless he decides to add such user to his Buddy List. Check the docs for more details on this",
+			"tooltip":"A temporary buddy will be lost as soon as the user disconnects, unless they decide to add such user to their Buddy List. Check the docs for more details on this",
 			"type":"CheckBox",
 			"value":false
 		}

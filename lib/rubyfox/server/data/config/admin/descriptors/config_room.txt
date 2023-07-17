@@ -141,6 +141,15 @@
 	"value":{$BasicValue=roomSettings.allowOwnerInvitation}
 },
 
+// SUPPRESS USER LIST
+{
+	"name":"suppressUserList",
+	"label":"Suppress User List",
+	"tooltip":"If enabled the Room will neither send a list of Users when joining it, nor trigger update events when other Users enter or leave it",
+	"type":"CheckBox",
+	"value":{$BasicValue=roomSettings.suppressUserList}
+},
+
 //-------------------------------------------
 // PERMISSIONS AND EVENTS
 //-------------------------------------------
@@ -448,7 +457,7 @@
 {
 	"name":"mmoSettings.userMaxLimboSeconds",
 	"label":"User max limbo time",
-	"tooltip":"The maximum amount of seconds allowed between the MMORoom join and the first time the user position is set in the Room (known as 'limbo', because the user is inside the Room but he knows nothing about the other users in it, because the proximity system based on the AoI requires his position to be set at least one time); if this time is exeeded, the user is kicked from the Room automatically",
+	"tooltip":"The maximum amount of seconds allowed between the MMORoom join and the first time the user position is set in the Room (known as 'limbo', because the user is inside the Room but they know nothing about the other users in it, as the proximity system based on the AoI requires their position to be set at least one time); if this time is exeeded, the user is kicked from the Room automatically",
 	"category":"MMO Settings",
 	"type":"NumericStepper",
 	"value":{$BasicValue=mmoSettings.userMaxLimboSeconds},

@@ -1,0 +1,32 @@
+<cluster-configurator-module class="module" id="cluster-configurator-module">
+	<style>
+		#clc-progressBar {
+			width: 100%;
+		}
+	</style>
+
+	<view-stack id="clc-viewstack" class="flex-grow-1">
+		<div id="clc-loading" class="position-relative">
+			<div class="float-centered-loading">
+				Requesting data...
+				<div id="clc-progressBar"></div>
+			</div>
+		</div>
+		<div id="clc-main" class="pt-3 px-3">
+			<div id="clc-tabNavigator">
+				<ul class="nav nav-tabs" id="tabs" role="tablist"></ul>
+				<div class="tab-content" id="tabPanels"></div>
+			</div>
+
+			<div id="clc-buttons" class="sticky-bottom-controls py-3 bg-color-default">
+				<button id="clc-reloadButton" type="button" class="k-button k-primary mr-1"><i class="fas fa-redo-alt mr-1"></i>Reload</button>
+				<button id="clc-submitButton" type="button" class="k-button k-primary mx-1"><i class="fas fa-check-circle mr-1"></i>Submit</button>
+				<div class="custom-control custom-checkbox d-inline ml-1">
+				  <input class="custom-control-input" type="checkbox" id="clc-backupCheck">
+				  <label class="custom-control-label" for="clc-backupCheck">Backup</label>
+				</div>
+			</div>
+		</div>
+	</view-stack>
+
+</cluster-configurator-module>
